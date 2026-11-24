@@ -3,756 +3,881 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MÉTHODE — Französisch bis B1</title>
+<title>MÉTHODE — Komplett · Vokabeln · Phonetik · Campus · Plan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#ffffff; --bg-soft:#f5f3f0; --bg-panel:#efece7;
-    --ink:#121212; --ink-2:#6f6b66; --line:#e4e1dc; --sand:#d8d2c6;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  [id]{scroll-margin-top:84px}
-  body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
-  ::selection{background:var(--ink);color:#fff}
-  a{color:inherit;text-decoration:none}
-  button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
-  ul{list-style:none}
-  :focus-visible{outline:1px solid var(--ink);outline-offset:3px}
-  .container{max-width:1280px;margin-inline:auto;padding-inline:clamp(1.25rem,4vw,3rem)}
-  .mono{font-family:'IBM Plex Mono',monospace}
-  .eyebrow{display:flex;align-items:center;gap:.8rem;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--ink-2)}
-  .eyebrow::before{content:"";width:2rem;height:1px;background:var(--ink)}
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:1rem 1.8rem;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;border:1px solid var(--ink);background:transparent;color:var(--ink);transition:background .25s,color .25s}
-  .btn:hover{background:var(--ink);color:#fff}
-  .btn--solid{background:var(--ink);color:#fff}
-  .btn--solid:hover{background:#000;border-color:#000}
-  .btn--sm{padding:.6rem 1rem;font-size:10px}
-
-  /* Header */
-  .site-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
-  .site-header.is-scrolled{border-bottom-color:var(--line)}
-  .header__inner{display:flex;align-items:center;gap:2rem;height:64px}
-  .logo{font-size:16px;font-weight:600;letter-spacing:.28em;text-transform:uppercase}
-  .logo span{color:var(--ink-2)}
-  .main-nav{display:flex;gap:1.8rem;margin-left:1rem}
-  .main-nav a{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;text-underline-offset:6px}
-  .main-nav a:hover{text-decoration:underline}
-  .main-nav a.is-active{text-decoration:underline}
-  .header-spacer{flex:1}
-  .nav-toggle{display:none;flex-direction:column;gap:5px;padding:6px 0}
-  .nav-toggle span{width:20px;height:1.5px;background:var(--ink)}
-
-  /* Hero / Dashboard */
-  .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,5vw,4rem);align-items:center;padding-block:clamp(2.5rem,6vw,5rem)}
-  .hero__title{font-size:clamp(2.1rem,5vw,3.6rem);font-weight:500;line-height:1.04;text-transform:uppercase;letter-spacing:.01em;margin:1.4rem 0 1.2rem}
-  .hero__title span{color:var(--ink-2)}
-  .hero__lead{color:var(--ink-2);font-size:15px;max-width:44ch;margin-bottom:2rem}
-  .dash{background:var(--bg-panel);padding:clamp(1.5rem,3vw,2.5rem);display:grid;gap:1.4rem}
-  .dash__progress{display:flex;justify-content:space-between;align-items:baseline;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin-bottom:.7rem}
-  .dash__progress strong{font-size:1.5rem;letter-spacing:0;color:var(--ink)}
-  .bar{height:6px;background:var(--bg);position:relative;overflow:hidden}
-  .bar__fill{position:absolute;inset:0;right:auto;background:var(--ink);width:0;transition:width .6s cubic-bezier(.2,.7,.2,1)}
-  .bar--slim{height:4px}
-  .dash__grid{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;border-top:1px solid var(--line);padding-top:1.3rem}
-  .stat strong{font-size:clamp(1.4rem,2.4vw,2rem);font-weight:500;display:block}
-  .stat em{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
-  .dash__row{display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:center;border-top:1px solid var(--line);padding-top:1.3rem}
-  .dash__row-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
-
-  section.block{padding-block:clamp(3rem,7vw,5.5rem)}
-  section.block--soft{background:var(--bg-soft)}
-  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;margin-bottom:2.4rem;flex-wrap:wrap}
-  .sec-head .kicker{display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--ink-2);margin-bottom:.7rem}
-  .sec-head h2{font-size:clamp(1.5rem,3vw,2.3rem);font-weight:500;text-transform:uppercase;letter-spacing:.02em;line-height:1.1}
-  .sec-link{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;white-space:nowrap;text-underline-offset:6px}
-  .sec-link:hover{text-decoration:underline}
-
-  /* Phonetik */
-  .phon-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(1.5rem,4vw,3rem)}
-  .phon-list{border-top:1px solid var(--ink)}
-  .phon-list button{display:flex;justify-content:space-between;gap:1rem;width:100%;text-align:left;padding:.9rem 0;border-bottom:1px solid var(--line);font-size:13px;font-weight:500;letter-spacing:.03em;transition:padding .2s}
-  .phon-list button:hover{padding-left:.4rem}
-  .phon-list button .arrow{color:var(--ink-2)}
-  .phon-list button.is-active{font-weight:600}
-  .phon-detail{background:var(--bg-panel);padding:clamp(1.4rem,3vw,2.2rem);min-height:100%;display:flex;flex-direction:column;gap:1rem}
-  .phon-detail h3{font-size:1.6rem;font-weight:500;letter-spacing:.02em}
-  .phon-detail .hint{font-size:13px;color:var(--ink-2)}
-  .exs{display:flex;flex-wrap:wrap;gap:.6rem}
-  .exs button{border:1px solid var(--line);background:var(--bg);padding:.5rem .9rem;font-size:13px}
-  .exs button:hover{border-color:var(--ink)}
-  .pron{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.05em;color:var(--ink-2)}
-
-  /* Vokabeln */
-  .deck-tools{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;border:1px solid var(--line);padding:1rem 1.2rem;margin-bottom:1.5rem}
-  .deck-tools .count{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--ink-2);margin-left:auto}
-  .deck-tools select,.deck-tools input[type=search]{font:inherit;font-size:12px;padding:.5rem .7rem;border:1px solid var(--line);background:#fff;color:var(--ink)}
-  .flashcard{max-width:520px;margin:0 auto}
-  .flashcard__inner{position:relative;display:grid;place-items:center;min-height:300px;padding:2rem;text-align:center;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.2,.7,.2,1)}
-  .flashcard.is-flipped .flashcard__inner{transform:rotateY(180deg)}
-  .flashcard__face{position:absolute;inset:0;padding:2rem;background:var(--bg);border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:.8rem;backface-visibility:hidden}
-  .flashcard__face--back{background:var(--bg-soft);transform:rotateY(180deg)}
-  .flashcard__big{font-size:clamp(1.6rem,4vw,2.6rem);font-weight:500;letter-spacing:.01em}
-  .flashcard__sub{font-size:13px;color:var(--ink-2)}
-  .flashcard__cat{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--line);padding:2px 8px}
-  .flashcard__say{margin-top:.4rem}
-  .flashcard__ctrl{display:flex;justify-content:center;gap:1rem;margin-top:1.4rem}
-  .flashcard__ctrl .btn{opacity:1}
-  @media (hover:none){.flashcard__ctrl{display:none}}
-  .fc-nav{display:flex;justify-content:space-between;align-items:center;max-width:520px;margin:1rem auto 0;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--ink-2)}
-  .fc-nav button{font:inherit}
-  .vocab-list{border-top:1px solid var(--ink);margin-top:2.5rem}
-  .vocab-list .row{display:grid;grid-template-columns:auto 1fr auto auto;gap:1rem;align-items:center;padding:.8rem 0;border-bottom:1px solid var(--line);font-size:13px}
-  .vocab-list .row .idx{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-2)}
-  .vocab-list .row .cat{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
-  .vocab-list .row button{font-size:10px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--line);padding:.4rem .6rem}
-  .vocab-list .row button:hover{border-color:var(--ink)}
-  .form{display:flex;gap:.8rem;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:1.2rem}
-  .form input,.form select{font:inherit;font-size:12px;padding:.6rem .7rem;border:1px solid var(--line);background:#fff}
-  .form input{flex:1;min-width:140px}
-
-  /* Grammatik */
-  .gram-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(1.5rem,4vw,3rem)}
-  .gram-detail{background:var(--bg-panel);padding:clamp(1.4rem,3vw,2.2rem);display:flex;flex-direction:column;gap:1rem}
-  .gram-detail p{font-size:14px;color:var(--ink-2)}
-  .gram-detail h4{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:.4rem}
-  .examples{display:flex;flex-direction:column;gap:.5rem}
-  .examples div{display:grid;grid-template-columns:1fr auto;gap:1rem;padding:.7rem .9rem;background:var(--bg);border:1px solid var(--line);font-size:13px}
-  .examples button{align-self:center}
-
-  /* Material */
-  .mat-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
-  .mat-list{border-top:1px solid var(--ink)}
-  .mat-item{display:flex;align-items:center;gap:.9rem;padding:.9rem 0;border-bottom:1px solid var(--line)}
-  .mat-item a{flex:1;font-size:13px;font-weight:500;display:flex;justify-content:space-between;gap:1rem}
-  .mat-item a:hover{opacity:.6}
-  .chip{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--line);padding:2px 7px;color:var(--ink-2);white-space:nowrap}
-
-  /* Fortschritt */
-  .prog-head{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
-  .prog-ctrls{display:flex;gap:.7rem;flex-wrap:wrap}
-  .log{border-top:1px solid var(--ink)}
-  .log .row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--line);font-size:13px;align-items:center}
-  .log .row .t{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-2)}
-  .log .row button{font-size:10px;color:var(--ink-2);border:1px solid var(--line);padding:.35rem .55rem}
-  .log .row button:hover{color:var(--ink);border-color:var(--ink)}
-  .log--empty{padding:2rem 0;text-align:center;color:var(--ink-2);border:0}
-
-  /* Footer */
-  footer{border-top:1px solid var(--line);padding:2.5rem 0 1.8rem}
-  .footer__legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.8rem;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--ink-2);text-transform:uppercase}
-  .footer__legal a:hover{color:var(--ink)}
-
-  /* Mobile-Menü */
-  .mmenu{position:fixed;inset:0;z-index:80;background:#fff;display:flex;flex-direction:column;padding:1.2rem clamp(1.25rem,4vw,3rem) 2.5rem;transform:translateY(-100%);transition:transform .45s cubic-bezier(.2,.7,.2,1)}
-  .mmenu.is-open{transform:none}
-  .mmenu__top{display:flex;justify-content:space-between;align-items:center;height:40px}
-  .mmenu__close{font-size:11px;letter-spacing:.16em;text-transform:uppercase}
-  .mmenu nav{margin-top:12vh;display:flex;flex-direction:column}
-  .mmenu nav a{font-size:clamp(1.6rem,7vw,2.4rem);font-weight:500;text-transform:uppercase;padding:.55rem 0;border-bottom:1px solid var(--line)}
-  .mmenu__foot{margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)}
-
-  /* Toast */
-  .toast{position:fixed;left:50%;bottom:1.5rem;z-index:120;transform:translate(-50%,14px);opacity:0;pointer-events:none;background:var(--ink);color:#fff;padding:.85rem 1.4rem;font-size:11px;letter-spacing:.12em;text-transform:uppercase;max-width:calc(100vw - 2rem);text-align:center;transition:opacity .3s,transform .3s}
-  .toast.show{opacity:1;transform:translate(-50%,0)}
-
-  /* Reveal */
-  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
-  .reveal.is-in{opacity:1;transform:none}
-
-  @media (max-width:900px){
-    .main-nav{display:none}.nav-toggle{display:flex}
-    .hero,.phon-grid,.gram-grid,.mat-grid{grid-template-columns:1fr}
-    .dash__grid{grid-template-columns:1fr 1fr}
-  }
-  @media (max-width:560px){
-    .dash__grid,.flashcard__ctrl{gap:.8rem}
-    .log .row{grid-template-columns:1fr 1fr;row-gap:.3rem}
-    .log .row .act{grid-column:2}
-    .vocab-list .row{grid-template-columns:auto 1fr auto}
-    .vocab-list .row .cat{display:none}
-  }
-  @media (prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto}
-    .reveal{opacity:1;transform:none;transition:none}
-    .flashcard__inner,.bar__fill,.mmenu{transition:none}
-  }
+:root{--bg:#fff;--bg-soft:#f5f3f0;--bg-panel:#efece7;--ink:#121212;--ink-2:#6f6b66;--line:#e4e1dc}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}input,select,textarea{font:inherit}
+:focus-visible{outline:1px solid var(--ink);outline-offset:3px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar__in{display:flex;align-items:center;gap:1.2rem;height:58px;padding-inline:clamp(1rem,3vw,2.5rem);max-width:1280px;margin-inline:auto}
+.logo{font-size:15px;font-weight:600;letter-spacing:.28em;text-transform:uppercase}.logo span{color:var(--ink-2)}
+.nav{display:flex;gap:1rem}.nav button{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;padding:.3rem 0;border-bottom:2px solid transparent}
+.nav button.is-active{border-bottom-color:var(--ink)}
+.spacer{flex:1}
+.chip{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--line);padding:4px 10px;color:var(--ink-2);white-space:nowrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.2rem;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;border:1px solid var(--ink);transition:all .25s}
+.btn:hover{background:var(--ink);color:#fff}.btn--solid{background:var(--ink);color:#fff}
+.btn--sm{padding:.45rem .8rem;font-size:10px}.btn:disabled{opacity:.4;pointer-events:none}
+main{max-width:1280px;margin-inline:auto;padding:clamp(1.5rem,4vw,3rem) clamp(1rem,3vw,2.5rem)}
+.view{display:none}.view.is-active{display:block}
+.hero{padding-bottom:1.4rem;border-bottom:1px solid var(--line);margin-bottom:1.4rem}
+.hero h1{font-size:clamp(1.7rem,3.6vw,2.6rem);font-weight:500;text-transform:uppercase;margin:.5rem 0 .3rem}
+.hero p{color:var(--ink-2);max-width:70ch}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--ink-2)}
+.dash{display:flex;gap:2rem;flex-wrap:wrap;margin-top:1.1rem}
+.dash strong{font-size:1.4rem;font-weight:500;display:block}
+.dash em{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.tab{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;border:1px solid var(--line);padding:.5rem .9rem;color:var(--ink-2);background:#fff}
+.tab:hover{border-color:var(--ink);color:var(--ink)}
+.tab.is-active{background:var(--ink);border-color:var(--ink);color:#fff}
+.stage{max-width:660px;border:1px solid var(--line);background:var(--bg-soft);padding:clamp(1.4rem,3.5vw,2.3rem)}
+.stage__big{font-size:clamp(1.5rem,3.6vw,2.1rem);font-weight:500;margin:.5rem 0}
+.stage__de{font-size:15px;font-weight:500;margin:.4rem 0 1rem}
+.stage__foot{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:1.2rem;flex-wrap:wrap}
+.score{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-2);letter-spacing:.1em;text-transform:uppercase}
+.fb{margin-top:.9rem;font-size:13px;min-height:1.5em}.fb .mono{color:var(--ink-2)}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:1rem}
+.opt{border:1px solid var(--line);background:#fff;padding:.8rem;font-size:15px;font-weight:500}
+.opt:hover{border-color:var(--ink)}.opt.ok{border:2px solid var(--ink)}
+.opt.ko{opacity:.45;text-decoration:line-through}.opt.sel{border:2px solid var(--ink);background:var(--bg-panel)}
+.opt:disabled{cursor:default}
+@media(max-width:520px){.opts{grid-template-columns:1fr}}
+.type-row{display:flex;gap:.6rem;margin-top:1rem}.type-row input{flex:1;border:1px solid var(--line);padding:.8rem;font-size:16px;background:#fff}
+.accents{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.6rem}
+.accents button{border:1px solid var(--line);background:#fff;padding:.3rem .55rem;font-size:14px}
+.formrow{display:flex;gap:.8rem;flex-wrap:wrap;margin:1rem 0}
+.formrow input,.formrow select{border:1px solid var(--line);padding:.65rem .8rem;background:#fff}
+.wrow{display:grid;grid-template-columns:1.4fr 1.4fr 1fr auto auto;gap:.7rem;align-items:center;padding:.6rem 0;border-bottom:1px solid var(--line);font-size:13px}
+.wrow .fr{font-weight:500}.wrow .ipa{font-family:'IBM Plex Mono',monospace;color:var(--ink-2);font-size:12px}
+.wrow .learned{color:#0a7d3b;font-family:'IBM Plex Mono',monospace;font-size:10px}
+.matchgrid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:560px;margin-top:1rem}
+.matchcol{display:flex;flex-direction:column;gap:.5rem}
+.formgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.8rem;margin-top:1rem}
+.fcell{border:1px solid var(--line);background:#fff;padding:.8rem}.fcell em{display:block;font-style:normal;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin-bottom:.3rem}
+.fcell strong{font-weight:500;font-size:15px}
+.ctbl{margin-top:1rem}.ctbl h4{font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.4rem}
+.ctbl .f{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:.35rem 0;font-size:13px}
+.progress{height:6px;background:var(--line);margin:.6rem 0 1rem;max-width:660px}
+.progress i{display:block;height:100%;background:var(--ink);transition:width .4s}
+.daylist{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:.5rem;max-width:660px;margin:1rem 0}
+.daybtn{border:1px solid var(--line);padding:.55rem .2rem;font-family:'IBM Plex Mono',monospace;font-size:12px;text-align:center}
+.daybtn.is-done{background:var(--ink);color:#fff;border-color:var(--ink)}
+.daybtn.is-cur{border:2px solid var(--ink)}
+.daycard{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;max-width:900px}
+@media(max-width:800px){.daycard{grid-template-columns:1fr}.nav{display:none}}
+.bcard{border:1px solid var(--line);padding:1rem;background:#fff;display:flex;flex-direction:column;gap:.5rem}
+.bcard h4{font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.bcard ul{list-style:none;display:flex;flex-direction:column;gap:.3rem;font-size:13px;color:var(--ink-2)}
+.litiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.7rem;margin-top:1rem}
+.litile{border:1px solid var(--line);background:#fff;padding:.9rem}
+.litile .ip{font-family:'IBM Plex Mono',monospace;font-size:1.2rem;font-weight:500}
+.litile .ex{color:var(--ink-2);font-size:12px;margin-top:.3rem}
+.toast{position:fixed;left:50%;bottom:1.4rem;z-index:120;transform:translate(-50%,14px);opacity:0;pointer-events:none;background:var(--ink);color:#fff;padding:.8rem 1.3rem;font-size:11px;letter-spacing:.12em;text-transform:uppercase;transition:all .3s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.emoji{font-size:2.6rem;margin:.3rem 0}
 </style>
 </head>
-<body id="top">
+<body>
+<header class="topbar"><div class="topbar__in">
+  <span class="logo">MÉTHODE<span>.</span></span>
+  <nav class="nav">
+    <button data-view="vocab" class="is-active">Vokabeln</button>
+    <button data-view="phon">Phonetik</button>
+    <button data-view="camp">Campus</button>
+    <button data-view="plan">Tagesplan</button>
+  </nav>
+  <div class="spacer"></div>
+  <span class="chip" id="chip-glob">—</span>
+  <button class="btn btn--sm" id="btn-backup">Backup</button>
+  <button class="btn btn--sm" id="btn-import">Import</button>
+  <input type="file" id="file-import" accept="application/json" hidden>
+</div></header>
 
-  <header class="site-header" id="site-header">
-    <div class="container header__inner">
-      <button class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen"><span></span><span></span></button>
-      <a class="logo" href="#top">MÉTHODE<span>.</span></a>
-      <nav class="main-nav">
-        <a href="#phonetik">Phonetik</a>
-        <a href="#vokabeln">Vokabeln</a>
-        <a href="#grammatik">Grammatik</a>
-        <a href="#material">Material</a>
-        <a href="#fortschritt">Fortschritt</a>
-      </nav>
-      <div class="header-spacer"></div>
+<main>
+<!-- ========== VOKABELN ========== -->
+<section id="view-vocab" class="view is-active">
+  <div class="hero">
+    <p class="eyebrow">Vokabeln · A1–B1</p><h1>Vokabeltrainer</h1>
+    <p>Karteikarten, Multiple Choice, Tippen, IPA-Erkennung, Hören — plus Formen-Generator.</p>
+    <div class="dash">
+      <div class="stat"><strong id="v-total">0</strong><em>Wörter</em></div>
+      <div class="stat"><strong id="v-learned">0</strong><em>Gelernt</em></div>
+      <div class="stat"><strong id="v-acc">—</strong><em>Quote</em></div>
     </div>
-  </header>
-
-  <div class="mmenu" id="mmenu" aria-hidden="true">
-    <div class="mmenu__top"><span class="logo">MÉTHODE<span>.</span></span><button class="mmenu__close" id="mmenu-close">Schließen ×</button></div>
-    <nav>
-      <a href="#phonetik">Phonetik</a>
-      <a href="#vokabeln">Vokabeln</a>
-      <a href="#grammatik">Grammatik</a>
-      <a href="#material">Material</a>
-      <a href="#fortschritt">Fortschritt</a>
-    </nav>
-    <p class="mmenu__foot">Ziel: B1 — 1. August 2027</p>
   </div>
-
-  <main>
-    <!-- ===== Dashboard ===== -->
-    <section class="container hero" id="dashboard">
-      <div class="reveal">
-        <p class="eyebrow">Dein Französisch-Plan · Start <span id="hud-start" class="mono"></span></p>
-        <h1 class="hero__title">Französisch,<br><span>geplant auf B1.</span></h1>
-        <p class="hero__lead">Fünfzig Stunden Aussprache, eintausend Wörter, dann Grammatik bis zum Ziel. <strong id="hud-daily">65</strong> Minuten pro Tag. <strong id="hud-days">0</strong> Tage bis zum 1. August 2027.</p>
-        <a class="btn btn--solid" href="#phonetik">Weitermachen →</a>
-      </div>
-      <div class="dash reveal">
-        <div>
-          <div class="dash__progress"><span>Gesamtfortschritt</span><strong id="dash-pct">0%</strong></div>
-          <div class="bar"><div class="bar__fill" id="dash-fill"></div></div>
-        </div>
-        <div class="dash__grid">
-          <div class="stat"><strong><span id="dash-studied">0</span> / <span id="dash-vocab-total">0</span></strong><em>Wörter gelernt</em></div>
-          <div class="stat"><strong id="dash-hours">0,0 h</strong><em>Studienzeit</em></div>
-        </div>
-        <div class="dash__row">
-          <span class="dash__row-label">Tagesziel</span>
-          <div class="bar bar--slim"><div class="bar__fill" id="day-fill"></div></div>
-          <span class="mono" id="day-mins">0 / 65 Min.</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Phonetik ===== -->
-    <section id="phonetik" class="container">
-      <div class="sec-head reveal">
-        <div><span class="kicker">Phase 01 — 50 h</span><h2>Aussprache &amp; Phonetik</h2></div>
-        <span class="sec-link mono" id="phon-progress"></span>
-      </div>
-      <div class="phon-grid reveal">
-        <div class="phon-list" id="phon-list"></div>
-        <div class="phon-detail" id="phon-detail"></div>
-      </div>
-    </section>
-
-    <!-- ===== Vokabeln ===== -->
-    <section id="vokabeln" class="block block--soft">
-      <div class="container">
-        <div class="sec-head reveal">
-          <div><span class="kicker">Phase 02 — 350 h</span><h2>Die 1.000 wichtigsten Wörter</h2></div>
-          <span class="sec-link mono" id="vocab-progress"></span>
-        </div>
-
-        <div class="deck-tools reveal">
-          <select id="deck-filter" aria-label="Kategorie filtern"></select>
-          <input type="search" id="deck-search" placeholder="Suchen…" aria-label="Vokabeln durchsuchen">
-          <label style="display:flex;align-items:center;gap:.5rem;font-size:11px;letter-spacing:.08em;text-transform:uppercase">
-            <input type="checkbox" id="deck-learn"> Nur Lernende
-          </label>
-          <span class="count" id="deck-count"></span>
-        </div>
-
-        <div class="flashcard" id="flashcard">
-          <div class="flashcard__inner" id="flashcard-inner">
-            <div class="flashcard__face flashcard__face--front" style="transform:rotateY(0deg)">
-              <span class="flashcard__cat" id="fc-cat"></span>
-              <div class="flashcard__big" id="fc-front">—</div>
-              <div class="flashcard__sub">Karte antippen zum Umdrehen</div>
-              <button class="btn btn--sm flashcard__say" id="fc-say1">◊ Aussprechen</button>
-            </div>
-            <div class="flashcard__face flashcard__face--back">
-              <div class="flashcard__big" id="fc-back">—</div>
-              <div class="flashcard__sub pron" id="fc-pron"></div>
-              <div class="flashcard__sub" id="fc-ex"></div>
-              <button class="btn btn--sm flashcard__say" id="fc-say2">◊ Aussprechen</button>
-            </div>
-          </div>
-        </div>
-        <div class="flashcard__ctrl">
-          <button class="btn" id="fc-shuffle">Shuffle</button>
-          <button class="btn btn--solid" id="fc-flip">Umkehren</button>
-        </div>
-        <div class="fc-nav">
-          <button id="fc-prev">← Vorige</button>
-          <span id="fc-idx">0 / 0</span>
-          <button id="fc-next">Nächste →</button>
-        </div>
-
-        <div class="vocab-list" id="vocab-list"></div>
-
-        <div class="form reveal">
-          <input type="text" id="v-fr" placeholder="Französisch">
-          <input type="text" id="v-de" placeholder="Deutsch">
-          <input type="text" id="v-pron" placeholder="Aussprache" class="mono">
-          <input type="text" id="v-ex" placeholder="Beispielsatz">
-          <select id="v-cat"></select>
-          <button class="btn btn--solid" id="v-add">Hinzufügen</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Grammatik ===== -->
-    <section id="grammatik" class="container">
-      <div class="sec-head reveal">
-        <div><span class="kicker">Phase 03 — 350 h</span><h2>Grammatik · A2 → B1</h2></div>
-        <span class="sec-link mono" id="gram-progress"></span>
-      </div>
-      <div class="gram-grid reveal">
-        <div class="phon-list" id="gram-list"></div>
-        <div class="gram-detail" id="gram-detail"></div>
-      </div>
-    </section>
-
-    <!-- ===== Material ===== -->
-    <section id="material" class="block block--soft">
-      <div class="container">
-        <div class="sec-head reveal">
-          <div><span class="kicker">Ressourcen</span><h2>Leselisten &amp; Lernmaterial</h2></div>
-        </div>
-        <div class="mat-grid reveal">
-          <div class="mat-list" id="mat-reading"></div>
-          <div class="mat-list" id="mat-practice"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Fortschritt ===== -->
-    <section id="fortschritt" class="container">
-      <div class="prog-head reveal">
-        <div><span class="kicker" style="display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--ink-2);margin-bottom:.6rem">Dokumentation</span><h2 style="font-size:clamp(1.5rem,3vw,2.3rem);font-weight:500;text-transform:uppercase">Lernprotokoll</h2></div>
-        <div class="prog-ctrls">
-          <input type="date" id="log-date" aria-label="Datum">
-          <input type="number" id="log-mins" min="0" step="5" placeholder="Minuten" style="width:9rem" aria-label="Minuten">
-          <select id="log-note" aria-label="Notiz"></select>
-          <button class="btn btn--solid btn--sm" id="log-add">Eintragen</button>
-          <button class="btn btn--sm" id="log-export">CSV-Export</button>
-        </div>
-      </div>
-      <div class="log" id="log"></div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer__legal">
-      <span>© 2025 MÉTHODE — persönliches Lernprojekt</span>
-      <span>Ziel: Französisch B1 · 1. August 2027 · ~65 Min./Tag</span>
+  <div class="tabs" id="v-tabs">
+    <button class="tab is-active" data-t="trainer">Trainer</button>
+    <button class="tab" data-t="liste">Liste</button>
+    <button class="tab" data-t="formen">Formen</button>
+    <button class="tab" data-t="imp">Import</button>
+  </div>
+  <div id="v-pane-trainer">
+    <div class="tabs" id="v-modes">
+      <button class="tab is-active" data-m="cf">Karte</button>
+      <button class="tab" data-m="mc">FR→DE</button>
+      <button class="tab" data-m="cd">DE→FR</button>
+      <button class="tab" data-m="ty">Tippen</button>
+      <button class="tab" data-m="li">IPA</button>
+      <button class="tab" data-m="he">Hören</button>
     </div>
-  </footer>
+    <div class="stage" id="v-stage"></div>
+  </div>
+  <div id="v-pane-liste" hidden>
+    <div class="formrow">
+      <input type="search" id="v-q" placeholder="Suchen (fr / de)…" style="flex:1;min-width:180px">
+      <select id="v-cat"><option value="">Alle Kategorien</option></select>
+      <label class="chip"><input type="checkbox" id="v-open"> nur ungelernt</label>
+    </div>
+    <div id="v-list"></div>
+  </div>
+  <div id="v-pane-formen" hidden>
+    <div class="formrow">
+      <select id="f-type"><option value="v">Verb</option><option value="n">Nomen</option><option value="adj">Adjektiv</option></select>
+      <select id="f-word"></select>
+    </div>
+    <div id="f-out" class="stage" style="max-width:none"></div>
+  </div>
+  <div id="v-pane-imp" hidden>
+    <div class="stage" style="max-width:none">
+      <p class="eyebrow">Eigene Wörter</p>
+      <p style="margin:.6rem 0">Zeilen im Format <span class="mono">["fr","de","ipa","kat","extra"]</span>, eine pro Zeile.</p>
+      <textarea id="imp-text" rows="7" style="width:100%;font-family:'IBM Plex Mono',monospace;font-size:12px;border:1px solid var(--line);padding:.6rem" placeholder='["bonjour","Hallo","bɔ̃ʒuʁ","phr",""]'></textarea>
+      <div style="display:flex;gap:.7rem;margin-top:.8rem;flex-wrap:wrap">
+        <button class="btn btn--solid btn--sm" id="imp-btn">Importieren</button>
+        <button class="btn btn--sm" id="imp-exp">Eigene exportieren</button>
+      </div>
+      <p class="fb" id="imp-msg"></p>
+    </div>
+  </div>
+</section>
 
-  <div class="toast" id="toast" role="status"></div>
+<!-- ========== PHONETIK ========== -->
+<section id="view-phon" class="view">
+  <div class="hero">
+    <p class="eyebrow">Phonetik · Laute &amp; Minimalpaare</p><h1>Phonetik-Lab</h1>
+    <p>Lautkarten mit Beispielen, Hör-Quiz und Minimalpaare zum Unterscheiden.</p>
+    <div class="dash"><div class="stat"><strong id="p-acc">—</strong><em>Hör-Quote</em></div></div>
+  </div>
+  <div class="tabs" id="p-tabs">
+    <button class="tab is-active" data-t="lite">Lautkarten</button>
+    <button class="tab" data-t="pair">Minimalpaare</button>
+    <button class="tab" data-t="quiz">Phonem-Quiz</button>
+    <button class="tab" data-t="lib">Wörter</button>
+  </div>
+  <div id="p-stage"></div>
+</section>
+
+<!-- ========== CAMPUS ========== -->
+<section id="view-camp" class="view">
+  <div class="hero">
+    <p class="eyebrow">Übungscampus · 9 Module</p><h1>Übungscampus</h1>
+    <p>Lücken, Kollokationen, Gegensätze, Kategorien, Definitionen, Bilder, Zitate, Übersetzen, Verb-Match.</p>
+    <div class="dash"><div class="stat"><strong id="c-acc">—</strong><em>Gesamt-Quote</em></div></div>
+  </div>
+  <div class="tabs" id="c-tabs">
+    <button class="tab is-active" data-c="luecke">Lücke</button>
+    <button class="tab" data-c="kollo">Kollokationen</button>
+    <button class="tab" data-c="anto">Antonyme</button>
+    <button class="tab" data-c="kategorie">Kategorien</button>
+    <button class="tab" data-c="definition">Definition</button>
+    <button class="tab" data-c="bild">Bild</button>
+    <button class="tab" data-c="zitat">Zitat</button>
+    <button class="tab" data-c="ueberset">Übersetzen</button>
+    <button class="tab" data-c="verb">Verb-Match</button>
+  </div>
+  <div class="stage" id="c-stage"></div>
+</section>
+
+<!-- ========== TAGESPLAN ========== -->
+<section id="view-plan" class="view">
+  <div class="hero">
+    <p class="eyebrow">Tagesplan · 30 Tage · 3 Blöcke</p><h1>30-Tage-Pfad</h1>
+    <p>Drei kurze Einheiten pro Tag. Häkele die Blöcke ab — der Tag zählt als geschafft, wenn alle drei erledigt sind.</p>
+    <div class="dash">
+      <div class="stat"><strong id="pl-done">0 / 30</strong><em>Tage geschafft</em></div>
+      <div class="stat"><strong id="pl-cur">Tag 1</strong><em>aktuell</em></div>
+    </div>
+    <div class="progress"><i id="pl-bar" style="width:0%"></i></div>
+  </div>
+  <div class="daylist" id="pl-days"></div>
+  <div class="daycard" id="pl-blocks"></div>
+</section>
+</main>
+
+<div class="toast" id="toast"></div>
 
 <script>
-/* ================== SPEICHERN ================== */
-const KEY = 'methode-fr-1';
-const store = {
-  load(){ try{ return JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ return {}; } },
-  save(s){ localStorage.setItem(KEY, JSON.stringify(s)); }
+/* ================= STORAGE ================= */
+const KEY='methode-voll-1';
+let S; try{S=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){S={}}
+S.vocab=S.vocab||{learned:{},r:0,t:0,imported:[]};
+S.phon=S.phon||{r:0,t:0,lib:[]};
+S.camp=S.camp||{r:0,t:0,m:{}};
+S.plan=S.plan||{done:{},cur:1};
+function save(){localStorage.setItem(KEY,JSON.stringify(S))}
+const el=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+let toastT;function toast(m){const t=el('toast');t.textContent=m;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2200)}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const norm=s=>String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’‘]/g,"'").replace(/[.,!?;:]/g,'').replace(/\s+/g,' ').trim();
+const normTr=s=>norm(s).replace(/\(e\)/g,'').replace(/[()]/g,'').replace(/œ/g,'oe').replace(/-/g,' ').trim();
+
+/* ================= TTS ================= */
+let frv=null;
+function pickVoice(){if(!('speechSynthesis' in window))return;frv=speechSynthesis.getVoices().find(v=>/^fr/i.test(v.lang))||frv}
+if('speechSynthesis' in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice}
+function speak(t,rate){if(!('speechSynthesis' in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);if(frv)u.voice=frv;u.lang='fr-FR';u.rate=rate||0.92;speechSynthesis.speak(u)}
+
+/* ============================================================
+   DATEN-SLOTS — hier kommen die Teile 2–6 hinein
+   ============================================================ */
+
+/* SLOT-1: Batch 1 (Teil 2 ersetzt diesen Platzhalter) */
+const SEED_A=[
+["bonjour","Hallo","bɔ̃ʒuʁ","phr",""],["merci","danke","mɛʁsi","phr",""],
+["oui","ja","wi","phr",""],["non","nein","nɔ̃","phr",""],
+["maison","Haus","mɛzɔ̃","n","f"],["ville","Stadt","vil","n","f"],
+["eau","Wasser","o","n","f"],["pain","Brot","pɛ̃","n","m"],
+["être","sein","ɛtʁ","v","etre"],["avoir","haben","avwaʁ","v","avoir"],
+["aller","gehen","ale","v","aller"],["faire","machen","fɛʁ","v","faire"],
+["grand","groß","ɡʁɑ̃","adj",""],["petit","klein","pəti","adj",""]
+];
+
+/* SLOT-2: Erweiterung auf ~1.000 (Teil 3 ersetzt diesen Platzhalter) */
+const SEED_B=[
+];
+
+/* SLOT-3: Phonetik (Teil 4 ersetzt diesen Platzhalter) */
+const PHON={
+cards:[
+ {ip:"y",ex:["tu","rue","salut"],tip:"Lippen wie für ‚u‘ runden, Zunge wie für ‚i‘"},
+ {ip:"ʁ",ex:["rouge","porte","mercredi"],tip:"Zäpfchen-r — im Hals gurgeln, nicht gerollt"},
+ {ip:"ɔ̃",ex:["bonjour","nom","enfant"],tip:"Mund rund, ‚ong‘ ohne das g aussprechen"}],
+pairs:[
+ ["rue","roue","y (spitz) vs. u (rund)"],
+ ["bon","bonne","Nasal ɔ̃ vs. orales o"],
+ ["pain","bain","p (hart) vs. b (weich)"]
+]};
+
+/* SLOT-4: Campus-Aufgaben (Teil 5 ersetzt diesen Platzhalter) */
+const CAMPUS={
+luecke:[
+ {p:"Le matin, je ___ un café.",a:"bois",o:["boit","buvons","boire"],n:"boire → je bois"},
+ {p:"Nous ___ français.",a:"parlons",o:["parlez","parlent","parle"],n:"parler → nous parlons"}],
+kollo:[
+ {p:"___ une décision",a:"prendre",o:["faire","dire","voir"],n:"eine Entscheidung treffen"},
+ {p:"___ attention",a:"faire",o:["prendre","regarder","dire"],n:"achtgeben"}],
+anto:[
+ {p:"Gegenteil von „grand“",a:"petit",o:["haut","gros","long"],n:"groß → klein"},
+ {p:"Gegenteil von „chaud“",a:"froid",o:["chaude","tiède","doux"],n:"warm → kalt"}],
+kategorie:[
+ {p:"Welches Wort gehört zu „Farben“?",a:"rouge",o:["chien","manger","pain"],n:"rouge = rot"},
+ {p:"Welches Wort gehört zu „Tiere“?",a:"chat",o:["table","lait","rue"],n:"le chat = die Katze"}],
+definition:[
+ {p:"die Mutter",a:"mère",o:["père","sœur","tante"],n:"la mère = die Mutter"},
+ {p:"das Brot",a:"pain",o:["vin","lait","eau"],n:"le pain = das Brot"}],
+bild:[
+ {p:"🏠",a:"maison",o:["voiture","pain","train"],n:"la maison = das Haus"},
+ {p:"🚗",a:"voiture",o:["maison","vélo","avion"],n:"la voiture = das Auto"}],
+zitat:[
+ {p:"„Ich habe Hunger.“",a:"j’ai faim",o:["j’ai soif","j’ai peur","j’ai raison"],n:"avoir faim = Hunger haben"},
+ {p:"„Es ist kalt.“ (Wetter)",a:"il fait froid",o:["il est froid","il a froid","il y a froid"],n:"Wetter immer mit faire"}],
+ueberset:[
+ {de:"Ich verstehe dich nicht.",fr:"je ne te comprends pas",alt:["je ne comprends pas"],hint:"ne … pas umschließt Verb + Pronomen"},
+ {de:"Wo wohnst du?",fr:"où habites-tu",alt:["tu habites où","où est-ce que tu habites"],hint:"Frage mit Umkehrung oder est-ce que"}],
+verb:[
+ ["parle","parler"],["finis","finir"],["prends","prendre"],
+ ["suis","être"],["va","aller"],["fais","faire"]]
 };
-let state = Object.assign(
-  { vocabulary:[], extra:[], studied:{}, phon:{}, gram:{}, log:[], start:'' },
-  store.load()
-);
-if(!state.start){ state.start = new Date().toISOString().slice(0,10); }
-const save = () => store.save(state);
-const today = () => new Date().toISOString().slice(0,10);
 
-/* ================== KONSTANTEN & DATEN ================== */
-const DAILY = 65;
-const GOAL = new Date('2027-08-01T00:00:00');
-const TOTAL_VOCAB = 1000;
-const TOTAL_HOURS = 750;
+/* SLOT-5: Tagesplan (Teil 6 ersetzt diesen Platzhalter) */
+const PLAN={
+days:30,
+blocks:[
+ {t:"Früh · 15 Min",tasks:["10 Min. Trainer (Karteikarten)","5 Min. Phonetik: ein Laut","10 neue Wörter in der Liste anschauen"]},
+ {t:"Mittag · 10 Min",tasks:["10 Min. Übungscampus (2 Module beliebig)"]},
+ {t:"Abend · 15 Min",tasks:["10 Min. Formen: ein Verb + ein Adjektiv","5 Min. Hören: gelernte Wörter vorlesen lassen"]}
+]};
 
-const PHONETIC = [
-  {id:'a', name:'A &amp; E — [a] [ɛ]', hint:'Das offene A (wie in „Basse") vs. das geschlossene [ɛ] (wie in „Café"). Deutsch-Sprecher trennen beide klar.', ex:['ma','la','papa','café','été','belle','mer']},
-  {id:'u', name:'OU &amp; U — [u] [y]', hint:'Der berüchtigte [y] (geschlossenes U, Lippen wie bei „U" aber Zunge wie bei „I" — „tu", „vous").', ex:['tu','vous','dur','musique','lune','rouge','fleur']},
-  {id:'nasal', name:'Nasale — [ɑ̃] [ɔ̃] [ɛ̃]', hint:'Drei Nasalvokale. Nasale Endungs-silben wie -on, -en, -in werden nasal, nicht „n"+Vokal gesprochen.', ex:['bon','mon','manger','brun','pain','vin','chanson']},
-  {id:'r', name:'Das R — [ʁ]', hint:'Das harte, gurgelnde R aus dem Rachen — nicht das deutsche Wälz-R. Übe langsam, von hinten nach vorn.', ex:['rouge','Paris','cher','mère','brûler','travail']},
-  {id:'s', name:'S — [s] [z] [ʃ] [ʒ]', hint:'Schwerpunkt: [s] vs. [z] (französisches „s" klingt wie „s", nie wie „z"!) und das weiche [ʒ] (wie „s" in „mesure").', ex:['sans','soleil','zéro','mesure','travailler','jardin','plage']},
-  {id:'conson', name:'Stumme Konsonanten', hint:'Französisch liest nicht, was geschrieben steht. Stumme Endungs-lauter (t, d, s, x) nach dem Vokal verschwinden.', ex:['jour','femme','petit','château','grand','parfum']},
-  {id:'liaison', name:'Liaison &amp; Enchaînement', hint:'Stumme Endungs-lauter werden vor einem Wort gesprochen, das mit einem Vokal beginnt (le ami → „leza-mi").', ex:['les amis','vous avez','un enfant','nous avons','trois autres']},
-  {id:'accent', name:'Akzente &amp; Betonung', hint:'Jedes Wort ist im Französischen auf der letzten betonte Silbe betont — fließend, ohne deutsches Wort-Akzent.', ex:['bonjour','français','aujourd’hui','merveilleux','important']}
-];
+/* ============================================================
+   LOGIK
+   ============================================================ */
+const SEED=SEED_A.concat(SEED_B,S.vocab.imported||[]);
+const CATS={art:"Artikel",pron:"Pronomen",det:"Begleiter",adv:"Adverb",prep:"Präposition",conj:"Konjunktion",phr:"Redemittel",num:"Zahl",n:"Nomen",v:"Verb",adj:"Adjektiv"};
 
-const GRAMMAR = [
-  {id:'art', name:'Artikel', hint:'Bestimmte (le/la/les, l’), unbestimmte (un/une/des, d’) und der Teilungsartikel (du, de la, de l’).', ex:['Le soleil est chaud.','Une femme chante.','Je mange du pain.']},
-  {id:'verbeetre', name:'Être &amp; Avoir', hint:'Die zwei Stützwörter — präsente Form. Sie tragen die Hälfte des Sprachalltags.', ex:['Je suis français.','Tu as faim.','Nous sommes contents.']},
-  {id:'present', name:'Präsens der -er-Verben', hint:'Die produktivste Endungsgruppe (parler, manger, travailler). Regelmäßig und vorhersagbar.', ex:['Je parle.','Tu manges.','Ils travaillent.']},
-  {id:'neg', name:'Negation', hint:'ne … pas / ne … jamais / ne … plus — die Verneinung klemmt das Verb ein.', ex:['Je ne suis pas fatigué.','Il ne mange pas.','Elle ne dort plus.']},
-  {id:'imparfait', name:'L’imparfait', hint:'Das „frühere Dauerzustand" — Hintergrund, Gewohnheit, Beschreibung in der Vergangenheit.', ex:['Je jouais du piano.','Il pleuvait souvent.','Elle était très timide.']},
-  {id:'passcompose', name:'Le passé composé', hint:'Beendete Handlung (auxiliaire être/havoir + Participe passé). Der Standard der Erzählung.', ex:['J’ai mangé une pomme.','Elle est partie.','Nous avons voyagé.']},
-  {id:'futur', name:'Le futur proche', hint:'aller + Infinitiv — das einfache „ich werde …". Ideal, um über Pläne zu sprechen.', ex:['Je vais manger.','Nous allons voyager.','Ils vont partir.']},
-  {id:'subjonctif', name:'Le subjonctif', hint:'B1-Kernthema: Subjunktiv nach Meinung, Emotion, Unsicherheit (il faut que, je pense que…).', ex:['Il faut que tu viennes.','Je doute qu’il soit là.','Bien qu’elle soit jeune…']},
-  {id:'relatives', name:'Relativsätze', hint:'qui, que, dont, où — verbindet Sätze und hebt den Wortschatz auf B1-Niveau.', ex:['L’homme qui parle est mon frère.','Le livre que tu lis est bon.','La maison où je vis…']}
-];
-
-const READING = [
-  {name:'Le Petit Prince (L’étranger)', tag:'A1–A2', url:'https://www.letranger.fr'},
-  {name:'L’Etranger (Le Petit Prince, Audio)', tag:'A2', url:'https://www.letranger.fr/audiolibre'},
-  {name:'L’Ecole des loisirs — Jeunesse', tag:'A2', url:'https://www.ecoledesloisirs.fr'},
-  {name:'L’Etranger — Grands classiques', tag:'A2', url:'https://www.letranger.fr/classiques'},
-  {name:'France Inter — Journal en français facile', tag:'A2–B1', url:'https://www.radiofrance.fr/france-inter'},
-  {name:'Le Figaro — Édition abonnés', tag:'B1', url:'https://www.lefigaro.fr'},
-  {name:'Le Point — Édition abonnés', tag:'B1', url:'https://www.lepoint.fr'},
-  {name:'TV5Monde — Français facile', tag:'A2–B1', url:'https://apprendre.tv5monde.com/fr'}
-];
-const PRACTICE = [
-  {name:'Duolingo — Français', tag:'Täglich', url:'https://www.duolingo.com'},
-  {name:'BBC Learning French (A2)', tag:'Audio', url:'https://www.bbc.co.uk/learningenglish/french'},
-  {name:'Learn French with Alexa (Podcast)', tag:'Podcast', url:'https://www.learnfrenchwithalexa.com'},
-  {name:'Khan Academy — French (Klasse A2)', tag:'Übung', url:'https://fr.khanacademy.org'},
-  {name:'France.tv — Cinéma & Docs', tag:'Video', url:'https://www.france.tv'},
-  {name:'Anki — French 1000 Deck', tag:'Spaced Repetition', url:'https://ankiweb.net/shared/decks'}
-];
-
-const SEED_VOCAB = [
-  ['bonjour','Hallo / Guten Tag','bon.ʒuʁ','Bonjour, comment allez-vous ?'],
-  ['merci','Danke','mɛɾsi','Merci beaucoup.'],
-  ['s’il vous plaît','bitte','sil vu plɛ','Un café, s’il vous plaît.'],
-  ['oui','ja','wi','Oui, bien sûr.'],
-  ['non','nein','nɔ̃','Non, merci.'],
-  ['bonsoir','Guten Abend','bɔ̃swaʁ','Bonsoir, comment ça va ?'],
-  ['au revoir','Auf Wiedersehen','o ʁəvwaʁ','Au revoir, à bientôt.'],
-  ['je ne comprends pas','ich verstehe nicht','ʒə nə̃ kɔ̃pʁɑ̃d pa','Désolé, je ne comprends pas.'],
-  ['vous parlez anglais ?','Sprechen Sie Englisch ?','vu paʁleɛ̃glɛ','Pardon, vous parlez anglais ?'],
-  ['où est la gare ?','Wo ist der Bahnhof ?','u ɛ la ɡaʁ','Excusez-moi, où est la gare ?']
-];
-
-const NOTE_TYPES = ['Phonetik','Vokabeln','Grammatik','Lesen','Hören','Übung','Sonstiges'];
-
-/* ================== HILFSFUNKTIONEN ================== */
-function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
-function fr(s){ return String(s).split(' ').filter(Boolean).map(w => ({text:w}).text).join(' '); }
-function speak(text){
-  if(!('speechSynthesis' in window)) return;
-  speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = 'fr-FR'; u.rate = .85;
-  speechSynthesis.speak(u);
+function showView(v){
+  document.querySelectorAll('.view').forEach(x=>x.classList.toggle('is-active',x.id==='view-'+v));
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('is-active',b.dataset.view===v));
+  window.scrollTo(0,0);
 }
-const fmtH = h => (Math.round(h*10)/10).toLocaleString('de-DE',{minimumFractionDigits:1,maximumFractionDigits:1}) + ' h';
-const fmtD = d => d.toLocaleString('de-DE') + ' Tage';
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>showView(b.dataset.view));
 
-let toastEl, toastTimer;
-function toast(msg){
-  toastEl.textContent = msg;
-  toastEl.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=>toastEl.classList.remove('show'), 2600);
+function tabWire(wrapSel,fn){
+  document.querySelectorAll(wrapSel+' .tab').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll(wrapSel+' .tab').forEach(x=>x.classList.toggle('is-active',x===b));fn(b.dataset);
+  }));
+}
+function paneShow(prefix,pane){
+  ['trainer','liste','formen','imp'].forEach(p=>el(prefix+'-pane-'+p).hidden=(p!==pane));
+}
+tabWire('#v-tabs',d=>paneShow('v',d.t));
+
+function stats(){
+  const total=SEED.length, learned=Object.keys(S.vocab.learned).length;
+  el('v-total').textContent=total; el('v-learned').textContent=learned;
+  el('v-acc').textContent=S.vocab.t?Math.round(S.vocab.r/S.vocab.t*100)+'%':'—';
+  el('p-acc').textContent=S.phon.t?Math.round(S.phon.r/S.phon.t*100)+'%':'—';
+  el('c-acc').textContent=S.camp.t?Math.round(S.camp.r/S.camp.t*100)+'%':'—';
+  el('chip-glob').textContent=total+' Wörter · '+learned+' gelernt';
 }
 
-/* ================== VOKABELN ================== */
-function vocabList(){ return [...state.vocabulary, ...state.extra]; }
-function allCats(){
-  const cats = new Set();
-  vocabList().forEach(v => v.cat && cats.add(v.cat));
-  state.extra.forEach(v => v.cat && cats.add(v.cat));
-  ['Allgemein','Gruß','Essen','Reisen','Arbeit','Familie'].forEach(c=>cats.add(c));
-  return [...cats].sort((a,b)=>a.localeCompare(b,'de'));
+/* ---------- Vokabel-Trainer ---------- */
+const V={mode:'cf',pool:[],i:0};
+tabWire('#v-modes',d=>{V.mode=d.m;vNext()});
+function vPool(){
+  const open=SEED.filter(w=>!S.vocab.learned[w[0]]);
+  const done=SEED.filter(w=>S.vocab.learned[w[0]]);
+  return shuffle(open).concat(shuffle(done));
+}
+function vNext(){
+  if(!V.pool.length||V.i>=V.pool.length){V.pool=vPool();V.i=0}
+  const w=V.pool[V.i++];
+  const R={cf:vCard,mc:vQuizFR,cd:vQuizDE,ty:vType,li:vIPA,he:vHear};
+  R[V.mode](w);
+}
+function vMark(w,ok){
+  S.vocab.t++; if(ok){S.vocab.r++; S.vocab.learned[w[0]]=1}
+  else delete S.vocab.learned[w[0]];
+  save(); stats();
+}
+function vFoot(extra){
+  return '<div class="stage__foot"><span class="score">'+(S.vocab.t?Math.round(S.vocab.r/S.vocab.t*100)+'% · '+S.vocab.t+' Aufgaben':'Noch nichts gemacht')+'</span><span>'+extra+'</span></div>';
+}
+function vCard(w){
+  el('v-stage').innerHTML='<p class="eyebrow">Karteikarte</p><h2 class="stage__big">'+esc(w[0])+'</h2>'+
+    '<p class="mono" style="color:var(--ink-2)">['+esc(w[2])+']</p>'+
+    '<p class="stage__de" id="v-de" style="visibility:hidden">'+esc(w[1])+'</p>'+
+    '<div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.6rem">'+
+    '<button class="btn btn--sm" id="v-say">🔊</button><button class="btn btn--sm" id="v-flip">Bedeutung zeigen</button></div>'+
+    '<div id="v-judge" style="display:none;gap:.6rem;margin-top:1rem">'+
+    '<button class="btn btn--solid btn--sm" id="v-ok">Gewusst ✓</button><button class="btn btn--sm" id="v-ko">Nochmal ✗</button></div>'+
+    vFoot('');
+  speak(w[0]);
+  el('v-say').onclick=()=>speak(w[0]);
+  el('v-flip').onclick=()=>{el('v-de').style.visibility='visible';el('v-judge').style.display='flex';el('v-flip').disabled=true};
+  el('v-ok').onclick=()=>{vMark(w,true);vNext()};
+  el('v-ko').onclick=()=>{vMark(w,false);vNext()};
+}
+function distractors(w,idx,label){
+  const same=SEED.filter(x=>x[3]===w[3]&&x[idx]!==w[idx]);
+  const pool=same.length>=6?same:SEED.filter(x=>x[idx]!==w[idx]);
+  const out=[],seen=new Set([norm(label)]);
+  for(const c of shuffle(pool)){ if(!seen.has(norm(c[idx]))){out.push(c[idx]);seen.add(norm(c[idx]))} if(out.length===3)break }
+  return out;
+}
+function vOptions(w,correct,optIdx){
+  return shuffle([correct].concat(distractors(w,optIdx,correct)));
+}
+function vQuizFR(w){
+  const opts=vOptions(w,w[1],1);
+  el('v-stage').innerHTML='<p class="eyebrow">Was bedeutet …?</p><h2 class="stage__big">'+esc(w[0])+'</h2>'+
+    '<p class="mono" style="color:var(--ink-2)">['+esc(w[2])+']</p>'+
+    '<div class="opts">'+opts.map(o=>'<button class="opt" data-v="'+esc(o)+'">'+esc(o)+'</button>').join('')+'</div>'+
+    '<p class="fb" id="v-fb"></p>'+vFoot('<button class="btn" id="v-next" hidden>Weiter →</button>');
+  speak(w[0]);
+  let lock=false;
+  document.querySelectorAll('#v-stage .opt').forEach(b=>b.onclick=()=>{
+    if(lock)return;lock=true;
+    const ok=b.dataset.v===w[1]; vMark(w,ok);
+    document.querySelectorAll('#v-stage .opt').forEach(x=>{x.disabled=true;if(x.dataset.v===w[1])x.classList.add('ok');else if(x===b)x.classList.add('ko')});
+    el('v-fb').innerHTML=(ok?'✓ Richtig — ':'✗ ')+esc(w[0])+' = '+esc(w[1]);
+    el('v-next').hidden=false;
+  });
+  el('v-next').onclick=vNext;
+}
+function vQuizDE(w){
+  const opts=vOptions(w,w[0],0);
+  el('v-stage').innerHTML='<p class="eyebrow">Wie sagt man …?</p><h2 class="stage__big">'+esc(w[1])+'</h2>'+
+    '<div class="opts">'+opts.map(o=>'<button class="opt" data-v="'+esc(o)+'">'+esc(o)+'</button>').join('')+'</div>'+
+    '<p class="fb" id="v-fb"></p>'+vFoot('<button class="btn" id="v-next" hidden>Weiter →</button>');
+  let lock=false;
+  document.querySelectorAll('#v-stage .opt').forEach(b=>b.onclick=()=>{
+    if(lock)return;lock=true;
+    const ok=b.dataset.v===w[0]; vMark(w,ok);
+    document.querySelectorAll('#v-stage .opt').forEach(x=>{x.disabled=true;if(x.dataset.v===w[0])x.classList.add('ok');else if(x===b)x.classList.add('ko')});
+    el('v-fb').innerHTML=(ok?'✓ Richtig — ':'✗ ')+esc(w[1])+' = <span class="mono">'+esc(w[0])+'</span> ['+esc(w[2])+']';
+    speak(w[0]); el('v-next').hidden=false;
+  });
+  el('v-next').onclick=vNext;
+}
+function vType(w){
+  el('v-stage').innerHTML='<p class="eyebrow">Schreibe auf Französisch</p><h2 class="stage__big">'+esc(w[1])+'</h2>'+
+    '<div class="type-row"><input type="text" id="v-in" autocomplete="off" spellcheck="false" placeholder="auf Französisch …"><button class="btn btn--solid" id="v-check">Prüfen</button></div>'+
+    '<div class="accents">'+['é','è','ê','à','ç','ù','î','ô','û','œ','’'].map(a=>'<button data-a="'+a+'">'+a+'</button>').join('')+'</div>'+
+    '<p class="fb" id="v-fb"></p>'+vFoot('<button class="btn btn--sm" id="v-sol">Lösung</button><button class="btn" id="v-next" hidden>Weiter →</button>');
+  const inp=el('v-in'); inp.focus();
+  document.querySelectorAll('#v-stage .accents button').forEach(b=>b.onclick=()=>{inp.value+=b.dataset.a;inp.focus()});
+  let lock=false;
+  const check=()=>{
+    if(lock)return;lock=true;
+    const ok=normTr(inp.value)===normTr(w[0]); vMark(w,ok);
+    el('v-fb').innerHTML=(ok?'✓ Richtig — ':'✗ Richtig wäre: ')+'<span class="mono">'+esc(w[0])+'</span> ['+esc(w[2])+']';
+    speak(w[0]); el('v-next').hidden=false; el('v-check').disabled=true; el('v-sol').disabled=true;
+  };
+  el('v-check').onclick=check;
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter')check()});
+  el('v-sol').onclick=()=>{if(lock)return;lock=true;vMark(w,false);el('v-fb').innerHTML='Lösung: <span class="mono">'+esc(w[0])+'</span>';speak(w[0]);el('v-next').hidden=false};
+  el('v-next').onclick=vNext;
+}
+function vIPA(w){
+  const opts=vOptions(w,w[0],0);
+  el('v-stage').innerHTML='<p class="eyebrow">Welches Wort hat diese Lautschrift?</p><h2 class="stage__big mono">['+esc(w[2])+']</h2>'+
+    '<div class="opts">'+opts.map(o=>'<button class="opt" data-v="'+esc(o)+'">'+esc(o)+'</button>').join('')+'</div>'+
+    '<p class="fb" id="v-fb"></p>'+vFoot('<button class="btn" id="v-next" hidden>Weiter →</button>');
+  let lock=false;
+  document.querySelectorAll('#v-stage .opt').forEach(b=>b.onclick=()=>{
+    if(lock)return;lock=true;
+    const ok=b.dataset.v===w[0]; vMark(w,ok);
+    document.querySelectorAll('#v-stage .opt').forEach(x=>{x.disabled=true;if(x.dataset.v===w[0])x.classList.add('ok');else if(x===b)x.classList.add('ko')});
+    el('v-fb').innerHTML=(ok?'✓ ':'✗ ')+esc(w[0])+' ['+esc(w[2])+'] = '+esc(w[1]);
+    speak(w[0]); el('v-next').hidden=false;
+  });
+  el('v-next').onclick=vNext;
+}
+function vHear(w){
+  const opts=vOptions(w,w[0],0);
+  el('v-stage').innerHTML='<p class="eyebrow">Hör genau — welches Wort ist es?</p>'+
+    '<button class="btn" id="v-replay" style="margin:.8rem 0">🔊 Nochmal hören</button>'+
+    '<div class="opts">'+opts.map(o=>'<button class="opt" data-v="'+esc(o)+'">'+esc(o)+'</button>').join('')+'</div>'+
+    '<p class="fb" id="v-fb"></p>'+vFoot('<button class="btn" id="v-next" hidden>Weiter →</button>');
+  speak(w[0],0.85);
+  el('v-replay').onclick=()=>speak(w[0],0.85);
+  let lock=false;
+  document.querySelectorAll('#v-stage .opt').forEach(b=>b.onclick=()=>{
+    if(lock)return;lock=true;
+    const ok=b.dataset.v===w[0]; vMark(w,ok);
+    document.querySelectorAll('#v-stage .opt').forEach(x=>{x.disabled=true;if(x.dataset.v===w[0])x.classList.add('ok');else if(x===b)x.classList.add('ko')});
+    el('v-fb').innerHTML=(ok?'✓ ':'✗ ')+esc(w[0])+' ['+esc(w[2])+'] = '+esc(w[1]);
+    el('v-next').hidden=false;
+  });
+  el('v-next').onclick=vNext;
 }
 
-let deck = [], deckIdx = 0;
-function buildDeck(){
-  const f = document.getElementById('deck-filter').value;
-  const q = document.getElementById('deck-search').value.trim().toLowerCase();
-  const onlyLearn = document.getElementById('deck-learn').checked;
-  deck = vocabList().filter(v =>
-    (f==='alle' || v.cat===f) &&
-    (onlyLearn ? v.cat==='Lernende' || state.extra.some(e=>e.fr===v.fr) : true) &&
-    (!q || v.fr.toLowerCase().includes(q) || v.de.toLowerCase().includes(q))
-  );
-  deckIdx = 0;
-}
-function renderDeck(){
-  buildDeck();
-  const el = document.getElementById('deck-count');
-  el.textContent = deck.length ? `${deck.length} Wörter` : 'Keine Wörter gefunden';
-  renderCard();
-  renderVocabList();
-}
-function renderCard(){
-  const fc = document.getElementById('flashcard');
-  fc.classList.remove('is-flipped');
-  document.getElementById('fc-idx').textContent = deck.length ? `${deckIdx+1} / ${deck.length}` : '0 / 0';
-  if(!deck.length){
-    document.getElementById('fc-front').textContent = '—';
-    document.getElementById('fc-back').textContent = 'Kein Wort';
-    document.getElementById('fc-cat').textContent = '';
-    document.getElementById('fc-pron').textContent = '';
-    document.getElementById('fc-ex').textContent = 'Füge unten ein Wort hinzu, um zu starten.';
-    return;
+/* ---------- Liste ---------- */
+(function(){
+  const sel=el('v-cat');
+  Object.keys(CATS).forEach(k=>{const o=document.createElement('option');o.value=k;o.textContent=CATS[k];sel.appendChild(o)});
+  function render(){
+    const q=norm(el('v-q').value), cat=sel.value, open=el('v-open').checked;
+    const rows=SEED.filter(w=>
+      (!q||norm(w[0]).includes(q)||norm(w[1]).includes(q))&&
+      (!cat||w[3]===cat)&&
+      (!open||!S.vocab.learned[w[0]])
+    ).map(w=>'<div class="wrow"><span class="fr">'+esc(w[0])+'</span><span>'+esc(w[1])+'</span>'+
+      '<span class="ipa">['+esc(w[2])+']</span>'+
+      '<span>'+(S.vocab.learned[w[0]]?'<span class="learned">✓ gelernt</span>':'')+'</span>'+
+      '<button class="btn btn--sm" data-say="'+esc(w[0])+'">🔊</button></div>').join('');
+    el('v-list').innerHTML=rows||'<p style="color:var(--ink-2);margin-top:1rem">Keine Treffer.</p>';
+    el('v-list').querySelectorAll('[data-say]').forEach(b=>b.onclick=()=>speak(b.dataset.say));
   }
-  const v = deck[deckIdx];
-  document.getElementById('fc-front').textContent = v.fr;
-  document.getElementById('fc-back').textContent = v.de;
-  document.getElementById('fc-cat').textContent = v.cat || '—';
-  document.getElementById('fc-pron').textContent = v.pron ? '/ '+v.pron+' /' : '';
-  document.getElementById('fc-ex').textContent = v.ex ? '« '+v.ex+' »' : '';
+  el('v-q').addEventListener('input',render);
+  sel.addEventListener('change',render);
+  el('v-open').addEventListener('change',render);
+  window.__vListRender=render;
+})();
+
+/* ---------- Formen-Engine ---------- */
+const IRREG={
+ etre:{p:["suis","es","est","sommes","êtes","sont"],pp:"été",f:"ser",i:"ét",aux:1},
+ avoir:{p:["ai","as","a","avons","avez","ont"],pp:"eu",f:"aur",i:"av"},
+ aller:{p:["vais","vas","va","allons","allez","vont"],pp:"allé",f:"ir",i:"all",aux:1},
+ faire:{p:["fais","fais","fait","faisons","faites","font"],pp:"fait",f:"fer",i:"fais"},
+ dire:{p:["dis","dis","dit","disons","dites","disent"],pp:"dit",f:"dir",i:"dis"},
+ voir:{p:["vois","vois","voit","voyons","voyez","voient"],pp:"vu",f:"verr",i:"voy"},
+ savoir:{p:["sais","sais","sait","savons","savez","savent"],pp:"su",f:"saur",i:"sav"},
+ pouvoir:{p:["peux","peux","peut","pouvons","pouvez","peuvent"],pp:"pu",f:"pourr",i:"pouv"},
+ vouloir:{p:["veux","veux","veut","voulons","voulez","veulent"],pp:"voulu",f:"voudr",i:"voul"},
+ venir:{p:["viens","viens","vient","venons","venez","viennent"],pp:"venu",f:"viendr",i:"ven",aux:1},
+ devoir:{p:["dois","dois","doit","devons","devez","doivent"],pp:"dû",f:"devr",i:"dev"},
+ falloir:{p:["—","—","faut","—","—","—"],pp:"fallu",f:"faudr",i:"fall"},
+ prendre:{p:["prends","prends","prend","prenons","prenez","prennent"],pp:"pris",f:"prendr",i:"pren"},
+ mettre:{p:["mets","mets","met","mettons","mettez","mettent"],pp:"mis",f:"mettr",i:"met"},
+ partir:{p:["pars","pars","part","partons","partez","partent"],pp:"parti",f:"partir",i:"part",aux:1},
+ sortir:{p:["sors","sors","sort","sortons","sortez","sortent"],pp:"sorti",f:"sortir",i:"sort",aux:1},
+ dormir:{p:["dors","dors","dort","dormons","dormez","dorment"],pp:"dormi",f:"dormir",i:"dorm"},
+ ouvrir:{p:["ouvre","ouvres","ouvre","ouvrons","ouvrez","ouvrent"],pp:"ouvert",f:"ouvrir",i:"ouvr"},
+ offrir:{p:["offre","offres","offre","offrons","offrez","offrent"],pp:"offert",f:"offrir",i:"offr"},
+ ecrire:{p:["écris","écris","écrit","écrivons","écrivez","écrivent"],pp:"écrit",f:"écrir",i:"écriv"},
+ lire:{p:["lis","lis","lit","lisons","lisez","lisent"],pp:"lu",f:"lir",i:"lis"},
+ boire:{p:["bois","bois","boit","buvons","buvez","boivent"],pp:"bu",f:"boir",i:"buv"},
+ vivre:{p:["vis","vis","vit","vivons","vivez","vivent"],pp:"vécu",f:"vivr",i:"viv"},
+ suivre:{p:["suis","suis","suit","suivons","suivez","suivent"],pp:"suivi",f:"suivr",i:"suiv"},
+ tenir:{p:["tiens","tiens","tient","tenons","tenez","tiennent"],pp:"tenu",f:"tiendr",i:"ten",aux:1},
+ connaitre:{p:["connais","connais","connaît","connaissons","connaissez","connaissent"],pp:"connu",f:"connaîtr",i:"connaiss"},
+ croire:{p:["crois","crois","croit","croyons","croyez","croient"],pp:"cru",f:"croir",i:"croi"},
+ rire:{p:["ris","ris","rit","rions","riez","rient"],pp:"ri",f:"rir",i:"ri"},
+ sourire:{p:["souris","souris","sourit","sourions","souriez","sourient"],pp:"souri",f:"sourir",i:"souri"},
+ courir:{p:["cours","cours","court","courons","courez","courent"],pp:"couru",f:"courr",i:"cour"},
+ mourir:{p:["meurs","meurs","meurt","mourons","mourez","meurent"],pp:"mort",f:"mourr",i:"mour",aux:1},
+ naitre:{p:["nais","nais","naît","naissons","naissez","naissent"],pp:"né",f:"naîtr",i:"naiss",aux:1},
+ recevoir:{p:["reçois","reçois","reçoit","recevons","recevez","reçoivent"],pp:"reçu",f:"recevr",i:"recev"}
+};
+const ER_X={},FEM_X={gros:"grosse",bas:"basse",blanc:"blanche",frais:"fraîche",sec:"sèche"};
+function splitRefl(inf){const m=inf.match(/^s(e\s+|')/);return m?{refl:true,base:inf.slice(m[0].length)}:{refl:false,base:inf}}
+function presForms(inf,cls){
+  const {base}=splitRefl(inf);
+  if(IRREG[cls])return IRREG[cls].p.slice();
+  const st=base.slice(0,-2);
+  if(cls==='er'){
+    if(ER_X[base])return ER_X[base].slice();
+    let nous=st+'ons';
+    if(/g$/.test(st))nous=st+'eons';else if(/c$/.test(st))nous=st.slice(0,-1)+'çons';
+    return [st+'e',st+'es',st+'e',nous,st+'ez',st+'ent'];
+  }
+  if(cls==='ir')return [st+'is',st+'is',st+'it',st+'issons',st+'issez',st+'issent'];
+  return [st+'s',st+'s',st,st+'ons',st+'ez',st+'ent'];
 }
-function flip(){ document.getElementById('flashcard').classList.toggle('is-flipped'); }
-function go(dir){
-  if(!deck.length) return;
-  deckIdx = (deckIdx + dir + deck.length) % deck.length;
-  flip(); // flip zurück, dann neu
-  setTimeout(renderCard, 60);
+function impForms(inf,cls){
+  const {base}=splitRefl(inf);
+  const stem=(IRREG[cls]&&IRREG[cls].i)?IRREG[cls].i:presForms(inf,cls)[3].slice(0,-2);
+  return [stem+'ais',stem+'ais',stem+'ait',stem+'ions',stem+'iez',stem+'aient'];
 }
-function shuffleDeck(){
-  for(let i=deck.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [deck[i],deck[j]]=[deck[j],deck[i]]; }
-  deckIdx = 0;
-  renderCard();
-  toast('Deck gemischt');
+function futForms(inf,cls){
+  const {base}=splitRefl(inf);
+  const stem=(IRREG[cls]&&IRREG[cls].f)?IRREG[cls].f:(cls==='re'?base.slice(0,-1):base);
+  return [stem+'ai',stem+'as',stem+'a',stem+'ons',stem+'ez',stem+'ont'];
 }
-function renderVocabList(){
-  const el = document.getElementById('vocab-list');
-  if(!deck.length){ el.innerHTML = '<p style="padding:1.5rem 0;color:var(--ink-2)">Keine Wörter in dieser Ansicht.</p>'; return; }
-  el.innerHTML = deck.map((v,i)=>{
-    const learned = state.extra.some(e=>e.fr===v.fr);
-    const del = learned ? '<button data-del="'+esc(v.fr)+'">Entfernen</button>' : '<button data-learn="'+esc(v.fr)+'">Gelernt</button>';
-    return '<div class="row"><span class="idx">'+String(i+1).padStart(3,'0')+'</span><span><strong>'+esc(v.fr)+'</strong> — '+esc(v.de)+'</span><span class="cat">'+esc(v.cat||'')+'</span>'+del+'</div>';
+function ppOf(inf,cls){
+  if(IRREG[cls])return IRREG[cls].pp;
+  const {base}=splitRefl(inf);
+  return cls==='er'?base.slice(0,-1)+'é':cls==='ir'?base.slice(0,-2)+'i':base.slice(0,-2)+'u';
+}
+function auxOf(inf,cls){
+  if(splitRefl(inf).refl)return 'être';
+  return (IRREG[cls]&&IRREG[cls].aux)?'être':'avoir';
+}
+function femAdj(base,type){
+  const fx=FEM_X[base];
+  if(type==='beau')return {m:base,e:base.slice(0,-2)+'l',f:fx||'belle'};
+  if(type==='nouveau')return {m:base,e:base.slice(0,-3)+'l',f:fx||'nouvelle'};
+  if(type==='vieux')return {m:base,e:base.slice(0,-3)+'l',f:fx||'vieille'};
+  if(type==='doux')return {m:base,e:base,f:'douce'};
+  if(type==='faux')return {m:base,e:base,f:'fausse'};
+  if(type==='g')return {m:base,e:base,f:base+'ue'};
+  if(type==='er')return {m:base,e:base.slice(0,-2)+'ère',f:base.slice(0,-2)+'ère'};
+  if(type==='eux')return {m:base,e:base.slice(0,-3)+'euse',f:base.slice(0,-3)+'euse'};
+  if(type==='gentil')return {m:base,e:base,f:base+'le'};
+  if(fx)return {m:base,e:base,f:fx};
+  if(/al$/.test(base))return {m:base,e:base,f:base+'e'};
+  if(/f$/.test(base))return {m:base,e:base,f:base.slice(0,-1)+'ve'};
+  if(/e$/.test(base))return {m:base,e:base,f:base};
+  return {m:base,e:base,f:base+'e'};
+}
+function plAdj(f,mBase){
+  const p=x=>/al$/.test(x)?x.slice(0,-2)+'aux':(/[sx]$/.test(x)?x:x+'s');
+  return {mp:p(mBase),fp:p(f)};
+}
+function plNoun(w,ex){
+  if(ex.includes('::'))return ex.split('::')[1];
+  if(/al$/.test(w))return w.slice(0,-2)+'aux';
+  if(/(eau|eu)$/.test(w))return w+'x';
+  return w+'s';
+}
+const SUBJ=["je","tu","il/elle","nous","vous","ils/elles"];
+const VW=/^[aàâeéèêiîoôuùyœh]/;
+function tbl(title,pairs){return '<div class="ctbl"><h4>'+title+'</h4>'+pairs.map(p=>'<div class="f"><span>'+esc(p[0])+'</span><span>'+esc(p[1])+'</span></div>').join('')+'</div>'}
+function renderFormen(){
+  const type=el('f-type').value;
+  const list=SEED.filter(w=>w[3]===type).sort((a,b)=>a[0].localeCompare(b[0],'fr'));
+  const sel=el('f-word'),cur=sel.value;
+  sel.innerHTML=list.map(w=>'<option value="'+esc(w[0])+'">'+esc(w[0])+' — '+esc(w[1])+'</option>').join('');
+  if(cur&&list.some(w=>w[0]===cur))sel.value=cur;
+  const out=el('f-out');
+  const w=list.find(x=>x[0]===sel.value);
+  if(!w){out.innerHTML='<p style="color:var(--ink-2)">Keine Einträge dieses Typs.</p>';return}
+  if(type==='v'){
+    const cls=w[4]||'er';
+    const {refl,base}=splitRefl(w[0]);
+    const pres=presForms(w[0],cls),imp=impForms(w[0],cls),fut=futForms(w[0],cls);
+    const aux=auxOf(w[0],cls),pp=ppOf(w[0],cls);
+    const pfx=refl?(VW.test(base)?["m’","t’","s’","nous ","vous ","s’"]:["me ","te ","se ","nous ","vous ","se "]):null;
+    const disp=f=>refl?pfx[SUBJ.indexOf(f)]+f:f;
+    const pc=refl?["je me suis "+pp,"tu t’es "+pp,"il/elle s’est "+pp,"nous nous sommes "+pp,"vous vous êtes "+pp,"ils/elles se sont "+pp]
+      :SUBJ.map((s,i)=>s+' '+(aux==='être'?["suis","es","est","sommes","êtes","sont"][i]:["ai","as","a","avons","avez","ont"][i])+' '+pp);
+    out.innerHTML='<h3 style="font-weight:500;font-size:1.2rem">'+esc(w[0])+'</h3>'+
+      '<p class="mono" style="color:var(--ink-2)">['+esc(w[2])+'] · '+esc(w[1])+' · Hilfsverb: '+aux+(refl?' · reflexiv':'')+'</p>'+
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 1.5rem">'+
+      tbl('Présent',SUBJ.map((s,i)=>[s,refl?pfx[i]+pres[i]:pres[i]]))+
+      tbl('Passé composé',SUBJ.map((s,i)=>[s,pc[i]]))+
+      tbl('Imparfait',SUBJ.map((s,i)=>[s,refl?pfx[i]+imp[i]:imp[i]]))+
+      tbl('Futur simple',SUBJ.map((s,i)=>[s,refl?pfx[i]+fut[i]:fut[i]]))+
+      '</div>';
+  } else if(type==='n'){
+    const ex=w[4]||'m', gender=ex.split('::')[0], isPl=gender==='p';
+    const art=gender==='f'?(VW.test(w[0])?'l’':'la '):(VW.test(w[0])?'l’':'le ');
+    const pl=isPl?w[0]:plNoun(w[0],ex);
+    out.innerHTML='<h3 style="font-weight:500;font-size:1.2rem">'+esc(art+((isPl||VW.test(w[0]))?w[0]:w[0]))+'</h3>'+
+      '<p class="mono" style="color:var(--ink-2)">['+esc(w[2])+'] · '+esc(w[1])+' · '+(isPl?'Pluralwort':gender==='f'?'feminin':'maskulin')+'</p>'+
+      '<div class="formgrid">'+
+      '<div class="fcell"><em>mit Artikel</em><strong>'+esc((isPl?'les ':(gender==='f'?'la ':'le ')).replace(/^la |^le /,VW.test(w[0])?'l’':(isPl?'les ':(gender==='f'?'la ':'le '))))+esc(w[0])+'</strong></div>'+
+      '<div class="fcell"><em>Plural</em><strong>'+esc('les '+pl)+'</strong></div>'+
+      '<div class="fcell"><em>„etwas …“</em><strong>'+esc((isPl?'des ':(gender==='f'?'de la ':'du '))+w[0])+'</strong></div>'+
+      '<div class="fcell"><em>„zu dem/der …“</em><strong>'+esc((isPl?'aux ':(VW.test(w[0])?'à l’':(gender==='f'?'à la ':'au ')))+w[0])+'</strong></div>'+
+      '</div>'+(ex.includes('::')?'<p class="fb">Unregelmäßiger Plural: '+esc(w[0])+' → <strong>'+esc(pl)+'</strong></p>':'');
+  } else {
+    const f=femAdj(w[0],w[4]||''),pl=plAdj(f.f,f.m);
+    out.innerHTML='<h3 style="font-weight:500;font-size:1.2rem">'+esc(w[0])+'</h3>'+
+      '<p class="mono" style="color:var(--ink-2)">['+esc(w[2])+'] · '+esc(w[1])+' · Kongruenz</p>'+
+      '<div class="formgrid">'+
+      '<div class="fcell"><em>m. Singular</em><strong>'+esc(f.m)+'</strong></div>'+
+      '<div class="fcell"><em>vor Vokal</em><strong>'+esc(f.e)+'</strong></div>'+
+      '<div class="fcell"><em>f. Singular</em><strong>'+esc(f.f)+'</strong></div>'+
+      '<div class="fcell"><em>Plural m./f.</em><strong>'+esc(pl.mp)+' / '+esc(pl.fp)+'</strong></div>'+
+      '</div>';
+  }
+  speak(w[0],0.9);
+}
+el('f-type').addEventListener('change',()=>{el('f-word').innerHTML='';renderFormen()});
+el('f-word').addEventListener('change',renderFormen);
+
+/* ---------- Import ---------- */
+el('imp-btn').onclick=()=>{
+  const lines=el('imp-text').value.split('\n').map(l=>l.trim()).filter(Boolean);
+  let ok=0,bad=0;
+  lines.forEach(l=>{try{const a=JSON.parse(l);if(Array.isArray(a)&&a.length>=3){S.vocab.imported.push([a[0],a[1],a[2],a[3]||"n",a[4]||""]);ok++}else bad++}catch(e){bad++}});
+  save();el('imp-msg').textContent=ok+' importiert, '+bad+' übersprungen.';
+  if(ok){el('imp-text').value='';location.reload()}
+};
+el('imp-exp').onclick=()=>{
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([JSON.stringify(S.vocab.imported,null,2)],{type:'application/json'}));
+  a.download='eigene-vokabeln.json';a.click();
+};
+
+/* ---------- Phonetik ---------- */
+let pMode='lite';
+tabWire('#p-tabs',d=>{pMode=d.t;pRender()});
+function pRender(){
+  const st=el('p-stage');
+  if(pMode==='lite'){
+    st.innerHTML='<div class="litiles">'+PHON.cards.map((c,i)=>
+      '<div class="litile"><span class="ip">'+esc(c.ip)+'</span><p class="ex">'+c.ex.map(esc).join(' · ')+'</p>'+
+      '<p class="ex">'+esc(c.tip)+'</p><div style="display:flex;gap:.4rem;margin-top:.5rem;flex-wrap:wrap">'+
+      c.ex.map(e=>'<button class="btn btn--sm" data-e="'+esc(e)+'">🔊 '+esc(e)+'</button>').join('')+'</div></div>').join('')+'</div>';
+    st.querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>speak(b.dataset.e,0.85));
+  }
+  else if(pMode==='pair'){
+    const pr=PHON.pairs[Math.floor(Math.random()*PHON.pairs.length)];
+    const first=Math.random()<0.5, target=first?pr[0]:pr[1];
+    st.innerHTML='<p class="eyebrow">Minimalpaare — Welches Wort hörst du?</p>'+
+      '<button class="btn" id="p-replay" style="margin:.8rem 0">🔊 Nochmal</button>'+
+      '<div class="opts" style="grid-template-columns:1fr 1fr">'+
+      '<button class="opt" data-w="'+esc(pr[0])+'">'+esc(pr[0])+'</button>'+
+      '<button class="opt" data-w="'+esc(pr[1])+'">'+esc(pr[1])+'</button></div>'+
+      '<p class="fb" id="p-fb"></p>';
+    speak(target,0.8);
+    el('p-replay').onclick=()=>speak(target,0.8);
+    let lock=false;
+    st.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+      if(lock)return;lock=true;
+      const ok=b.dataset.w===target; S.phon.t++; if(ok)S.phon.r++; save(); stats();
+      st.querySelectorAll('.opt').forEach(x=>{x.disabled=true;if(x.dataset.w===target)x.classList.add('ok');else if(x===b)x.classList.add('ko')});
+      el('p-fb').innerHTML=(ok?'✓ Richtig — ':'✗ Es war „'+esc(target)+'“. ')+esc(pr[2]);
+      setTimeout(pRender,1600);
+    });
+  }
+  else if(pMode==='quiz'){
+    const c=PHON.cards[Math.floor(Math.random()*PHON.cards.length)];
+    const word=c.ex[Math.floor(Math.random()*c.ex.length)];
+    const others=shuffle(PHON.cards.filter(x=>x.ip!==c.ip)).slice(0,3).map(x=>x.ip);
+    const opts=shuffle([c.ip].concat(others));
+    st.innerHTML='<p class="eyebrow">Welchen Laut hörst du im Wort?</p>'+
+      '<button class="btn" id="p-replay" style="margin:.8rem 0">🔊 Wort hören</button>'+
+      '<div class="opts">'+opts.map(o=>'<button class="opt mono" data-ip="'+esc(o)+'">'+esc(o)+'</button>').join('')+'</div>'+
+      '<p class="fb" id="p-fb"></p>';
+    speak(word,0.8);
+    el('p-replay').onclick=()=>speak(word,0.8);
+    let lock=false;
+    st.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+      if(lock)return;lock=true;
+      const ok=b.dataset.ip===c.ip; S.phon.t++; if(ok)S.phon.r++; save(); stats();
+      st.querySelectorAll('.opt').forEach(x=>{x.disabled=true;if(x.dataset.ip===c.ip)x.classList.add('ok');else if(x===b)x.classList.add('ko')});
+      el('p-fb').innerHTML=(ok?'✓ ':'✗ ')+esc(word)+' enthält ['+esc(c.ip)+'] — '+esc(c.tip);
+      setTimeout(pRender,1800);
+    });
+  }
+  else {
+    st.innerHTML='<div class="formrow"><input type="text" id="p-word" placeholder="Wort…" style="flex:1;min-width:140px">'+
+      '<select id="p-ph">'+PHON.cards.map(c=>'<option>'+esc(c.ip)+'</option>').join('')+'</select>'+
+      '<button class="btn btn--sm" id="p-add">+</button></div><div class="litiles" id="p-lib"></div>';
+    const renderLib=()=>{
+      el('p-lib').innerHTML=(S.phon.lib.length?S.phon.lib:[]).map(w=>
+        '<div class="litile"><span class="ip">'+esc(w[1])+'</span> <span>'+esc(w[0])+'</span> <button class="btn btn--sm" data-e="'+esc(w[0])+'">🔊</button></div>').join('')
+        ||'<p style="color:var(--ink-2)">Noch keine eigenen Wörter.</p>';
+      el('p-lib').querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>speak(b.dataset.e,0.85));
+    };
+    renderLib();
+    el('p-add').onclick=()=>{
+      const w=el('p-word').value.trim(); if(!w)return;
+      S.phon.lib.push([w,el('p-ph').value]); save(); renderLib(); el('p-word').value='';
+    };
+  }
+}
+
+/* ---------- Campus ---------- */
+let cMod='luecke';
+tabWire('#c-tabs',d=>{cMod=d.c;cRender()});
+function cScore(ok){S.camp.t++;if(ok)S.camp.r++;save();stats()}
+function cSummary(restart){
+  el('c-stage').innerHTML='<div style="text-align:center;padding:1.5rem 0"><strong style="font-size:2rem;font-weight:500;display:block">✓</strong><p>Runde beendet.</p><button class="btn btn--solid" id="c-again" style="margin-top:.8rem">Neue Runde</button></div>';
+  el('c-again').onclick=restart;
+}
+let cList=[],cI=0,cLock=false;
+function cMC(){
+  const items=CAMPUS[cMod]||[];
+  if(!items.length){el('c-stage').innerHTML='<p style="color:var(--ink-2)">Dieser Modul-Typ bekommt seine Aufgaben in Teil 5.</p>';return}
+  if(!cList.length||cI>=cList.length){cList=shuffle(items);cI=0}
+  if(cI>=cList.length){cSummary(cMC);return}
+  cLock=false;const it=cList[cI++];
+  const opts=shuffle([{t:it.a,ok:true}].concat(it.o.map(o=>({t:o,ok:false}))));
+  const isFr=!/^(Gegenteil|Welches|die |das |der |„)/.test(it.p)||cMod==='luecke'||cMod==='kollo';
+  el('c-stage').innerHTML='<p class="eyebrow">'+(cI)+' / '+cList.length+'</p>'+
+    '<h2 class="stage__big">'+(cMod==='bild'?'<span class="emoji">'+esc(it.p)+'</span>':esc(it.p).replace('___','<span style="border-bottom:2px solid var(--ink);padding:0 .4rem">____</span>'))+'</h2>'+
+    '<div class="opts">'+opts.map(o=>'<button class="opt" data-ok="'+o.ok+'">'+esc(o.t)+'</button>').join('')+'</div>'+
+    '<p class="fb" id="c-fb"></p>'+
+    '<div class="stage__foot"><span class="score">'+(S.camp.t?Math.round(S.camp.r/S.camp.t*100)+'% · '+S.camp.t:'—')+'</span>'+
+    '<button class="btn" id="c-next" hidden>Weiter →</button></div>';
+  document.querySelectorAll('#c-stage .opt').forEach(b=>b.onclick=()=>{
+    if(cLock)return;cLock=true;
+    const ok=b.dataset.ok==='true';cScore(ok);
+    document.querySelectorAll('#c-stage .opt').forEach(x=>{x.disabled=true;if(x.dataset.ok==='true')x.classList.add('ok');else if(x===b)x.classList.add('ko')});
+    el('c-fb').innerHTML=(ok?'✓ Richtig — ':'✗ ')+esc(it.n);
+    if(cMod!=='definition'&&cMod!=='kategorie'&&cMod!=='anto')speak(it.a,0.9);
+    el('c-next').hidden=false;
+  });
+  el('c-next').onclick=cMC;
+}
+function cType(){
+  const items=CAMPUS.ueberset||[];
+  if(!cList.length||cI>=cList.length){cList=shuffle(items);cI=0}
+  if(!cList.length){el('c-stage').innerHTML='<p style="color:var(--ink-2)">Aufgaben kommen in Teil 5.</p>';return}
+  cLock=false;const it=cList[cI++];
+  el('c-stage').innerHTML='<p class="eyebrow">Übersetze '+(cI)+' / '+cList.length+'</p>'+
+    '<h2 class="stage__big">'+esc(it.de)+'</h2>'+
+    '<div class="type-row"><input type="text" id="c-in" autocomplete="off" spellcheck="false" placeholder="auf Französisch …"><button class="btn btn--solid" id="c-check">Prüfen</button></div>'+
+    '<div class="accents">'+['é','è','ê','à','ç','ù','î','ô','û','œ','’'].map(a=>'<button data-a="'+a+'">'+a+'</button>').join('')+'</div>'+
+    '<p class="fb" id="c-fb"></p>'+
+    '<div class="stage__foot"><span class="score">'+(S.camp.t?Math.round(S.camp.r/S.camp.t*100)+'%':'—')+'</span>'+
+    '<span><button class="btn btn--sm" id="c-sol">Lösung</button> <button class="btn" id="c-next" hidden>Weiter →</button></span></div>';
+  const inp=el('c-in');inp.focus();
+  document.querySelectorAll('#c-stage .accents button').forEach(b=>b.onclick=()=>{inp.value+=b.dataset.a;inp.focus()});
+  const cands=[it.fr].concat(it.alt||[]).map(normTr);
+  let lock=false;
+  const check=()=>{
+    if(lock)return;lock=true;
+    const ok=cands.includes(normTr(inp.value));cScore(ok);
+    el('c-fb').innerHTML=(ok?'✓ Richtig — ':'✗ Richtig wäre: ')+'<span class="mono">'+esc(it.fr)+'</span><br><span class="mono">💡 '+esc(it.hint||'')+'</span>';
+    speak(it.fr,0.9);el('c-next').hidden=false;el('c-check').disabled=true;el('c-sol').disabled=true;
+  };
+  el('c-check').onclick=check;
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter')check()});
+  el('c-sol').onclick=()=>{if(lock)return;lock=true;cScore(false);el('c-fb').innerHTML='Lösung: <span class="mono">'+esc(it.fr)+'</span><br><span class="mono">💡 '+esc(it.hint||'')+'</span>';speak(it.fr,0.9);el('c-next').hidden=false};
+  el('c-next').onclick=cType;
+}
+function cMatch(){
+  const pairs=(CAMPUS.verb||[]);
+  if(pairs.length<3){el('c-stage').innerHTML='<p style="color:var(--ink-2)">Aufgaben kommen in Teil 5.</p>';return}
+  const six=shuffle(pairs).slice(0,Math.min(6,pairs.length));
+  const left=shuffle(six.map((p,i)=>({k:i,t:p[0]})));
+  const right=shuffle(six.map((p,i)=>({k:i,t:p[1]})));
+  let sel=null;
+  el('c-stage').innerHTML='<p class="eyebrow">Verb-Match — forme zu</p><div class="matchgrid">'+
+    '<div class="matchcol">'+left.map(x=>'<button class="opt" data-k="'+x.k+'" data-c="l">'+esc(x.t)+'</button>').join('')+'</div>'+
+    '<div class="matchcol">'+right.map(x=>'<button class="opt" data-k="'+x.k+'" data-c="r">'+esc(x.t)+'</button>').join('')+'</div>'+
+    '</div><p class="fb" id="c-fb"></p>';
+  document.querySelectorAll('#c-stage .opt').forEach(b=>b.onclick=()=>{
+    if(b.disabled)return;
+    if(b.dataset.c==='l'){
+      document.querySelectorAll('#c-stage [data-c="l"]').forEach(x=>x.classList.remove('sel'));
+      b.classList.add('sel');sel=b;return;
+    }
+    if(!sel)return;
+    const ok=+sel.dataset.k===+b.dataset.k;cScore(ok);
+    if(ok){
+      sel.disabled=true;b.disabled=true;sel.classList.remove('sel');sel.classList.add('ok');b.classList.add('ok');
+      speak(six[+b.dataset.k][1],0.9);sel=null;
+      if(document.querySelectorAll('#c-stage .opt:disabled').length===six.length*2){
+        el('c-fb').textContent='Alle Paare geschafft!';setTimeout(cMatch,1000);
+      }
+    } else {
+      b.classList.add('ko');setTimeout(()=>b.classList.remove('ko'),400);
+      sel.classList.remove('sel');sel=null;
+      el('c-fb').textContent='Noch kein Paar — nochmal!';
+    }
+  });
+}
+function cRender(){
+  cList=[];cI=0;
+  if(cMod==='ueberset')cType();
+  else if(cMod==='verb')cMatch();
+  else cMC();
+}
+
+/* ---------- Tagesplan ---------- */
+function plRender(){
+  const doneDays=Object.keys(S.plan.done).filter(d=>{
+    const [day,blocks]=d.split(':');return S.plan.done[day+':0']&&S.plan.done[day+':1']&&S.plan.done[day+':2'];
+  }).map(d=>d.split(':')[0]);
+  const uniq=[...new Set(doneDays)];
+  el('pl-done').textContent=uniq.length+' / '+PLAN.days;
+  el('pl-bar').style.width=(uniq.length/PLAN.days*100)+'%';
+  if(S.plan.cur>PLAN.days)S.plan.cur=PLAN.days;
+  el('pl-cur').textContent='Tag '+S.plan.cur;
+  el('pl-days').innerHTML=Array.from({length:PLAN.days},(_,i)=>{
+    const d=i+1;
+    return '<button class="daybtn'+(uniq.includes(String(d))?' is-done':'')+(d===S.plan.cur?' is-cur':'')+'" data-d="'+d+'">Tag '+d+'</button>';
   }).join('');
-  el.querySelectorAll('[data-learn]').forEach(b=>b.onclick=()=>{
-    state.extra.push({fr:b.dataset.learn, de:'', pron:'', ex:'', cat:'Lernende'});
-    save(); renderDeck(); toast('Als „Gelernt" markiert');
-  });
-  el.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{
-    state.extra = state.extra.filter(e=>e.fr!==b.dataset.del);
-    save(); renderDeck(); toast('Markierung entfernt');
+  document.querySelectorAll('#pl-days .daybtn').forEach(b=>b.onclick=()=>{S.plan.cur=+b.dataset.d;save();plRender()});
+  el('pl-blocks').innerHTML=PLAN.blocks.map((bl,bi)=>{
+    const done=!!S.plan.done[S.plan.cur+':'+bi];
+    return '<div class="bcard"><h4>'+esc(bl.t)+'</h4><ul>'+bl.tasks.map(t=>'<li>'+esc(t)+'</li>').join('')+'</ul>'+
+      '<button class="btn btn--sm '+(done?'':'btn--solid')+'" data-b="'+bi+'">'+(done?'✓ erledigt':'Block abhaken')+'</button></div>';
+  }).join('');
+  el('pl-blocks').querySelectorAll('[data-b]').forEach(b=>b.onclick=()=>{
+    const key=S.plan.cur+':'+b.dataset.b;
+    if(S.plan.done[key])delete S.plan.done[key];else S.plan.done[key]=1;
+    save();plRender();
+    const all=PLAN.blocks.every((_,bi)=>S.plan.done[S.plan.cur+':'+bi]);
+    if(all)toast('Tag '+S.plan.cur+' geschafft! 🎉');
   });
 }
 
-/* ================== PHONETIK ================== */
-function renderPhon(){
-  const el = document.getElementById('phon-list');
-  el.innerHTML = PHONETIC.map((p,i)=>
-    '<button data-i="'+i+'" class="'+(i===0?'is-active':'')+'"><span>'+p.name+'</span><span class="arrow">→</span></button>'
-  ).join('');
-  el.querySelectorAll('button').forEach(b=>b.onclick=()=>{
-    el.querySelectorAll('button').forEach(x=>x.classList.remove('is-active'));
-    b.classList.add('is-active');
-    renderPhonDetail(+b.dataset.i);
-  });
-  renderPhonDetail(0);
-  const done = Object.values(state.phon).filter(Boolean).length;
-  document.getElementById('phon-progress').textContent = done+' / '+PHONETIC.length+' Einheiten';
-}
-function renderPhonDetail(i){
-  const p = PHONETIC[i];
-  const box = document.getElementById('phon-detail');
-  box.innerHTML =
-    '<h3>'+p.name+'</h3>'+
-    '<p class="hint">'+p.hint+'</p>'+
-    '<div class="exs">'+p.ex.map(w=>'<button data-w="'+esc(w)+'">'+esc(w)+'</button>').join('')+'</div>'+
-    '<div class="flex" style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);margin-top:.6rem;padding-top:1rem">'+
-      '<span class="mono" style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)">Tippe auf ein Wort zum Aussprechen</span>'+
-      '<button class="btn btn--sm '+(state.phon[p.id]?'btn--solid':'')+'" id="phon-done">'+(state.phon[p.id]?'✓ Erledigt':'Erledigt markieren')+'</button>'+
-    '</div>';
-  box.querySelectorAll('.exs button').forEach(b=>b.onclick=()=>speak(b.dataset.w));
-  document.getElementById('phon-done').onclick=()=>{
-    state.phon[p.id] = !state.phon[p.id];
-    save();
-    renderPhon();
-    toast(state.phon[p.id] ? 'Einheit abgeschlossen' : 'Markierung entfernt');
+/* ---------- Backup ---------- */
+el('btn-backup').onclick=()=>{
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([JSON.stringify(S,null,2)],{type:'application/json'}));
+  a.download='methode-backup.json';a.click();toast('Backup exportiert');
+};
+el('btn-import').onclick=()=>el('file-import').click();
+el('file-import').onchange=e=>{
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{
+    try{const d=JSON.parse(r.result);S=Object.assign(S,d);save();location.reload()}
+    catch(err){toast('Datei konnte nicht gelesen werden')}
   };
-}
+  r.readAsText(f);
+};
 
-/* ================== GRAMMATIK ================== */
-function renderGram(){
-  const el = document.getElementById('gram-list');
-  el.innerHTML = GRAMMAR.map((g,i)=>
-    '<button data-i="'+i+'" class="'+(i===0?'is-active':'')+'"><span>'+g.name+'</span><span class="arrow">→</span></button>'
-  ).join('');
-  el.querySelectorAll('button').forEach(b=>b.onclick=()=>{
-    el.querySelectorAll('button').forEach(x=>x.classList.remove('is-active'));
-    b.classList.add('is-active');
-    renderGramDetail(+b.dataset.i);
-  });
-  renderGramDetail(0);
-  const done = Object.values(state.gram).filter(Boolean).length;
-  document.getElementById('gram-progress').textContent = done+' / '+GRAMMAR.length+' Themen';
-}
-function renderGramDetail(i){
-  const g = GRAMMAR[i];
-  const box = document.getElementById('gram-detail');
-  box.innerHTML =
-    '<h3 style="font-size:1.6rem;font-weight:500">'+g.name+'</h3>'+
-    '<p>'+g.hint+'</p>'+
-    '<h4>Beispielsätze</h4>'+
-    '<div class="examples">'+g.ex.map(s=>'<div><span>'+esc(s)+'</span><button data-w="'+esc(s)+'" title="Aussprechen">◊</button></div>').join('')+'</div>'+
-    '<div style="display:flex;justify-content:flex-end;margin-top:.4rem">'+
-      '<button class="btn btn--sm '+(state.gram[g.id]?'btn--solid':'')+'" id="gram-done">'+(state.gram[g.id]?'✓ Erledigt':'Erledigt markieren')+'</button>'+
-    '</div>';
-  box.querySelectorAll('.examples button').forEach(b=>b.onclick=()=>speak(b.dataset.w));
-  document.getElementById('gram-done').onclick=()=>{
-    state.gram[g.id] = !state.gram[g.id];
-    save();
-    renderGram();
-    toast(state.gram[g.id] ? 'Thema abgeschlossen' : 'Markierung entfernt');
-  };
-}
-
-/* ================== MATERIAL ================== */
-function renderMaterial(){
-  const row = m => '<div class="mat-item"><a href="'+m.url+'" target="_blank" rel="noopener"><span>'+esc(m.name)+'</span><span class="chip">'+m.tag+'</span></a></div>';
-  document.getElementById('mat-reading').innerHTML = '<h4 style="font-family:IBM Plex Mono;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:.6rem">Lesen</h4>' + READING.map(row).join('');
-  document.getElementById('mat-practice').innerHTML = '<h4 style="font-family:IBM Plex Mono;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:.6rem">Hören &amp; Üben</h4>' + PRACTICE.map(row).join('');
-}
-
-/* ================== FORTSCHRITT ================== */
-function renderLog(){
-  const el = document.getElementById('log');
-  const noteSel = document.getElementById('log-note');
-  noteSel.innerHTML = NOTE_TYPES.map(n=>'<option value="'+n+'">'+n+'</option>').join('');
-  const rows = [...state.log].reverse();
-  if(!rows.length){ el.innerHTML = '<p class="log--empty">Noch keine Einträge — trage oben deine erste Lerneinheit ein.</p>'; return; }
-  el.innerHTML = rows.map(l=>
-    '<div class="row"><span>'+l.date+'</span><span class="t">'+l.note+'</span><span class="t">'+l.mins+' Min.</span>'+
-    '<span class="act"><button data-del="'+l.id+'">Löschen</button></span></div>'
-  ).join('');
-  el.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{
-    state.log = state.log.filter(x=>x.id!==+b.dataset.del);
-    save(); renderLog(); updateDash(); toast('Eintrag gelöscht');
-  });
-}
-function addLog(){
-  const date = document.getElementById('log-date').value || today();
-  const mins = parseInt(document.getElementById('log-mins').value,10) || 0;
-  const note = document.getElementById('log-note').value;
-  if(!mins){ toast('Bitte Minuten eingeben'); return; }
-  state.log.push({id:Date.now(), date, mins, note});
-  save();
-  document.getElementById('log-mins').value = '';
-  renderLog(); updateDash();
-  toast(mins+' Min. protokolliert');
-}
-function exportLog(){
-  if(!state.log.length){ toast('Nichts zum Exportieren'); return; }
-  let csv = 'Datum;Notiz;Minuten\n';
-  state.log.forEach(l=>csv += l.date+';'+l.note+';'+l.mins+'\n');
-  const blob = new Blob(['\ufeff'+csv], {type:'text/csv;charset=utf-8'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'methode-fortschritt.csv';
-  a.click();
-  toast('CSV exportiert');
-}
-
-/* ================== DASHBOARD ================== */
-function hoursLogged(){ return state.log.reduce((s,l)=>s+l.mins,0)/60; }
-function vocabDone(){
-  const n = Math.min(vocabList().filter(v=>state.extra.some(e=>e.fr===v.fr)).length, TOTAL_VOCAB);
-  return n;
-}
-function updateDash(){
-  const now = new Date();
-  const days = Math.max(0, Math.ceil((GOAL-now)/86400000));
-  document.getElementById('hud-days').textContent = days.toLocaleString('de-DE');
-  document.getElementById('hud-daily').textContent = DAILY;
-  document.getElementById('hud-start').textContent = new Date(state.start).toLocaleDateString('de-DE');
-
-  const vP = vocabDone()/TOTAL_VOCAB;
-  const hP = Math.min(hoursLogged()/TOTAL_HOURS, 1);
-  const overall = Math.min((vP+hP)/2, 1);
-  document.getElementById('dash-pct').textContent = Math.round(overall*100)+'%';
-  document.getElementById('dash-fill').style.width = (overall*100)+'%';
-  document.getElementById('dash-studied').textContent = vocabDone();
-  document.getElementById('dash-vocab-total').textContent = TOTAL_VOCAB;
-  document.getElementById('dash-hours').textContent = fmtH(hoursLogged());
-
-  const todayMin = state.log.filter(l=>l.date===today()).reduce((s,l)=>s+l.mins,0);
-  const tP = Math.min(todayMin/DAILY,1);
-  document.getElementById('day-fill').style.width = (tP*100)+'%';
-  document.getElementById('day-mins').textContent = todayMin+' / '+DAILY+' Min.';
-
-  const studiedPct = Math.round(vocabDone()/TOTAL_VOCAB*100);
-  document.getElementById('vocab-progress').textContent = vocabDone()+' / '+TOTAL_VOCAB+' Wörter';
-}
-
-/* ================== INIT ================== */
-function init(){
-  toastEl = document.getElementById('toast');
-  // Seed-Vokabeln einmalig
-  if(!state.vocabulary.length && !sessionStorage.getItem('seeded')){
-    const cats = ['Gruß','Gruß','Allgemein','Gruß','Allgemein','Gruß','Allgemein','Gruß','Gruß','Reisen'];
-    SEED_VOCAB.forEach((v,i)=>state.vocabulary.push({fr:v[0],de:v[1],pron:v[2],ex:v[3],cat:cats[i]}));
-    save(); sessionStorage.setItem('seeded','1');
-  }
-  // Dropdowns befüllen
-  const cats = allCats();
-  document.getElementById('deck-filter').innerHTML = '<option value="alle">Alle Kategorien</option>' + cats.map(c=>'<option>'+c+'</option>').join('');
-  const catSel = document.getElementById('v-cat');
-  catSel.innerHTML = ['Allgemein','Gruß','Essen','Reisen','Arbeit','Familie','Sonstiges'].map(c=>'<option>'+c+'</option>').join('');
-  document.getElementById('log-date').value = today();
-
-  renderDeck();
-  renderPhon();
-  renderGram();
-  renderMaterial();
-  renderLog();
-  updateDash();
-
-  // Events
-  document.getElementById('fc-inner').addEventListener('click', e=>{ if(!e.target.closest('button')) flip(); });
-  document.getElementById('fc-flip').onclick = flip;
-  document.getElementById('fc-next').onclick = ()=>go(1);
-  document.getElementById('fc-prev').onclick = ()=>go(-1);
-  document.getElementById('fc-shuffle').onclick = shuffleDeck;
-  document.getElementById('fc-say1').onclick = ()=>{ const v=deck[deckIdx]; if(v) speak(v.fr); };
-  document.getElementById('fc-say2').onclick = ()=>{ const v=deck[deckIdx]; if(v) speak(v.fr); };
-  document.getElementById('deck-filter').onchange = renderDeck;
-  document.getElementById('deck-search').oninput = renderDeck;
-  document.getElementById('deck-learn').onchange = renderDeck;
-
-  document.getElementById('v-add').onclick = ()=>{
-    const f = document.getElementById('v-fr').value.trim();
-    const d = document.getElementById('v-de').value.trim();
-    const p = document.getElementById('v-pron').value.trim();
-    const e = document.getElementById('v-ex').value.trim();
-    const c = document.getElementById('v-cat').value;
-    if(!f || !d){ toast('Französisch und Deutsch angeben'); return; }
-    if(vocabList().some(v=>v.fr.toLowerCase()===f.toLowerCase())){ toast('Wort existiert bereits'); return; }
-    state.extra.push({fr:f,de:d,pron:p,ex:e,cat:c});
-    save();
-    ['v-fr','v-de','v-pron','v-ex'].forEach(id=>document.getElementById(id).value='');
-    renderDeck(); updateDash();
-    toast('„'+f+'\" hinzugefügt');
-  };
-
-  document.getElementById('log-add').onclick = addLog;
-  document.getElementById('log-export').onclick = exportLog;
-
-  // Menü & Header
-  const header = document.getElementById('site-header');
-  addEventListener('scroll', ()=>header.classList.toggle('is-scrolled', scrollY>4), {passive:true});
-  const mmenu = document.getElementById('mmenu');
-  document.getElementById('nav-toggle').onclick = ()=>{ mmenu.classList.add('is-open'); mmenu.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; };
-  const closeM = ()=>{ mmenu.classList.remove('is-open'); mmenu.setAttribute('aria-hidden','true'); document.body.style.overflow=''; };
-  document.getElementById('mmenu-close').onclick = closeM;
-  mmenu.querySelectorAll('nav a').forEach(a=>a.onclick=closeM);
-
-  // Reveal
-  const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); }}),{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-  // Scrollspy
-  const links = document.querySelectorAll('.main-nav a');
-  const spy = new IntersectionObserver(es=>{
-    es.forEach(e=>{ if(e.isIntersecting){ links.forEach(l=>l.classList.toggle('is-active', l.getAttribute('href')==='#'+e.target.id)); } });
-  },{rootMargin:'-40% 0px -55% 0px'});
-  ['phonetik','vokabeln','grammatik','material','fortschritt'].forEach(id=>{ const el=document.getElementById(id); if(el) spy.observe(el); });
-}
-init();
+/* ================= Init ================= */
+vPool();vNext();pRender();cRender();plRender();renderFormen();stats();
 </script>
 </body>
 </html>
