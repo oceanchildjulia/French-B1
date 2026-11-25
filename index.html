@@ -92,6 +92,7 @@ main{max-width:1280px;margin-inline:auto;padding:clamp(1.5rem,4vw,3rem) clamp(1r
     <button data-view="phon">Phonetik</button>
     <button data-view="camp">Campus</button>
     <button data-view="plan">Tagesplan</button>
+    <button data-view="input">Input</button>
   </nav>
   <div class="spacer"></div>
   <span class="chip" id="chip-glob">—</span>
@@ -221,7 +222,7 @@ const PK=[
   </div>
   <div class="tabs" id="p-tabs">
     <button class="tab" data-t="kurs">Kurs</button>
-    <button class="tab is-active" data-t="lite">Lautkarten</button>
+    <button class="tab" data-t="lite">Lautkarten</button>
     <button class="tab" data-t="pair">Minimalpaare</button>
     <button class="tab" data-t="quiz">Phonem-Quiz</button>
     <button class="tab" data-t="graph">Buchstaben</button>
@@ -251,6 +252,22 @@ const PK=[
   <div class="stage" id="c-stage"></div>
 </section>
 
+<!-- ========== INPUT (LESEN & HÖREN) ========== -->
+<section id="view-input" class="view">
+  <div class="hero">
+    <p class="eyebrow">Angewandtes Hören &amp; Lesen</p><h1>Input — Serien, Filme, Bücher</h1>
+    <p>Mit Niveau und Untertitel-Tipp. Ziel: Material, das du fast verstehst — und langsam mehr.</p>
+    <div class="dash"><div class="stat"><strong id="inp-count">0</strong><em>Empfehlungen</em></div></div>
+  </div>
+  <div class="formrow">
+    <select id="inp-niv"><option value="">Alle Niveaus</option><option value="A1">A1</option><option value="B1">B1</option><option value="B2">B2</option></select>
+    <select id="inp-type"><option value="">Alle Typen</option><option value="serie">Serien</option><option value="film">Filme</option><option value="buch">Bücher</option><option value="audio">Podcast/Audio</option></select>
+    <select id="inp-sub"><option value="">Alle Untertitel</option><option value="fr">🇫🇷 mit frz. Untertiteln</option><option value="de">mit dt. Untertiteln</option><option value="nein">ohne Untertitel</option></select>
+    <input type="search" id="inp-q" placeholder="Suchen…" style="flex:1;min-width:160px">
+  </div>
+  <div id="inp-list"></div>
+</section>
+  
 <!-- ========== TAGESPLAN ========== -->
 <section id="view-plan" class="view">
   <div class="hero">
@@ -1334,7 +1351,7 @@ el('imp-exp').onclick=()=>{
   a.download='eigene-vokabeln.json';a.click();
 };
 /* ---------- Phonetik ---------- */
-let pMode='lite';
+let pMode='kurs';
 tabWire('#p-tabs',d=>{pMode=d.t;pRender()});
 function pRender(){
   const st=el('p-stage');
@@ -1539,6 +1556,77 @@ function cRender(){
   else cMC();
 }
 
+/* ---------- INPUT: Lesen & Hören ---------- */
+const INPUT=[
+/* ---------- A1 ---------- */
+["Loulou","serie","A1","fr","Disney+/TF1 — Alltag, klare Aussprache, kurze Folgen","frz. UNTERTITEL, langsam, 1× durch"],
+["Minuscule","serie","A1","fr","Wes Anderson — Figuren sprechen wenig, aber klar, visuell sehr klar","frz. Untertitel, gute A1-Aufwärmserie"],
+["Le Petit Prince (Hörbuch)","audio","A1","nein","Hörbuch mit klarer, langsamer Erzählstimme","Ohne Untertitel, aber langsam + bekannter Text"],
+["Allo? (Livre-CD / Hörbuch)","audio","A1","nein","Klassisches A1-Hörbuch mit Dialogen","Ohne Untertitel, langsamer Sprechtempo"],
+["Le Journal de Mickey (Kinder-Podcast)","audio","A1","nein","Kindersprache, einfache Vokabeln, klare Aussprache","Ohne Untertitel, perfekt zum „Mitlauschen“"],
+["Tandem (App + Audio)","audio","A1","de","App mit Audio-Szenen, dt. Untertitel optional","dt. Untertitel zum Start"],
+["Monsieur Papa","serie","A1","fr","Familien-Alltag, klare Dialoge, nicht zu schnell","frz. Untertitel"],
+["Petit Prince (Film 2015)","film","A1","fr","Bekannte Geschichte, klare, ruhige Erzählstimme","frz. Untertitel, gute erste Langfilm-Übung"],
+["Le Petit Prince (Hörbuch)","audio","A1","nein","Klare, langsame Erzählstimme","Ohne Untertitel, langsam"],
+/* ---------- B1 ---------- */
+["Dix Pour Cent","serie","B1","fr","Branche-Alltag, klare Dialoge, viel Alltagssprache","frz. Untertitel, B1-Standard"],
+["Le Bureau des Légendes","serie","B1","fr","Spannung, klare Aussprache, gute Idiom-Übung","frz. Untertitel"],
+["Fais-moi un lieu","serie","B1","fr","Alltag, Familie, klare Dialoge","frz. Untertitel"],
+["La Maison des Bricoleurs","serie","B1","fr","Familien-Alltag, humorvoll, klare Sprache","frz. Untertitel"],
+["Café Society (Hörbuch)","audio","B1","nein","Klare Erzählstimme, bekannter Text","Ohne Untertitel"],
+["France Inter — Journal (Radiobeitrag)","audio","B1","nein","Tages-Nachrichten, klare Aussprache","Ohne Untertitel, aber Text online"],
+["Le Monde (Tages-Podcast)","audio","B1","nein","Nachrichten, klare Aussprache","Ohne Untertitel, Text online"],
+["Les Trolls (Film)","film","B1","fr","Musik + klare Dialoge, bekannt","frz. Untertitel"],
+["Les Visiteurs (Film)","film","B1","fr","Komödie, klare Aussprache, bekannt","frz. Untertitel"],
+["Le Fabuleux Destin d'Amélie Poulain","film","B1","fr","Klar, poetisch, gute Vokabeln","frz. Untertitel"],
+["L'Échappée Belle","film","B1","fr","Alltag, humorvoll, klare Dialoge","frz. Untertitel"],
+["Le Petit Soldat (Hörbuch)","audio","B1","nein","Klare Erzählstimme","Ohne Untertitel"],
+/* ---------- B2 ---------- */
+["Le Bureau des Légendes (Staffel 2+)","serie","B2","fr","Spannung, Idiom-Dichte, klare Aussprache","frz. Untertitel, B2-Standard"],
+["Lupin","serie","B2","fr","Spannung, schnelle Dialoge, gute Idiom-Übung","frz. Untertitel"],
+["Dix Pour Cent (Staffel 3+)","serie","B2","fr","Branche-Alltag, Idiom-Dichte","frz. Untertitel"],
+["Le Grand Bain","film","B2","fr","Alltag, Idiom-Dichte, humorvoll","frz. Untertitel"],
+["Intouchables","film","B2","fr","Alltag, klare Dialoge, bekannt","frz. Untertitel"],
+["Le Voyage de Chihiro (dt. Untertitel)","film","B2","de","Animé, klare Aussprache, bekannt","dt. Untertitel"],
+["Le Monde (Tages-Podcast, täglich)","audio","B2","nein","Nachrichten, Idiom-Dichte","Ohne Untertitel, Text online"],
+["France Culture — Le Masque et la Plume","audio","B2","nein","Literatur-Diskussion, klare Aussprache","Ohne Untertitel, Text online"],
+["L'Émigrant (Hörbuch)","audio","B2","nein","Klare Erzählstimme, bekannter Text","Ohne Untertitel"],
+/* ---------- Leseliste ---------- */
+["Le Petit Prince (Livre)","buch","A1","nein","Kurz, klar, bekannt","Ohne Untertitel, langsam lesen"],
+["Allo? (Livre)","buch","A1","nein","Klassisches A1-Buch, kurze Kapitel","Ohne Untertitel"],
+["Le Journal de Mickey (Heft)","buch","A1","nein","Kurz, klar, Bilder helfen","Ohne Untertitel"],
+["Le Petit Prince (Roman)","buch","B1","nein","Kurz, poetisch, klar","Ohne Untertitel"],
+["L'Étranger (Camus)","buch","B1","nein","Kurz, klar, bekannt","Ohne Untertitel"],
+["Le Petit Soldat (Roman)","buch","B1","nein","Kurz, klar, bekannt","Ohne Untertitel"],
+["Le Grand Meaulnes (Alain-Fournier)","buch","B2","nein","Klassiker, klare Sprache","Ohne Untertitel"],
+["L'Émigrant (Roman)","buch","B2","nein","Klar, bekannt","Ohne Untertitel"],
+["La Peste (Camus)","buch","B2","nein","Klassiker, klar","Ohne Untertitel"]
+];
+const INP_TYPES={serie:"Serie",film:"Film",buch:"Buch",audio:"Audio"};
+function inpRender(){
+  const niv=el('inp-niv').value, typ=el('inp-type').value, sub=el('inp-sub').value, q=norm(el('inp-q').value);
+  const rows=INPUT.filter(w=>
+    (!niv||w[2]===niv)&&(!typ||w[1]===typ)&&(!sub||w[3]===sub)&&
+    (!q||norm(w[0]).includes(q)||norm(w[4]).includes(q))
+  ).map(w=>{
+    const subLabel=w[3]==='fr'?'🇫🇷 frz. UT':w[3]==='de'?'🇩🇪 dt. UT':'— ohne UT';
+    const nivColor=w[2]==='A1'?'var(--ink-2)':w[2]==='B1'?'var(--ink)':'var(--ink)';
+    return '<div class="wrow" style="grid-template-columns:1.6fr 1.2fr 1fr 1.4fr;gap:.7rem">'+
+      '<span class="fr">'+esc(w[0])+'</span>'+
+      '<span class="mono" style="color:var(--ink-2);font-size:11px">'+INP_TYPES[w[1]]+' · <strong style="color:'+nivColor+'">'+w[2]+'</strong> · '+subLabel+'</span>'+
+      '<span style="color:var(--ink-2)">'+esc(w[4])+'</span>'+
+      '<span style="color:var(--ink-2)">'+esc(w[5])+'</span>'+
+    '</div>';
+  }).join('');
+  el('inp-list').innerHTML=rows||'<p style="color:var(--ink-2);margin-top:1rem">Keine Treffer.</p>';
+  el('inp-count').textContent=INPUT.length;
+}
+el('inp-niv').addEventListener('change',inpRender);
+el('inp-type').addEventListener('change',inpRender);
+el('inp-sub').addEventListener('change',inpRender);
+el('inp-q').addEventListener('input',inpRender);
+  
+  
 /* ---------- Tagesplan ---------- */
 function plRender(){
   const doneDays=Object.keys(S.plan.done).filter(d=>{
