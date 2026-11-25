@@ -893,32 +893,11 @@ const SEED=SEED_A.concat(SEED_B,SEED_B2,S.vocab.imported||[]);
 const IPA_FIX={beaucoup:"boku",déjà:"deʒa",voiture:"vwatyʁ",après:"apʁɛ",écouter:"ekɔte",
  guerre:"ɡɛʁ",pays:"pei",rester:"ʁɛste",maintenant:"mɛ̃tənɑ̃"};
 SEED.forEach(w=>{if(IPA_FIX[w[0]])w[2]=IPA_FIX[w[0]]});
-Object.assign(IRREG,{
- "sentir":{p:["sens","sens","sent","sentons","sentez","sentent"],pp:"senti",f:"sentir",i:"sent"},
- "servir":{p:["sers","sers","sert","servons","servez","servent"],pp:"servi",f:"servir",i:"serv"},
- "devenir":{p:["deviens","deviens","devient","devenons","devenez","deviennent"],pp:"devenu",f:"deviendr",i:"deven",aux:1},
- "revenir":{p:["reviens","reviens","revient","revenons","revenez","reviennent"],pp:"revenu",f:"reviendr",i:"reven",aux:1},
- "comprendre":{p:["comprends","comprends","comprend","comprenons","comprenez","comprennent"],pp:"compris",f:"comprendr",i:"comprend"},
- "apprendre":{p:["apprends","apprends","apprend","apprenons","apprenez","apprennent"],pp:"appris",f:"apprendr",i:"apprend"},
- "peindre":{p:["peins","peins","peint","peignons","peignez","peignent"],pp:"peint",f:"peindr",i:"peign"},
- "éteindre":{p:["éteins","éteins","éteint","éteignons","éteignez","éteignent"],pp:"éteint",f:"éteindr",i:"éteign"},
- "conduire":{p:["conduis","conduis","conduit","conduisons","conduisez","conduisent"],pp:"conduit",f:"conduir",i:"conduis"},
- "construire":{p:["construis","construis","construit","construisons","construisez","construisent"],pp:"construit",f:"construir",i:"construis"},
- "traduire":{p:["traduis","traduis","traduit","traduisons","traduisez","traduisent"],pp:"traduit",f:"traduir",i:"traduis"},
- "découvrir":{p:["découvre","découvres","découvre","découvrons","découvrez","découvrent"],pp:"découvert",f:"découvrir",i:"découvr"},
- "permettre":{p:["permets","permets","permet","permettons","permettez","permettent"],pp:"permis",f:"permettr",i:"permet"},
- "promettre":{p:["promets","promets","promet","promettons","promettez","promettent"],pp:"promis",f:"promettr",i:"promet"},
- "battre":{p:["bats","bats","bat","battons","battez","battent"],pp:"battu",f:"battr",i:"batt"},
- "plaire":{p:["plais","plais","plaît","plaisons","plaisez","plaisent"],pp:"plu",f:"plair",i:"plais"},
- "valoir":{p:["vaux","vaux","vaut","valons","valez","valent"],pp:"valu",f:"vaudr",i:"val"},
- "obtenir":{p:["obtiens","obtiens","obtient","obtenons","obtenez","obtiennent"],pp:"obtenu",f:"obtiendr",i:"obten"},
- "souvenir":{p:["souviens","souviens","souvient","souvenons","souvenez","souviennent"],pp:"souvenu",f:"souviendr",i:"souven"},
- "asseoir":{p:["assieds","assieds","assied","asseyons","asseyez","asseyent"],pp:"assis",f:"assiér",i:"assey"}
-});
+
 [["partir","partir"],["sentir","sentir"],["servir","servir"],["devenir","devenir"],
  ["revenir","revenir"],["comprendre","comprendre"],["apprendre","apprendre"]]
  .forEach(([f,c])=>{const w=SEED.find(x=>x[0]===f);if(w)w[4]=c});
-delete IRREG.etre.aux;
+
 const CATS={art:"Artikel",pron:"Pronomen",det:"Begleiter",adv:"Adverb",prep:"Präposition",conj:"Konjunktion",phr:"Redemittel",num:"Zahl",n:"Nomen",v:"Verb",adj:"Adjektiv"};
 
 function showView(v){
