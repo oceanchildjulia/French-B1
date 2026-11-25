@@ -859,14 +859,31 @@ verb:[
 ["lis","lire"],["bois","boire"],["sais","savoir"]]
 };
 
-/* SLOT-5: Tagesplan (Teil 6 ersetzt diesen Platzhalter) */
+/* SLOT-5: Tagesplan (Teil 6 — 30-Tage-Curriculum) */
 const PLAN={
 days:30,
-blocks:[
- {t:"Früh · 15 Min",tasks:["10 Min. Trainer (Karteikarten)","5 Min. Phonetik: ein Laut","10 neue Wörter in der Liste anschauen"]},
- {t:"Mittag · 10 Min",tasks:["10 Min. Übungscampus (2 Module beliebig)"]},
- {t:"Abend · 15 Min",tasks:["10 Min. Formen: ein Verb + ein Adjektiv","5 Min. Hören: gelernte Wörter vorlesen lassen"]}
-]};
+camp:[["luecke","Lücke"],["kollo","Kollokationen"],["anto","Antonyme"],["kategorie","Kategorien"],["definition","Definition"],["bild","Bild"],["zitat","Zitat"],["ueberset","Übersetzen"],["verb","Verb-Match"]],
+verbs:["être","avoir","aller","faire","dire","voir","pouvoir","vouloir","venir","devoir","prendre","mettre","partir","sortir","dormir","ouvrir","écrire","lire","boire","vivre","suivre","tenir","connaître","croire","recevoir","parler","finir","attendre","choisir","descendre"],
+adjs:["beau","nouveau","vieux","doux","faux","heureux","gentil","frais","sec","gros","blanc","cher","ancien","pareil","fou","malheureux","meilleur","long","court","haut","bas","chaud","froid","lourd","léger","important","vrai","riche","pauvre","content"],
+day(n){
+  const ph=PHON.cards[(n-1)%PHON.cards.length];
+  const c1=this.camp[(n-1)%this.camp.length],c2=this.camp[n%this.camp.length];
+  const v=this.verbs[(n-1)%this.verbs.length],a=this.adjs[(n-1)%this.adjs.length];
+  const b1={t:"Früh · 15 Min",tasks:[
+    "Trainer · 10 Min — Modus Karte, ~10 neue Wörter",
+    "Phonetik · Laut ["+ph.ip+"] — Karte ansehen + Hör-Quiz"]};
+  if(PHON.multi)b1.tasks.push("Buchstaben · „"+PHON.multi[(n-1)%PHON.multi.length][0]+"“ — Aussprache ansehen");
+  if(n%5===0)b1.tasks.push("Extra · 10 gelernte Wörter im Tippen-Modus wiederholen");
+  const b2={t:"Mittag · 10 Min",tasks:["Campus · „"+c1[1]+"“ und „"+c2[1]+"“"]};
+  const b3={t:"Abend · 15 Min",tasks:[
+    "Formen · Verb „"+v+"“ + Adjektiv „"+a+"“ durchspielen",
+    "Hören · Liste öffnen, gelernte Wörter per 🔊 vorlesen lassen"]};
+  if(n===30)b3.tasks.push("Abschluss · Backup-Button oben drücken 🎉");
+  return[b1,b2,b3];
+},
+get blocks(){return this.day(S.plan.cur)}
+};
+
 
 /* ============================================================
    LOGIK
