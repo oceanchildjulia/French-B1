@@ -1104,40 +1104,61 @@ function vHear(w){
 
 /* ---------- Formen-Engine ---------- */
 const IRREG={
- etre:{p:["suis","es","est","sommes","êtes","sont"],pp:"été",f:"ser",i:"ét",aux:1},
- avoir:{p:["ai","as","a","avons","avez","ont"],pp:"eu",f:"aur",i:"av"},
- aller:{p:["vais","vas","va","allons","allez","vont"],pp:"allé",f:"ir",i:"all",aux:1},
- faire:{p:["fais","fais","fait","faisons","faites","font"],pp:"fait",f:"fer",i:"fais"},
- dire:{p:["dis","dis","dit","disons","dites","disent"],pp:"dit",f:"dir",i:"dis"},
- voir:{p:["vois","vois","voit","voyons","voyez","voient"],pp:"vu",f:"verr",i:"voy"},
- savoir:{p:["sais","sais","sait","savons","savez","savent"],pp:"su",f:"saur",i:"sav"},
- pouvoir:{p:["peux","peux","peut","pouvons","pouvez","peuvent"],pp:"pu",f:"pourr",i:"pouv"},
- vouloir:{p:["veux","veux","veut","voulons","voulez","veulent"],pp:"voulu",f:"voudr",i:"voul"},
- venir:{p:["viens","viens","vient","venons","venez","viennent"],pp:"venu",f:"viendr",i:"ven",aux:1},
- devoir:{p:["dois","dois","doit","devons","devez","doivent"],pp:"dû",f:"devr",i:"dev"},
- falloir:{p:["—","—","faut","—","—","—"],pp:"fallu",f:"faudr",i:"fall"},
- prendre:{p:["prends","prends","prend","prenons","prenez","prennent"],pp:"pris",f:"prendr",i:"pren"},
- mettre:{p:["mets","mets","met","mettons","mettez","mettent"],pp:"mis",f:"mettr",i:"met"},
- partir:{p:["pars","pars","part","partons","partez","partent"],pp:"parti",f:"partir",i:"part",aux:1},
- sortir:{p:["sors","sors","sort","sortons","sortez","sortent"],pp:"sorti",f:"sortir",i:"sort",aux:1},
- dormir:{p:["dors","dors","dort","dormons","dormez","dorment"],pp:"dormi",f:"dormir",i:"dorm"},
- ouvrir:{p:["ouvre","ouvres","ouvre","ouvrons","ouvrez","ouvrent"],pp:"ouvert",f:"ouvrir",i:"ouvr"},
- offrir:{p:["offre","offres","offre","offrons","offrez","offrent"],pp:"offert",f:"offrir",i:"offr"},
- ecrire:{p:["écris","écris","écrit","écrivons","écrivez","écrivent"],pp:"écrit",f:"écrir",i:"écriv"},
- lire:{p:["lis","lis","lit","lisons","lisez","lisent"],pp:"lu",f:"lir",i:"lis"},
- boire:{p:["bois","bois","boit","buvons","buvez","boivent"],pp:"bu",f:"boir",i:"buv"},
- vivre:{p:["vis","vis","vit","vivons","vivez","vivent"],pp:"vécu",f:"vivr",i:"viv"},
- suivre:{p:["suis","suis","suit","suivons","suivez","suivent"],pp:"suivi",f:"suivr",i:"suiv"},
- tenir:{p:["tiens","tiens","tient","tenons","tenez","tiennent"],pp:"tenu",f:"tiendr",i:"ten",aux:1},
- connaitre:{p:["connais","connais","connaît","connaissons","connaissez","connaissent"],pp:"connu",f:"connaîtr",i:"connaiss"},
- croire:{p:["crois","crois","croit","croyons","croyez","croient"],pp:"cru",f:"croir",i:"croi"},
- rire:{p:["ris","ris","rit","rions","riez","rient"],pp:"ri",f:"rir",i:"ri"},
- sourire:{p:["souris","souris","sourit","sourions","souriez","sourient"],pp:"souri",f:"sourir",i:"souri"},
- courir:{p:["cours","cours","court","courons","courez","courent"],pp:"couru",f:"courr",i:"cour"},
- mourir:{p:["meurs","meurs","meurt","mourons","mourez","meurent"],pp:"mort",f:"mourr",i:"mour",aux:1},
- naitre:{p:["nais","nais","naît","naissons","naissez","naissent"],pp:"né",f:"naîtr",i:"naiss",aux:1},
- recevoir:{p:["reçois","reçois","reçoit","recevons","recevez","reçoivent"],pp:"reçu",f:"recevr",i:"recev"}
+etre:{p:["suis","es","est","sommes","êtes","sont"],pp:"été",f:"ser",i:"ét",aux:1},
+avoir:{p:["ai","as","a","avons","avez","ont"],pp:"eu",f:"aur",i:"av"},
+aller:{p:["vais","vas","va","allons","allez","vont"],pp:"allé",f:"ir",i:"all",aux:1},
+faire:{p:["fais","fais","fait","faisons","faites","font"],pp:"fait",f:"fer",i:"fais"},
+dire:{p:["dis","dis","dit","disons","dites","disent"],pp:"dit",f:"dir",i:"dis"},
+voir:{p:["vois","vois","voit","voyons","voyez","voient"],pp:"vu",f:"verr",i:"voy"},
+savoir:{p:["sais","sais","sait","savons","savez","savent"],pp:"su",f:"saur",i:"sav"},
+pouvoir:{p:["peux","peux","peut","pouvons","pouvez","peuvent"],pp:"pu",f:"pourr",i:"pouv"},
+vouloir:{p:["veux","veux","veut","voulons","voulez","veulent"],pp:"voulu",f:"voudr",i:"voul"},
+venir:{p:["viens","viens","vient","venons","venez","viennent"],pp:"venu",f:"viendr",i:"ven",aux:1},
+devoir:{p:["dois","dois","doit","devons","devez","doivent"],pp:"dû",f:"devr",i:"dev"},
+falloir:{p:["—","—","faut","—","—","—"],pp:"fallu",f:"faudr",i:"fall"},
+prendre:{p:["prends","prends","prend","prenons","prenez","prennent"],pp:"pris",f:"prendr",i:"pren"},
+comprendre:{p:["comprends","comprends","comprend","comprenons","comprenez","comprennent"],pp:"compris",f:"comprendr",i:"comprend"},
+apprendre:{p:["apprends","apprends","apprend","apprenons","apprenez","apprennent"],pp:"appris",f:"apprendr",i:"apprend"},
+devenir:{p:["deviens","deviens","devient","devenons","devenez","deviennent"],pp:"devenu",f:"deviendr",i:"deven",aux:1},
+revenir:{p:["reviens","reviens","revient","revenons","revenez","reviennent"],pp:"revenu",f:"reviendr",i:"reven",aux:1},
+mettre:{p:["mets","mets","met","mettons","mettez","mettent"],pp:"mis",f:"mettr",i:"met"},
+partir:{p:["pars","pars","part","partons","partez","partent"],pp:"parti",f:"partir",i:"part",aux:1},
+sortir:{p:["sors","sors","sort","sortons","sortez","sortent"],pp:"sorti",f:"sortir",i:"sort",aux:1},
+sentir:{p:["sens","sens","sent","sentons","sentez","sentent"],pp:"senti",f:"sentir",i:"sent"},
+servir:{p:["sers","sers","sert","servons","servez","servent"],pp:"servi",f:"servir",i:"serv"},
+dormir:{p:["dors","dors","dort","dormons","dormez","dorment"],pp:"dormi",f:"dormir",i:"dorm"},
+ouvrir:{p:["ouvre","ouvres","ouvre","ouvrons","ouvrez","ouvrent"],pp:"ouvert",f:"ouvrir",i:"ouvr"},
+offrir:{p:["offre","offres","offre","offrons","offrez","offrent"],pp:"offert",f:"offrir",i:"offr"},
+ecrire:{p:["écris","écris","écrit","écrivons","écrivez","écrivent"],pp:"écrit",f:"écrir",i:"écriv"},
+lire:{p:["lis","lis","lit","lisons","lisez","lisent"],pp:"lu",f:"lir",i:"lis"},
+boire:{p:["bois","bois","boit","buvons","buvez","boivent"],pp:"bu",f:"boir",i:"buv"},
+vivre:{p:["vis","vis","vit","vivons","vivez","vivent"],pp:"vécu",f:"vivr",i:"viv"},
+suivre:{p:["suis","suis","suit","suivons","suivez","suivent"],pp:"suivi",f:"suivr",i:"suiv"},
+tenir:{p:["tiens","tiens","tient","tenons","tenez","tiennent"],pp:"tenu",f:"tiendr",i:"ten",aux:1},
+connaitre:{p:["connais","connais","connaît","connaissons","connaissez","connaissent"],pp:"connu",f:"connaîtr",i:"connaiss"},
+croire:{p:["crois","crois","croit","croyons","croyez","croient"],pp:"cru",f:"croir",i:"croi"},
+rire:{p:["ris","ris","rit","rions","riez","rient"],pp:"ri",f:"rir",i:"ri"},
+sourire:{p:["souris","souris","sourit","sourions","souriez","sourient"],pp:"souri",f:"sourir",i:"souri"},
+courir:{p:["cours","cours","court","courons","courez","courent"],pp:"couru",f:"courr",i:"cour"},
+mourir:{p:["meurs","meurs","meurt","mourons","mourez","meurent"],pp:"mort",f:"mourr",i:"mour",aux:1},
+naitre:{p:["nais","nais","naît","naissons","naissez","naissent"],pp:"né",f:"naîtr",i:"naiss",aux:1},
+recevoir:{p:["reçois","reçois","reçoit","recevons","recevez","reçoivent"],pp:"reçu",f:"recevr",i:"recev"},
+peindre:{p:["peins","peins","peint","peignons","peignez","peignent"],pp:"peint",f:"peindr",i:"peign"},
+éteindre:{p:["éteins","éteins","éteint","éteignons","éteignez","éteignent"],pp:"éteint",f:"éteindr",i:"éteign"},
+conduire:{p:["conduis","conduis","conduit","conduisons","conduisez","conduisent"],pp:"conduit",f:"conduir",i:"conduis"},
+construire:{p:["construis","construis","construit","construisons","construisez","construisent"],pp:"construit",f:"construir",i:"construis"},
+traduire:{p:["traduis","traduis","traduit","traduisons","traduisez","traduisent"],pp:"traduit",f:"traduir",i:"traduis"},
+découvrir:{p:["découvre","découvres","découvre","découvrons","découvrez","découvrent"],pp:"découvert",f:"découvrir",i:"découvr"},
+permettre:{p:["permets","permets","permet","permettons","permettez","permettent"],pp:"permis",f:"permettr",i:"permet"},
+promettre:{p:["promets","promets","promet","promettons","promettez","promettent"],pp:"promis",f:"promettr",i:"promet"},
+battre:{p:["bats","bats","bat","battons","battez","battent"],pp:"battu",f:"battr",i:"batt"},
+plaire:{p:["plais","plais","plaît","plaisons","plaisez","plaisent"],pp:"plu",f:"plair",i:"plais"},
+valoir:{p:["vaux","vaux","vaut","valons","valez","valent"],pp:"valu",f:"vaudr",i:"val"},
+obtenir:{p:["obtiens","obtiens","obtient","obtenons","obtenez","obtiennent"],pp:"obtenu",f:"obtiendr",i:"obten"},
+souvenir:{p:["souviens","souviens","souvient","souvenons","souvenez","souviennent"],pp:"souvenu",f:"souviendr",i:"souven"},
+asseoir:{p:["assieds","assieds","assied","asseyons","asseyez","asseyent"],pp:"assis",f:"assiér",i:"assey"}
 };
+delete IRREG.etre.aux; /* être: Passé composé mit avoir → j'ai été */
 const ER_X={
 appeler:["appelle","appelles","appelle","appelons","appelez","appellent"],
 rappeler:["rappelle","rappelles","rappelle","rappelons","rappelez","rappellent"],
@@ -1229,7 +1250,6 @@ function renderFormen(){
     const pres=presForms(w[0],cls),imp=impForms(w[0],cls),fut=futForms(w[0],cls);
     const aux=auxOf(w[0],cls),pp=ppOf(w[0],cls);
     const pfx=refl?(VW.test(base)?["m’","t’","s’","nous ","vous ","s’"]:["me ","te ","se ","nous ","vous ","se "]):null;
-    const disp=f=>refl?pfx[SUBJ.indexOf(f)]+f:f;
     const pc=refl?["je me suis "+pp,"tu t’es "+pp,"il/elle s’est "+pp,"nous nous sommes "+pp,"vous vous êtes "+pp,"ils/elles se sont "+pp]
       :SUBJ.map((s,i)=>s+' '+(aux==='être'?["suis","es","est","sommes","êtes","sont"][i]:["ai","as","a","avons","avez","ont"][i])+' '+pp);
     out.innerHTML='<h3 style="font-weight:500;font-size:1.2rem">'+esc(w[0])+'</h3>'+
@@ -1242,12 +1262,11 @@ function renderFormen(){
       '</div>';
   } else if(type==='n'){
     const ex=w[4]||'m', gender=ex.split('::')[0], isPl=gender==='p';
-    const art=gender==='f'?(VW.test(w[0])?'l’':'la '):(VW.test(w[0])?'l’':'le ');
     const pl=isPl?w[0]:plNoun(w[0],ex);
-    out.innerHTML='<h3 style="font-weight:500;font-size:1.2rem">'+esc(art+((isPl||VW.test(w[0]))?w[0]:w[0]))+'</h3>'+
+    out.innerHTML='<h3 style="font-weight:500;font-size:1.2rem">'+esc(w[0])+'</h3>'+
       '<p class="mono" style="color:var(--ink-2)">['+esc(w[2])+'] · '+esc(w[1])+' · '+(isPl?'Pluralwort':gender==='f'?'feminin':'maskulin')+'</p>'+
       '<div class="formgrid">'+
-      '<div class="fcell"><em>mit Artikel</em><strong>'+esc((isPl?'les ':(gender==='f'?'la ':'le ')).replace(/^la |^le /,VW.test(w[0])?'l’':(isPl?'les ':(gender==='f'?'la ':'le '))))+esc(w[0])+'</strong></div>'+
+      '<div class="fcell"><em>mit Artikel</em><strong>'+esc((isPl?'les ':(gender==='f'?'la ':'le '))+w[0])+'</strong></div>'+
       '<div class="fcell"><em>Plural</em><strong>'+esc('les '+pl)+'</strong></div>'+
       '<div class="fcell"><em>„etwas …“</em><strong>'+esc((isPl?'des ':(gender==='f'?'de la ':'du '))+w[0])+'</strong></div>'+
       '<div class="fcell"><em>„zu dem/der …“</em><strong>'+esc((isPl?'aux ':(VW.test(w[0])?'à l’':(gender==='f'?'à la ':'au ')))+w[0])+'</strong></div>'+
@@ -1267,7 +1286,6 @@ function renderFormen(){
 }
 el('f-type').addEventListener('change',()=>{el('f-word').innerHTML='';renderFormen()});
 el('f-word').addEventListener('change',renderFormen);
-
 /* ---------- Import ---------- */
 el('imp-btn').onclick=()=>{
   const lines=el('imp-text').value.split('\n').map(l=>l.trim()).filter(Boolean);
@@ -1281,7 +1299,6 @@ el('imp-exp').onclick=()=>{
   a.href=URL.createObjectURL(new Blob([JSON.stringify(S.vocab.imported,null,2)],{type:'application/json'}));
   a.download='eigene-vokabeln.json';a.click();
 };
-
 /* ---------- Phonetik ---------- */
 let pMode='lite';
 tabWire('#p-tabs',d=>{pMode=d.t;pRender()});
@@ -1334,16 +1351,16 @@ function pRender(){
       setTimeout(pRender,1800);
     });
   }
-else if(pMode==='graph'){
-  st.innerHTML='<p class="eyebrow">Buchstabenkombinationen — so liest man sie</p><div class="litiles">'+
-    PHON.multi.map(m=>
-      '<div class="litile"><span class="ip">'+esc(m[0])+'</span> <span class="mono" style="color:var(--ink-2)">['+esc(m[1])+']</span>'+
-      '<p class="ex">'+m[2].map(esc).join(' · ')+'</p>'+
-      '<div style="display:flex;gap:.4rem;margin-top:.5rem;flex-wrap:wrap">'+
-      m[2].map(e=>'<button class="btn btn--sm" data-e="'+esc(e)+'">🔊 '+esc(e)+'</button>').join('')+
-      '</div></div>').join('')+'</div>';
-  st.querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>speak(b.dataset.e,0.85));
-}
+  else if(pMode==='graph'){
+    st.innerHTML='<p class="eyebrow">Buchstabenkombinationen — so liest man sie</p><div class="litiles">'+
+      PHON.multi.map(m=>
+        '<div class="litile"><span class="ip">'+esc(m[0])+'</span> <span class="mono" style="color:var(--ink-2)">['+esc(m[1])+']</span>'+
+        '<p class="ex">'+m[2].map(esc).join(' · ')+'</p>'+
+        '<div style="display:flex;gap:.4rem;margin-top:.5rem;flex-wrap:wrap">'+
+        m[2].map(e=>'<button class="btn btn--sm" data-e="'+esc(e)+'">🔊 '+esc(e)+'</button>').join('')+
+        '</div></div>').join('')+'</div>';
+    st.querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>speak(b.dataset.e,0.85));
+  }
   else {
     st.innerHTML='<div class="formrow"><input type="text" id="p-word" placeholder="Wort…" style="flex:1;min-width:140px">'+
       '<select id="p-ph">'+PHON.cards.map(c=>'<option>'+esc(c.ip)+'</option>').join('')+'</select>'+
@@ -1361,7 +1378,6 @@ else if(pMode==='graph'){
     };
   }
 }
-
 /* ---------- Campus ---------- */
 let cMod='luecke';
 tabWire('#c-tabs',d=>{cMod=d.c;cRender()});
@@ -1373,12 +1389,11 @@ function cSummary(restart){
 let cList=[],cI=0,cLock=false;
 function cMC(){
   const items=CAMPUS[cMod]||[];
-  if(!items.length){el('c-stage').innerHTML='<p style="color:var(--ink-2)">Dieser Modul-Typ bekommt seine Aufgaben in Teil 5.</p>';return}
+  if(!items.length){el('c-stage').innerHTML='<p style="color:var(--ink-2)">Dieses Modul ist leer.</p>';return}
   if(!cList.length||cI>=cList.length){cList=shuffle(items);cI=0}
   if(cI>=cList.length){cSummary(cMC);return}
   cLock=false;const it=cList[cI++];
   const opts=shuffle([{t:it.a,ok:true}].concat(it.o.map(o=>({t:o,ok:false}))));
-  const isFr=!/^(Gegenteil|Welches|die |das |der |„)/.test(it.p)||cMod==='luecke'||cMod==='kollo';
   el('c-stage').innerHTML='<p class="eyebrow">'+(cI)+' / '+cList.length+'</p>'+
     '<h2 class="stage__big">'+(cMod==='bild'?'<span class="emoji">'+esc(it.p)+'</span>':esc(it.p).replace('___','<span style="border-bottom:2px solid var(--ink);padding:0 .4rem">____</span>'))+'</h2>'+
     '<div class="opts">'+opts.map(o=>'<button class="opt" data-ok="'+o.ok+'">'+esc(o.t)+'</button>').join('')+'</div>'+
@@ -1398,7 +1413,7 @@ function cMC(){
 function cType(){
   const items=CAMPUS.ueberset||[];
   if(!cList.length||cI>=cList.length){cList=shuffle(items);cI=0}
-  if(!cList.length){el('c-stage').innerHTML='<p style="color:var(--ink-2)">Aufgaben kommen in Teil 5.</p>';return}
+  if(!cList.length){el('c-stage').innerHTML='<p style="color:var(--ink-2)">Modul ist leer.</p>';return}
   cLock=false;const it=cList[cI++];
   el('c-stage').innerHTML='<p class="eyebrow">Übersetze '+(cI)+' / '+cList.length+'</p>'+
     '<h2 class="stage__big">'+esc(it.de)+'</h2>'+
@@ -1424,7 +1439,7 @@ function cType(){
 }
 function cMatch(){
   const pairs=(CAMPUS.verb||[]);
-  if(pairs.length<3){el('c-stage').innerHTML='<p style="color:var(--ink-2)">Aufgaben kommen in Teil 5.</p>';return}
+  if(pairs.length<3){el('c-stage').innerHTML='<p style="color:var(--ink-2)">Modul ist leer.</p>';return}
   const six=shuffle(pairs).slice(0,Math.min(6,pairs.length));
   const left=shuffle(six.map((p,i)=>({k:i,t:p[0]})));
   const right=shuffle(six.map((p,i)=>({k:i,t:p[1]})));
