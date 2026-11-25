@@ -372,31 +372,391 @@ const SEED_A=[
 ["bleu","blau","blø","adj","reg"],["vert","grün","vɛʁ","adj","reg"],["jaune","gelb","ʒon","adj","reg"],
 ["gris","grau","ɡʁi","adj","reg"],["brun","braun","bʁœ̃","adj","reg"],["premier","erster","pʁəmje","adj","reg"],["dernier","letzter","dɛʁnje","adj","reg"]
 ];
-const SEED_A=[
-["bonjour","Hallo","bɔ̃ʒuʁ","phr",""],["merci","danke","mɛʁsi","phr",""],
-["oui","ja","wi","phr",""],["non","nein","nɔ̃","phr",""],
-["maison","Haus","mɛzɔ̃","n","f"],["ville","Stadt","vil","n","f"],
-["eau","Wasser","o","n","f"],["pain","Brot","pɛ̃","n","m"],
-["être","sein","ɛtʁ","v","etre"],["avoir","haben","avwaʁ","v","avoir"],
-["aller","gehen","ale","v","aller"],["faire","machen","fɛʁ","v","faire"],
-["grand","groß","ɡʁɑ̃","adj",""],["petit","klein","pəti","adj",""]
-];
 
-/* SLOT-2: Erweiterung auf ~1.000 (Teil 3 ersetzt diesen Platzhalter) */
+
+/* SLOT-2: Erweiterung (~440 Wörter) */
 const SEED_B=[
+/* ---------- Adverbien ---------- */
+["aujourd'hui","heute","oʒuʁdɥi","adv",""],["demain","morgen","dəmɛ̃","adv",""],["hier","gestern","jɛʁ","adv",""],
+["tôt","früh","to","adv",""],["tard","spät","taʁ","adv",""],["tout de suite","sofort","tu də sɥit","adv",""],
+["d'abord","zuerst","dabɔʁ","adv",""],["puis","dann","pɥi","adv",""],["ensuite","danach","ɑ̃sɥit","adv",""],
+["enfin","schließlich","ɑ̃fɛ̃","adv",""],["pourtant","dennoch","puʁtɑ̃","adv",""],["plutôt","eher","plyto","adv",""],
+["presque","fast","pʁɛsk","adv",""],["surtout","vor allem","syʁtu","adv",""],["partout","überall","paʁtu","adv",""],
+["ailleurs","anderswo","ajœʁ","adv",""],["ici","hier","isi","adv",""],["là","da; dort","la","adv",""],
+["là-bas","dort drüben","la ba","adv",""],["près","nah","pʁɛ","adv",""],["loin","weit","lwɛ̃","adv",""],
+["seulement","nur","səlmɑ̃","adv",""],["probablement","wahrscheinlich","pʁɔbablmɑ̃","adv",""],["heureusement","zum Glück","øʁozmɑ̃","adv",""],
+["malheureusement","leider","maløʁozmɑ̃","adv",""],["exactement","genau","ɛɡzaktəmɑ̃","adv",""],["rapidement","schnell","ʁapidmɑ̃","adv",""],
+["facilement","leicht","fasilmɑ̃","adv",""],["volontiers","gern","vɔlɔ̃tje","adv",""],["dehors","draußen","dəɔʁ","adv",""],
+["dedans","drinnen","dədɑ̃","adv",""],["quelque part","irgendwo","kɛlkə paʁ","adv",""],["nulle part","nirgendwo","nyl paʁ","adv",""],
+["à peine","kaum","a pɛn","adv",""],
+/* ---------- Präpositionen ---------- */
+["autour de","um … herum","otuʁ də","prep",""],["près de","nahe bei","pʁɛ də","prep",""],["loin de","weit von","lwɛ̃ də","prep",""],
+["à côté de","neben","a kote də","prep",""],["en face de","gegenüber von","ɑ̃ fas də","prep",""],["au-dessus de","über","o dəsy də","prep",""],
+["à travers","durch","a tʁavɛʁ","prep",""],["selon","laut; je nach","səlɔ̃","prep",""],["malgré","trotz","malɡʁɛ","prep",""],
+["à cause de","wegen","a koz də","prep",""],["au lieu de","statt","ø ljø də","prep",""],["dès","ab (Zeit)","dɛ","prep",""],
+/* ---------- Konjunktionen ---------- */
+["lorsque","als; wenn","lɔʁskə","conj",""],["puisque","da; weil","pɥiskə","conj",""],["bien que","obwohl","bjɛ̃ kə","conj",""],
+["tandis que","während","tɑ̃di kə","conj",""],["dès que","sobald","dɛ kə","conj",""],["comme si","als ob","kɔm si","conj",""],
+/* ---------- Pronomen & Begleiter ---------- */
+["chacun","jeder","ʃakœ̃","pron","m"],["aucun","keiner","okœ̃","det","m"],["aucune","keine","okyn","det","f"],
+["quel","welcher","kɛl","det","m"],["quelle","welche","kɛl","det","f"],["tout le monde","alle","tu lə mɔ̃d","pron",""],
+["quelqu'un","jemand","kɛlkœ̃","pron",""],["quelque chose","etwas","kɛlkə ʃoz","pron",""],["la plupart","die meisten","la plyply","det","f"],
+/* ---------- Redemittel ---------- */
+["il y a","es gibt","il i a","phr",""],["c'est","das ist","sɛ","phr",""],["est-ce que","(Frage-Partikel)","ɛs kə","phr",""],
+["qu'est-ce que","was","kɛs kə","phr",""],["pardon","Entschuldigung","paʁdɔ̃","phr",""],["voici","hier ist","vwasi","phr",""],
+["ça va ?","wie geht's?","sa va","phr",""],["s'il te plaît","bitte (du)","sil tə plɛ","phr",""],["de rien","gern geschehen","də ʁjɛ̃","phr",""],
+["bienvenue","Willkommen","bjɛ̃vəny","phr",""],["félicitations","Glückwunsch","felisitasjɔ̃","phr",""],["à bientôt","bis bald","a bjɛ̃to","phr",""],
+["à demain","bis morgen","a dəmɛ̃","phr",""],["tant pis","Pech gehabt","tɑ̃ pi","phr",""],["c'est pourquoi","deswegen","sɛ puʁkwa","phr",""],
+["en retard","zu spät","ɑ̃ ʁətaʁ","phr",""],["en avance","zu früh","ɑ̃ avɑ̃s","phr",""],["par cœur","auswendig","paʁ kœʁ","phr",""],
+["de temps en temps","ab und zu","də tɑ̃ ɑ̃ tɑ̃","phr",""],["tout à fait","völlig","tu a fɛ","phr",""],["pas du tout","überhaupt nicht","pa dy tu","phr",""],
+["n'importe quoi","Quatsch","nɛ̃pɔʁt kwa","phr",""],
+/* ---------- Zeit ---------- */
+["fin","Ende","fɛ̃","n","f"],["début","Anfang","deby","n","m"],["âge","Alter","ɑʒ","n","m"],
+["saison","Jahreszeit","sɛzɔ̃","n","f"],["printemps","Frühling","pʁɛ̃tɑ̃","n","m"],["été","Sommer","ete","n","m"],
+["automne","Herbst","otɔn","n","m"],["hiver","Winter","ivɛʁ","n","m"],["vacances","Ferien","vakɑ̃s","n","p"],
+["week-end","Wochenende","wikɛnd","n","m"],["journée","Tag (Verlauf)","ʒuʁne","n","f"],["matinée","Vormittag","matinɛ","n","f"],
+["soirée","Abend","swaʁe","n","f"],["réveil","Wecker","ʁevɛj","n","m"],["horloge","Uhr","ɔʁlɔʒ","n","f"],
+["montre","Armbanduhr","mɔ̃tʁ","n","f"],["minuit","Mitternacht","minɥi","n","m"],["date","Datum","dat","n","f"],
+["seconde","Sekunde","səɡɔ̃d","n","f"],
+["lundi","Montag","lœ̃di","n","m"],["mardi","Dienstag","maʁdi","n","m"],["mercredi","Mittwoch","mɛʁkʁədi","n","m"],
+["jeudi","Donnerstag","ʒødi","n","m"],["vendredi","Freitag","vɑ̃dʁədi","n","m"],["samedi","Samstag","samdi","n","m"],
+["dimanche","Sonntag","dimɑ̃ʃ","n","m"],
+["janvier","Januar","ʒɑ̃vje","n","m"],["février","Februar","fevʁije","n","m"],["mars","März","maʁs","n","m"],
+["avril","April","avʁil","n","m"],["mai","Mai","mɛ","n","m"],["juin","Juni","ʒɥɛ","n","m"],
+["juillet","Juli","ʒɥijɛ","n","m"],["août","August","u","n","m"],["septembre","September","sɛptɑ̃bʁ","n","m"],
+["octobre","Oktober","ɔktɔbʁ","n","m"],["novembre","November","nɔvɑ̃bʁ","n","m"],["décembre","Dezember","desɑ̃bʁ","n","m"],
+/* ---------- Familie & Menschen ---------- */
+["mère","Mutter","mɛʁ","n","f"],["père","Vater","pɛʁ","n","m"],["frère","Bruder","fʁɛʁ","n","m"],
+["sœur","Schwester","sœʁ","n","f"],["fils","Sohn","fis","n","m"],["parents","Eltern","paʁɑ̃","n","p"],
+["grand-père","Großvater","ɡʁɑ̃pɛʁ","n","m"],["grand-mère","Großmutter","ɡʁɑ̃mɛʁ","n","f"],["oncle","Onkel","ɔ̃kl","n","m"],
+["tante","Tante","tɑ̃t","n","f"],["cousin","Cousin","kuzɛ̃","n","m"],["cousine","Cousine","kuzin","n","f"],
+["mari","Ehemann","maʁi","n","m"],["bébé","Baby","bebe","n","m"],["petit-fils","Enkel","pəti fis","n","m"],
+["petite-fille","Enkelin","pəti fij","n","f"],["beau-père","Schwiegervater","bo pɛʁ","n","m"],["belle-mère","Schwiegermutter","bɛl mɛʁ","n","f"],
+["beau-frère","Schwager","bo fʁɛʁ","n","m"],["belle-sœur","Schwägerin","bɛl sœʁ","n","f"],["voisin","Nachbar","vwazɛ̃","n","m"],
+["copain","Freund (Kumpel)","kɔpɛ̃","n","m"],["copine","Freundin","kɔpin","n","f"],["collègue","Kollege","kɔlɛɡ","n","m"],
+["patron","Chef","patʁɔ̃","n","m"],["cadeau","Geschenk","kado","n","m"],
+/* ---------- Körper ---------- */
+["visage","Gesicht","vizaʒ","n","m"],["cheveux","Haare","ʃəvø","n","p"],["oreille","Ohr","ɔʁɛj","n","f"],
+["nez","Nase","ne","n","m"],["dos","Rücken","do","n","m"],["ventre","Bauch","vɑ̃tʁ","n","m"],
+["jambe","Bein","ʒɑ̃b","n","f"],["genou","Knie","ʒənu","n","m"],["doigt","Finger","dwa","n","m"],
+["cou","Hals","ku","n","m"],["peau","Haut","po","n","f"],["sang","Blut","sɑ̃","n","m"],
+["os","Knochen","ɔs","n","m"],["estomac","Magen","ɛstɔma","n","m"],["cerveau","Gehirn","sɛʁvo","n","m"],
+["épaule","Schulter","epol","n","f"],["larme","Träne","laʁm","n","f"],
+/* ---------- Empfindungen ---------- */
+["faim","Hunger","fɛ̃","n","f"],["soif","Durst","swaf","n","f"],["sommeil","Schlaf","sɔmɛj","n","m"],
+["santé","Gesundheit","sɑ̃te","n","f"],["fatigue","Müdigkeit","fatiɡ","n","f"],["force","Kraft","fɔʁs","n","f"],
+["rêve","Traum","ʁɛv","n","m"],
+/* ---------- Gefühle & Abstrakt ---------- */
+["peur","Angst","pœʁ","n","f"],["joie","Freude","ʒwa","n","f"],["colère","Wut","kɔlɛʁ","n","f"],
+["envie","Lust","ɑ̃vi","n","f"],["espoir","Hoffnung","ɛspwaʁ","n","m"],["confiance","Vertrauen","kɔ̃fjɑ̃s","n","f"],
+["humeur","Laune","ymœʁ","n","f"],["bonheur","Glück","bɔnœʁ","n","m"],["courage","Mut","kuʁaʒ","n","m"],
+["avis","Meinung","avi","n","m"],["choix","Wahl","ʃwa","n","m"],["information","Information","ɛ̃fɔʁmasjɔ̃","n","f"],
+["façon","Art und Weise","fasɔ̃","n","f"],["cas","Fall","ka","n","m"],["résultat","Ergebnis","ʁezylta","n","m"],
+/* ---------- Wetter & Natur ---------- */
+["pluie","Regen","plɥi","n","f"],["neige","Schnee","nɛʒ","n","f"],["vent","Wind","vɑ̃","n","m"],
+["nuage","Wolke","nɥaʒ","n","m"],["orage","Gewitter","ɔʁaʒ","n","m"],["chaleur","Hitze","ʃalœʁ","n","f"],
+["glace","Eis","ɡlas","n","f"],["étoile","Stern","etwal","n","f"],["feuille","Blatt","fœj","n","f"],
+["herbe","Gras","ɛʁb","n","f"],["bois","Wald; Holz","bwa","n","m"],["pierre","Stein","pjɛʁ","n","f"],
+/* ---------- Orte ---------- */
+["jardin","Garten","ʒaʁdɛ̃","n","m"],["parc","Park","paʁk","n","m"],["place","Platz","plas","n","f"],
+["marché","Markt","maʁʃe","n","m"],["magasin","Geschäft","maɡazɛ̃","n","m"],["restaurant","Restaurant","ʁɛstɔʁɑ̃","n","m"],
+["hôtel","Hotel","otɛl","n","m"],["hôpital","Krankenhaus","opital","n","m"],["pharmacie","Apotheke","faʁmasi","n","f"],
+["église","Kirche","eɡliz","n","f"],["musée","Museum","myze","n","m"],["théâtre","Theater","teɑtʁ","n","m"],
+["cinéma","Kino","sinema","n","m"],["château","Schloss","ʃɑto","n","m"],["plage","Strand","plaʒ","n","f"],
+["mer","Meer","mɛʁ","n","f"],["lac","See","lak","n","m"],["rivière","Fluss","ʁivjɛʁ","n","f"],
+["montagne","Berg","mɔ̃taɲ","n","f"],["forêt","Wald","fɔʁɛ","n","f"],["campagne","Land (Ländlich)","kɑ̃paɲ","n","f"],
+["pont","Brücke","pɔ̃","n","m"],["mur","Wand; Mauer","myʁ","n","m"],["toit","Dach","twa","n","m"],
+["escalier","Treppe","ɛskalje","n","m"],["immeuble","Gebäude","ɛmœbl","n","m"],["quartier","Viertel","kaʁtje","n","m"],
+["région","Region","ʁeʒjɔ̃","n","f"],["centre","Zentrum","sɑ̃tʁ","n","m"],["adresse","Adresse","adʁɛs","n","f"],
+["aéroport","Flughafen","aeʁɔpɔʁ","n","m"],["billet","Fahrkarte","bijɛ","n","m"],["valise","Koffer","valiz","n","f"],
+["carte","Karte","kaʁt","n","f"],
+/* ---------- Verkehr ---------- */
+["bus","Bus","bys","n","m"],["métro","U-Bahn","metʁo","n","m"],["vélo","Fahrrad","velo","n","m"],
+["moto","Motorrad","moto","n","f"],["bateau","Boot","bato","n","m"],
+/* ---------- Tiere ---------- */
+["vache","Kuh","vaʃ","n","f"],["cheval","Pferd","ʃəval","n","m"],["cochon","Schwein","kɔʃɔ̃","n","m"],
+["mouton","Schaf","mutɔ̃","n","m"],["lapin","Kaninchen","lapɛ̃","n","m"],["souris","Maus","suʁi","n","f"],
+["loup","Wolf","lu","n","m"],["ours","Bär","uʁs","n","m"],["singe","Affe","sɛ̃ʒ","n","m"],
+["serpent","Schlange","sɛʁpɑ̃","n","m"],["abeille","Biene","abɛj","n","f"],["papillon","Schmetterling","papijɔ̃","n","m"],
+/* ---------- Essen & Trinken ---------- */
+["œuf","Ei","œf","n","m"],["fromage","Käse","fʁɔmaʒ","n","m"],["beurre","Butter","bœʁ","n","m"],
+["sucre","Zucker","sykʁ","n","m"],["sel","Salz","sɛl","n","m"],["huile","Öl","ɥil","n","f"],
+["riz","Reis","ʁi","n","m"],["pâtes","Nudeln","pɑt","n","p"],["soupe","Suppe","sup","n","f"],
+["salade","Salat","salad","n","f"],["légume","Gemüse","leɡym","n","m"],["fruit","Obst","fʁɥi","n","m"],
+["orange","Orange","ɔʁɑ̃ʒ","n","f"],["banane","Banane","banan","n","f"],["tomate","Tomate","tɔmat","n","f"],
+["carotte","Karotte","kaʁɔt","n","f"],["poire","Birne","pwɑʁ","n","f"],["fraise","Erdbeere","fʁɛz","n","f"],
+["poulet","Hähnchen","pulɛ","n","m"],["jambon","Schinken","ʒɑ̃bɔ̃","n","m"],["bière","Bier","bjɛʁ","n","f"],
+["thé","Tee","te","n","m"],["gâteau","Kuchen","ɡato","n","m"],["chocolat","Schokolade","ʃɔkɔla","n","m"],
+["croissant","Croissant","kʁwasɑ̃","n","m"],["petit-déjeuner","Frühstück","pəti deʒøne","n","m"],
+["déjeuner","Mittagessen","deʒøne","n","m"],["dîner","Abendessen","dine","n","m"],
+/* ---------- Arbeit & Berufe ---------- */
+["entreprise","Firma","ɑ̃tʁəpʁiz","n","f"],["usine","Fabrik","yzin","n","f"],["bureau","Büro","byʁo","n","m"],
+["réunion","Besprechung","ʁeynjɔ̃","n","f"],["salaire","Gehalt","salɛʁ","n","m"],["métier","Beruf","metje","n","m"],
+["employé","Angestellter","ɑ̃plwaje","n","m"],["rendez-vous","Termin","ʁɑ̃devu","n","m"],["médecin","Arzt","mɛdsɛ̃","n","m"],
+["professeur","Lehrer","pʁɔfɛsœʁ","n","m"],["étudiant","Student","etydjɑ̃","n","m"],["étudiante","Studentin","etydjɑ̃t","n","f"],
+["infirmier","Krankenpfleger","ɛ̃fʁmje","n","m"],["vendeur","Verkäufer","vɑ̃dœʁ","n","m"],["ingénieur","Ingenieur","ɛ̃ʒenjœʁ","n","m"],
+["secrétaire","Sekretär","səkʁetɛʁ","n","m"],["chauffeur","Fahrer","ʃofœʁ","n","m"],["policier","Polizist","pɔlisje","n","m"],
+["pompier","Feuerwehrmann","pɔ̃pje","n","m"],["coiffeur","Friseur","kwafœʁ","n","m"],
+/* ---------- Schule ---------- */
+["classe","Klasse","klas","n","f"],["leçon","Lektion","ləsɔ̃","n","f"],["devoirs","Hausaufgaben","dəvwaʁ","n","p"],
+["cours","Unterricht","kuʁ","n","m"],["examen","Prüfung","ɛɡzamɛ̃","n","m"],["note","Note","nɔt","n","f"],
+["élève","Schüler","elɛv","n","m"],["université","Universität","yniʁsəsite","n","f"],["cahier","Heft","kaje","n","m"],
+["stylo","Kugelschreiber","stilo","n","m"],["crayon","Bleistift","kʁɛjɔ̃","n","m"],["papier","Papier","papje","n","m"],
+["phrase","Satz","fʁaz","n","f"],
+/* ---------- Haushalt & Objekte ---------- */
+["clé","Schlüssel","kle","n","f"],["couteau","Messer","kuto","n","m"],["cuillère","Löffel","kɥijɛʁ","n","f"],
+["fourchette","Gabel","fuʁʃɛt","n","f"],["assiette","Teller","asjɛt","n","f"],["verre","Glas","vɛʁ","n","m"],
+["tasse","Tasse","tas","n","f"],["bouteille","Flasche","butɛj","n","f"],["sac","Tasche","sak","n","m"],
+["lampe","Lampe","lɑ̃p","n","f"],["lumière","Licht","lymjɛʁ","n","f"],["miroir","Spiegel","miʁwaʁ","n","m"],
+["savon","Seife","savɔ̃","n","m"],["serviette","Handtuch","sɛʁvjɛt","n","f"],["douche","Dusche","duʃ","n","f"],
+["meuble","Möbel","mœbl","n","m"],["four","Ofen","fuʁ","n","m"],["boîte","Dose","bwat","n","f"],
+["poubelle","Mülleimer","pubɛl","n","f"],["ciseaux","Schere","sizo","n","p"],["canapé","Sofa","kanape","n","m"],
+["ordinateur","Computer","ɔʁdinatœʁ","n","m"],["téléphone","Telefon","telefɔn","n","m"],["télévision","Fernseher","televizjɔ̃","n","f"],
+["radio","Radio","ʁadjo","n","f"],["photo","Foto","foto","n","f"],["écran","Bildschirm","ekʁɑ̃","n","m"],
+["lunettes","Brille","lynɛt","n","p"],["parapluie","Regenschirm","paʁaply","n","m"],
+/* ---------- Kleidung ---------- */
+["vêtement","Kleidungsstück","vɛtmɑ̃","n","m"],["chemise","Hemd","ʃəmiz","n","f"],["pantalon","Hose","pɑ̃talɔ̃","n","m"],
+["robe","Kleid","ʁɔb","n","f"],["jupe","Rock","ʒyp","n","f"],["chaussure","Schuh","ʃosyʁ","n","f"],
+["chaussette","Socke","ʃosɛt","n","f"],["chapeau","Hut","ʃapo","n","m"],["manteau","Mantel","mɑ̃to","n","m"],
+["veste","Jacke","vɛst","n","f"],["ceinture","Gürtel","sɛ̃tyʁ","n","f"],["écharpe","Schal","eʃaʁp","n","f"],
+["gants","Handschuhe","ɡɑ̃","n","p"],["pull","Pullover","pyl","n","m"],["collier","Halskette","kɔlje","n","m"],
+["bague","Ring","baɡ","n","f"],
+/* ---------- Material ---------- */
+["or","Gold","ɔʁ","n","m"],["cuir","Leder","kɥiʁ","n","m"],["laine","Wolle","lɛn","n","f"],
+/* ---------- Zahlen ---------- */
+["soixante-dix","siebzig","swasɑ̃ diz","num",""],["quatre-vingts","achtzig","katʁ vɛ̃","num",""],["quatre-vingt-dix","neunzig","katʁ vɛ̃ diz","num",""],
+/* ---------- Verben: reflexiv ---------- */
+["se réveiller","aufwachen","ʁə ʁeveje","v","er"],["se lever","aufstehen","ʁə ləve","v","er"],
+["se coucher","ins Bett gehen","ʁə kuʃe","v","er"],["s'habiller","sich anziehen","sabije","v","er"],
+["se laver","sich waschen","ʁə lave","v","er"],["se promener","spazieren gehen","ʁə pʁɔməne","v","er"],
+["se dépêcher","sich beeilen","ʁə depɛʃe","v","er"],["se reposer","sich ausruhen","ʁə ʁəpoze","v","er"],
+["se rappeler","sich erinnern","ʁə ʁaple","v","er"],["se marier","heiraten","ʁə maʁje","v","er"],
+/* ---------- Verben: -er ---------- */
+["adorer","sehr mögen","adɔʁe","v","er"],["détester","hassen","detɛste","v","er"],
+["souhaiter","wünschen","suɛte","v","er"],["continuer","fortsetzen","kɔ̃tinye","v","er"],
+["arrêter","anhalten; beenden","aʁəte","v","er"],["décider","entscheiden","deside","v","er"],
+["commencer","anfangen","kɔmɑ̃se","v","er"],["changer","ändern","ʃɑ̃ʒe","v","er"],
+["garder","behalten","ɡaʁde","v","er"],["pousser","schieben","puse","v","er"],
+["tirer","ziehen","tiʁe","v","er"],["laver","waschen","lave","v","er"],
+["danser","tanzen","dɑ̃se","v","er"],["nager","schwimmen","naʒe","v","er"],
+["voyager","reisen","vwajaʒe","v","er"],["visiter","besichtigen","vizite","v","er"],
+["préparer","vorbereiten","pʁepaʁe","v","er"],["présenter","vorstellen","pʁezɑ̃te","v","er"],
+["expliquer","erklären","ɛksplike","v","er"],["raconter","erzählen","ʁakɔ̃te","v","er"],
+["gagner","gewinnen; verdienen","ɡaɲe","v","er"],["allumer","einschalten","aly me","v","er"],
+["pleurer","weinen","plœʁe","v","er"],["acheter","kaufen","aʃte","v","er"],
+["préférer","bevorzugen","pʁefeʁe","v","er"],["espérer","hoffen","ɛspeʁe","v","er"],
+["envoyer","schicken","ɑ̃vwaje","v","er"],["nettoyer","putzen","nɛtwaje","v","er"],
+["jeter","werfen","ʒəte","v","er"],["payer","bezahlen","pɛje","v","er"],
+["remercier","danken","ʁəmɑ̃sje","v","er"],["étudier","studieren","etydje","v","er"],
+["refuser","ablehnen","ʁəfyze","v","er"],["apporter","bringen","apɔʁte","v","er"],
+["rentrer","heimkommen","ʁɑ̃tʁe","v","er"],
+/* ---------- Verben: -ir / -re ---------- */
+["réussir","schaffen; gelingen","ʁeysir","v","ir"],["réfléchir","nachdenken","ʁefleʃiʁ","v","ir"],
+["rendre","zurückgeben","ʁɑ̃dʁ","v","re"],
+/* ---------- Adjektive ---------- */
+["possible","möglich","pɔsibl","adj",""],["nécessaire","notwendig","nesesɛʁ","adj",""],
+["sérieux","ernst","seʁjø","adj","eux"],["gentil","nett","ʒɑ̃ti","adj","gentil"],
+["méchant","gemein","meʃɑ̃","adj",""],["drôle","lustig","dʁol","adj",""],
+["intéressant","interessant","ɛ̃teʁɛsɑ̃","adj",""],["ennuyeux","langweilig","ɑ̃nɥijø","adj","eux"],
+["fatigué","müde","fatiɡe","adj",""],["malade","krank","malad","adj",""],
+["propre","sauber","pʁɔpʁ","adj",""],["sale","schmutzig","sal","adj",""],
+["frais","frisch","fʁɛ","adj",""],["sec","trocken","sɛk","adj",""],
+["mince","schlank","mɛ̃s","adj",""],["maigre","mager","mɛɡʁ","adj",""],
+["épais","dick","epɛ","adj",""],["ancien","alt (ehemalig)","ɑ̃sjɛ̃","adj",""],
+["moderne","modern","mɔdɛʁn","adj",""],["cher","teuer","ʃɛʁ","adj",""],
+["sûr","sicher","syʁ","adj",""],["dangereux","gefährlich","dɑ̃ʒʁø","adj","eux"],
+["calme","ruhig","kalm","adj",""],["prêt","fertig","pʁɛ","adj",""],
+["prochain","nächster","pʁɔʃɛ̃","adj",""],["délicieux","köstlich","delisjø","adj","eux"],
+["surpris","überrascht","syʁpʁi","adj",""],["inquiet","besorgt","ɛ̃kjɛ","adj",""],
+["rose","rosa","ʁoz","adj",""],["clair","hell","klɛʁ","adj",""],
+["foncé","dunkel","fɔ̃se","adj",""],["marron","braun","maʁɔ̃","adj",""]
+];
+  /* SLOT-2b: SEED_B2 — letzte ~180 Wörter (Ziel ~1.000) */
+const SEED_B2=[
+/* Alltag & Abstraktes */
+["anniversaire","Geburtstag","anivɛʁsɛʁ","n","m"],["fête","Fest; Party","fɛt","n","f"],["invité","Gast","ɛ̃vite","n","m"],
+["musique","Musik","myzik","n","f"],["chanson","Lied","ʃɑ̃sɔ̃","n","f"],["film","Film","film","n","m"],
+["jeu","Spiel","ʒø","n","m"],["journal","Zeitung","ʒuʁnal","n","m::journaux"],["couleur","Farbe","kulœʁ","n","f"],
+["bruit","Lärm; Geräusch","bʁɥi","n","m"],["silence","Stille","silɑ̃s","n","m"],["odeur","Geruch","odœʁ","n","f"],
+["goût","Geschmack","ɡu","n","m"],["prix","Preis","pʁi","n","m"],["monnaie","Kleingeld; Währung","mɔnɛ","n","f"],
+["pièce","Münze; Zimmer","pjɛs","n","f"],["taille","Größe","taj","n","f"],["poids","Gewicht","pwa","n","m"],
+["côté","Seite; Richtung","kote","n","m"],["milieu","Mitte","miljø","n","m"],["fond","Grund; Hintergrund","fɔ̃","n","m"],
+["bord","Rand","bɔʁ","n","m"],["moitié","Hälfte","mwatje","n","f"],["morceau","Stück (Abschnitt)","mɔʁso","n","m"],
+["kilo","Kilo","kilo","n","m"],["litre","Liter","litʁ","n","m"],["numéro","Nummer","nymeʁo","n","m"],
+["zéro","null","zeʁo","num",""],["million","Million","miljɔ̃","num",""],
+/* Weitere Objekte */
+["timbre","Briefmarke","tɛ̃bʁ","n","m"],["colis","Paket","kɔli","n","m"],["code","Code; PIN","kɔd","n","m"],
+["vol","Flug; Diebstahl","vɔl","n","m"],["retard","Verspätung","ʁətaʁ","n","m"],["avance","Vorsprung; frühe Zeit","avɑ̃s","n","f"],
+["poussière","Staub","pusjɛʁ","n","f"],["tache","Fleck","taʃ","n","f"],["outil","Werkzeug","uti","n","m"],
+["marteau","Hammer","maʁto","n","m"],["clou","Nagel","klu","n","m"],
+/* Richtung & Geografie */
+["droite","rechte; rechts","dʁwat","adj",""],["gauche","linke; links","ɡoʃ","adj",""],
+["nord","Norden","nɔʁ","n","m"],["sud","Süden","syd","n","m"],["est","Osten","ɛst","n","m"],["ouest","Westen","wɛst","n","m"],
+["île","Insel","il","n","f"],["océan","Ozean","ɔseɑ̃","n","m"],["fleuve","Strom (großer Fluss)","fløv","n","m"],
+["désert","Wüste","dezɛʁ","n","m"],["sable","Sand","sabl","n","m"],["vague","Welle","vaɡ","n","f"],["côte","Küste","kot","n","f"],
+/* Tiere */
+["canard","Ente","kanaʁ","n","m"],["poule","Henne","pul","n","f"],["chèvre","Ziege","ʃɛvʁ","n","f"],
+["grenouille","Frosch","ɡʁənuj","n","f"],["tortue","Schildkröte","tɔʁty","n","f"],["rat","Ratte","ʁa","n","m"],
+["dauphin","Delfin","dofɛ̃","n","m"],["aigle","Adler","ɛɡl","n","m"],
+/* Essen */
+["confiture","Marmelade","kɔ̃fityʁ","n","f"],["miel","Honig","mjɛl","n","m"],["yaourt","Joghurt","jauʁt","n","m"],
+["farine","Mehl","faʁin","n","f"],["frites","Pommes","fʁit","n","p"],["sandwich","Sandwich","sɑ̃dwiʃ","n","m"],
+["raisin","Traube","ʁɛzɛ̃","n","m"],["ananas","Ananas","ananas","n","m"],["oignon","Zwiebel","ɔɲɔ̃","n","m"],
+["ail","Knoblauch","aj","n","m"],["champignon","Pilz","ʃɑ̃piɲɔ̃","n","m"],["crème","Sahne; Creme","kʁɛm","n","f"],
+/* Restaurant */
+["serveur","Kellner","sɛʁvœʁ","n","m"],["serveuse","Kellnerin","sɛʁvøz","n","f"],["addition","Rechnung","adisjɔ̃","n","f"],
+["menu","Speisekarte","məny","n","m"],["pourboire","Trinkgeld","puʁbwaʁ","n","m"],
+/* Körper */
+["front","Stirn","fʁɔ̃","n","m"],["joue","Wange","ʒu","n","f"],["lèvre","Lippe","lɛvʁ","n","f"],["sourcil","Augenbraue","suʁsi","n","m"],
+/* Gesellschaft & Abstraktes */
+["société","Gesellschaft","sɔsjete","n","f"],["culture","Kultur","kyltyʁ","n","f"],["gouvernement","Regierung","ɡuvɛʁnəmɑ̃","n","m"],
+["liberté","Freiheit","libɛʁte","n","f"],["loi","Gesetz","lwa","n","f"],["droit","Recht","dʁwa","n","m"],
+["règle","Regel","ʁɛɡl","n","f"],["grammaire","Grammatik","ɡʁamɛʁ","n","f"],["sens","Sinn; Richtung","sɑ̃s","n","m"],["sujet","Thema","syʒɛ","n","m"],
+/* Schule */
+["bibliothèque","Bibliothek","biblijɔtɛk","n","f"],["dictionnaire","Wörterbuch","diksjɔnɛʁ","n","m"],
+["diplôme","Abschluss; Diplom","diplom","n","m"],["géographie","Geografie","ʒeɔɡʁafi","n","f"],
+["chimie","Chemie","ʃimi","n","f"],["langue","Sprache","lɑ̃ɡ","n","f"],
+/* Berufe */
+["avocat","Anwalt","avɔka","n","m"],["journaliste","Journalist","ʒuʁnalist","n","m"],["photographe","Fotograf","fɔtɔɡʁaf","n","m"],
+["agriculteur","Landwirt","aɡʁikyltœʁ","n","m"],["ouvrier","Arbeiter","uvʁje","n","m"],["pharmacien","Apotheker","faʁmasjɛ̃","n","m"],
+/* Verben: regelmäßig -er */
+["toucher","berühren","tuʃe","v","er"],["crier","schreien","kʁije","v","er"],["discuter","diskutieren","diskyte","v","er"],
+["compter","zählen","kɔ̃te","v","er"],["coûter","kosten","kute","v","er"],["prêter","leihen (verleihen)","pʁɛte","v","er"],
+["emprunter","leihen (sich ausleihen)","ɑ̃pʁœ̃te","v","er"],["ranger","aufräumen","ʁɑ̃ʒe","v","er"],["lancer","werfen; starten","lɑ̃se","v","er"],
+["attraper","fangen","atʁape","v","er"],["traverser","überqueren","tʁavɛʁse","v","er"],["frapper","klopfen; schlagen","fʁape","v","er"],
+["sauter","springen","sote","v","er"],["tourner","drehen; abbiegen","tuʁne","v","er"],["avancer","vorangehen","avɑ̃se","v","er"],
+["inviter","einladen","ɛ̃vite","v","er"],["commander","bestellen","kɔmɑ̃de","v","er"],["goûter","kosten (probieren)","ɡute","v","er"],
+["réparer","reparieren","ʁepaʁe","v","er"],["casser","kaputt machen","kase","v","er"],["dessiner","zeichnen","desine","v","er"],
+["téléphoner","telefonieren","telefɔne","v","er"],["rêver","träumen","ʁeve","v","er"],["échouer","scheitern","eʃue","v","er"],
+["tuer","töten","tye","v","er"],["grimper","klettern","ɡʁɛ̃pe","v","er"],["voler","fliegen","vɔle","v","er"],["sonner","klingeln","sɔne","v","er"],
+/* Verben: mit eigenen Konjugationen (Fix-Patch unten liefert die Formen) */
+["enlever","abnehmen; entfernen","ɑ̃ləve","v","er"],["peindre","malen","pɛ̃dʁ","v","peindre"],
+["éteindre","ausmachen; löschen","etɛ̃dʁ","v","éteindre"],["conduire","fahren","kɔ̃dɥiʁ","v","conduire"],
+["construire","bauen","kɔ̃stʁɥiʁ","v","construire"],["traduire","übersetzen","tʁadɥiʁ","v","traduire"],
+["découvrir","entdecken","dekuvʁiʁ","v","découvrir"],["permettre","erlauben","pɛʁmɛtʁ","v","permettre"],
+["promettre","versprechen","pʁɔmɛtʁ","v","promettre"],["battre","schlagen","batʁ","v","battre"],
+["plaire","gefallen","plɛʁ","v","plaire"],["valoir","wert sein","valwaʁ","v","valoir"],
+["obtenir","bekommen; erreichen","ɔbtəniʁ","v","obtenir"],["défendre","verbieten; verteidigen","defɑ̃dʁ","v","re"],
+/* Verben: reflexiv */
+["se tromper","sich irren","ʁə tʁɔ̃pe","v","er"],["se disputer","sich streiten","ʁə dispyte","v","er"],
+["s'amuser","sich amüsieren","s amyze","v","er"],["s'arrêter","anhalten; aufhören","saʁete","v","er"],
+["s'intéresser","sich interessieren","sɛ̃teʁɛse","v","er"],["s'inquiéter","sich Sorgen machen","sɛ̃kjete","v","er"],
+["se souvenir","sich erinnern","ʁə suvəniʁ","v","souvenir"],["s'asseoir","sich hinsetzen","saswaʁ","v","asseoir"],
+/* Adjektive */
+["célèbre","berühmt","selɛbʁ","adj",""],["profond","tief","pʁɔfɔ̃","adj",""],["large","breit","laʁʒ","adj",""],
+["étroit","eng","etʁwa","adj",""],["humide","feucht","ymid","adj",""],["utile","nützlich","ytil","adj",""],
+["impossible","unmöglich","ɛ̃pɔsibl","adj",""],["malheureux","unglücklich","maløʁø","adj","eux"],
+["fou","verrückt","fu","adj",""],["meilleur","besser","mɛjœʁ","adj",""],["pire","schlechter","piʁ","adj",""],
+["égal","gleich","eɡal","adj",""],["pareil","gleich (ähnlich)","paʁɛj","adj",""],
+["violet","violett","vjɔlɛ","adj",""],["âgé","alt (bejahrt)","ɑʒe","adj",""],
+/* Präpositionen & Konjunktionen */
+["jusqu'à","bis (zu)","ʒyska","prep",""],["parmi","unter (in einer Gruppe)","paʁmi","prep",""],
+["afin de","um … zu","afɛ̃ də","prep",""],["afin que","damit","afɛ̃ kə","conj",""],["pour que","damit","puʁ kə","conj",""],
+/* Adverbien */
+["ainsi","so; auf diese Weise","ɛ̃si","adv",""],["environ","etwa; ungefähr","ɑ̃viʁɔ̃","adv",""],
+["juste","genau; eben","ʒyst","adv",""],["autant","ebenso viel","otɑ̃","adv",""]
 ];
 
-/* SLOT-3: Phonetik (Teil 4 ersetzt diesen Platzhalter) */
+/* SLOT-3: Phonetik (vollständig) */
 const PHON={
 cards:[
- {ip:"y",ex:["tu","rue","salut"],tip:"Lippen wie für ‚u‘ runden, Zunge wie für ‚i‘"},
- {ip:"ʁ",ex:["rouge","porte","mercredi"],tip:"Zäpfchen-r — im Hals gurgeln, nicht gerollt"},
- {ip:"ɔ̃",ex:["bonjour","nom","enfant"],tip:"Mund rund, ‚ong‘ ohne das g aussprechen"}],
+/* Nasale */
+{ip:"ɑ̃",ex:["un","enfant","pain","blanc"],tip:"Mund rund, ‚ong' ohne g — Luft durch die Nase"},
+{ip:"ɔ̃",ex:["bon","nom","monde","foncé"],tip:"Mund eng runden, nasal aussprechen"},
+{ip:"œ̃",ex:["peu","heure","sœur","peur"],tip:"Lippen halbrund (wie ‚ö'), nasal"},
+{ip:"ɛ̃",ex:["pain","bain","brun","vent"],tip:"Mund breit (wie ‚é' ohne Lippen), nasal"},
+/* Verschlüsselte Vokale */
+{ip:"y",ex:["tu","rue","voiture","lune"],tip:"Lippen wie für ‚u' runden, Zunge wie bei ‚i'"},
+{ip:"u",ex:["soutien","tout","loup","rouge"],tip:"Lippen stark runden, Zunge zurück — wie ‚ou' in ‚Haus'"},
+{ip:"ø",ex:["peu","cheveu","bleu","jeu"],tip:"Lippen halbrunden wie ‚ö', kurz sprechen"},
+{ip:"œ",ex:["sœur","cœur","peur","sœur"],tip:"Wie ‚ö', aber kürzer und freier"},
+{ip:"ə",ex:["le","du","et","le"],tip:"Sehr kurzer, unscharfer ‚ä'-Laut — schweig schnell ab"},
+/* Mündliche Vokale */
+{ip:"a",ex:["la","patate","maison","papa"],tip:"Mund offen, wie ‚a' in ‚Auto'"},
+{ip:"ɛ",ex:["petit","être","blanc","verre"],tip:"Mund breit, kürzer als ‚e'"},
+{ip:"e",ex:["été","fête","café"],tip:"Mund breit, Lippen angespannt, länger als ɛ"},
+{ip:"ɔ",ex:["port","fort","corps","or"],tip:"Mund rund, wie ‚o' in ‚Rot'"},
+{ip:"o",ex:["eau","beau","mot","bon"],tip:"Kürzer und freier als ɔ"},
+{ip:"i",ex:["si","midi","petit","lit"],tip:"Zahn-zu-Zahn, wie ‚i' in ‚i" in ‚i" in ‚i'"},
+{ip:"a",ex:["la","papa","maison"],tip:"offen wie ‚a' in ‚Auto' — doppeltertrag"},
+{ip:"y",ex:["tu","rue","bleu"],tip:"rund wie ‚u', Zunge ‚i'"},
+{ip:"u",ex:["loup","tout","roue"],tip:"stark gerundet wie ‚ou'"},
+/* Konsonanten */
+{ip:"ʁ",ex:["rouge","porte","mercredi","rue"],tip:"Zäpfchen-r: Zäpfchen an den Gaumen, Gurgeln"},
+{ip:"ʃ",ex:["chat","chaise","cher","jeune"],tip:"Schieße Luft, Zunge zurück — wie ‚sch' in ‚Schule'"},
+{ip:"ʒ",ex:["je","jour","mesure","jeune"],tip:"Wie ‚sch' in ‚Mausch', aber stimmhaft"},
+{ip:"v",ex:["ville","vin","voiture"],tip:"Oberlippe berührt untere Schneidezähne, vibrierend"},
+{ip:"f",ex:["froid","feu","forêt"],tip:"Oberlippe an untere Zähne, lautlos"},
+{ip:"b",ex:["bon","bouton","belle"],tip:"Lippen schließen, dann öffnen — wie ‚b' in ‚Brot'"},
+{ip:"p",ex:["petit","papa","port"],tip:"Lippen schließen, Luftstoß — wie ‚p' in ‚Papa'"},
+{ip:"d",ex:["dent","dos","deux"],tip:"Zungenspitze hinter obere Schneidezähne"},
+{ip:"t",ex:["trois","temps","tête"],tip:"Zungenspitze hinter obere Schneidezähne, explosiv"},
+{ip:"s",ex:["six","soleil","saison"],tip:"Scharf, Zunge flach, Luft nach vorn"},
+{ip:"z",ex:["zéro","jeune","mes"],tip:"Wie ‚s', aber stimmhaft"},
+{ip:"k",ex:["café","corps","chaque"],tip:"Zungenansatz am Gaumen, Luftstoß"},
+{ip:"g",ex:["garçon","gare","gris"],tip:"Zungenansatz am Gaumen, stimmhaft"},
+{ip:"m",ex:["matin","main","merci"],tip:"Lippen schließen, Vokal durch die Nase"},
+{ip:"n",ex:["neuf","nom","noir"],tip:"Zungenspitze, Vokal durch die Nase"},
+{ip:"l",ex:["la","lune","lit"],tip:"Zungenspitze am Gaumenrücken, laut"},
+{ip:"ʁ",ex:["rouge","rue"],tip:"gurgelnd, nicht gerollt"},
+{ip:"ɥ",ex:["huit","parfum","heure"],tip:"Halbrunden ‚ö' + ‚i' zusammen"},
+{ip:"w",ex:["oui","voiture","vol"],tip:"Rundes ‚u' + ‚i' in einem Zug"},
+{ip:"ɥ",ex:["huit"],tip:"‚ö' + ‚i'"},
+{ip:"tʁ",ex:["travail","trottoir"],tip:"Zunge zurück, dann explosives ‚t' + ‚r'"},
+{ip:"pʁ",ex:["parler","premier"],tip:"Lippen schließen, dann ‚r'"},
+{ip:"tʃ",ex:["chat","champion"],tip:"wie ‚tsch' in ‚Tschüss'"},
+{ip:"kʁ",ex:["croire","cru"],tip:"Gaumenverschluss + Gurgelr"},
+{ip:"ɡʁ",ex:["garçon","grille"],tip:"Gaumenverschluss + Gurgelr, stimmhaft"},
+{ip:"dj",ex:["jeune","dîner"],tip:"Zungenspitze + ‚i', wie ‚dschi'"},
+{ip:"pj",ex:["pied","payer"],tip:"Lippen + ‚i', wie ‚pji'"},
+{ip:"bj",ex:["beaucoup","billet"],tip:"Lippen + ‚i', wie ‚bji'"},
+{ip:"fʁ",ex:["frère","froid"],tip:"Lippe an Zähne + Gurgelr"},
+{ip:"vʁ",ex:["verre","voiture"],tip:"Lippe an Zähne + Gurgelr, stimmhaft"},
+{ip:"ʒʁ",ex:["jour","jeune"],tip:"Sch + Gurgelr, stimmhaft"},
+{ip:"tʁ",ex:["très","travail"],tip:"explodierend + Gurgelr"},
+{ip:"kt",ex:["acteur","ect"],tip:"Gaumenverschluss + Explosivt (selten)"}
+],
+multi:[
+["tr","tʁ",["travail","trois"]],["cr","kʁ",["croire","crier"]],["dr","dʁ",["derrière","dur"]],
+["gr","ɡʁ",["garçon","gris"]],["br","bʁ",["bras","brun"]],
+["ch","ʃ",["chat","choisir"]],["j","ʒ",["je","jour"]],["il","j",["travail","ville"]],
+["gu","g",["guerre","gare"]],["oi","waj",["voiture","vol"]]
+],
 pairs:[
- ["rue","roue","y (spitz) vs. u (rund)"],
- ["bon","bonne","Nasal ɔ̃ vs. orales o"],
- ["pain","bain","p (hart) vs. b (weich)"]
-]};
+["rue","roue","y vs. u (spitz vs. rund)"],
+["bon","bonne","nasal ɔ̃ vs. orales o"],
+["pain","bain","p (hart) vs. b (weich)"],
+["blanc","blond","ɔ̃ vs. ɔ"],
+["un","une","ɑ̃ vs. yn (Lippen öffnen)"],
+["peu","peu","œ nasal vs. ø oral"],
+["soutien","soutien","u vs. y (rund vs. spitz)"],
+["tout","toute","Endkonsonant + vs. ohne t"],
+["verre","vert","e vs. ɛ (lang vs. kurz)"],
+["être","ètre","être: ʁ vs. t"],
+["petit","petite","t vs. t (Endung)"],
+["chat","chose","ʃa vs. ʒo"],
+["je","je","ʒ vs. ʒ (Länge)"],
+["ville","vieille","v + ɛ vs. v + j + ɛ"],
+["loup","loup","u vs. ɔ (rund vs. halbrund)"],
+["port","fort","pʁ vs. fɔʁ"],
+["corps","cors","pʁ vs. s"],
+["mer","maire","m + ɛʁ vs. m + ɛʁ (selbe Aussprache)"],
+["belle","belle","b vs. b (Länge)"],
+["belle","bel","e vs. ɛ"],
+["petit","petit","t vs. t (Endung)"],
+["jeune","jeune","dʒ vs. ʒ"],
+["travail","travail","tʁ vs. tʁ"],
+["croire","cru","kʁ vs. k"],
+["derrière","dur","dʁ vs. dyʁ"],
+["garçon","gris","ɡʁ vs. gʁ (Länge)"],
+["choisir","choisir","ʃ vs. ʃ"],
+["voiture","vol","vw vs. v"],
+["huit","huit","ɥi vs. ɥi"],
+["parler","parler","pʁ vs. pʁ"],
+["jeune","jeune","dʒ vs. ʒ"],
+["verre","verre","vʁ vs. vʁ"]
+]
+};
 
 /* SLOT-4: Campus-Aufgaben (Teil 5 ersetzt diesen Platzhalter) */
 const CAMPUS={
@@ -441,7 +801,37 @@ blocks:[
 /* ============================================================
    LOGIK
    ============================================================ */
-const SEED=SEED_A.concat(SEED_B,S.vocab.imported||[]);
+const SEED=SEED_A.concat(SEED_B,SEED_B2,S.vocab.imported||[]);
+  /* FIX-PATCH: IPA + Konjugations-Klassen */
+const IPA_FIX={beaucoup:"boku",déjà:"deʒa",voiture:"vwatyʁ",après:"apʁɛ",écouter:"ekɔte",
+ guerre:"ɡɛʁ",pays:"pei",rester:"ʁɛste",maintenant:"mɛ̃tənɑ̃"};
+SEED.forEach(w=>{if(IPA_FIX[w[0]])w[2]=IPA_FIX[w[0]]});
+Object.assign(IRREG,{
+ "sentir":{p:["sens","sens","sent","sentons","sentez","sentent"],pp:"senti",f:"sentir",i:"sent"},
+ "servir":{p:["sers","sers","sert","servons","servez","servent"],pp:"servi",f:"servir",i:"serv"},
+ "devenir":{p:["deviens","deviens","devient","devenons","devenez","deviennent"],pp:"devenu",f:"deviendr",i:"deven",aux:1},
+ "revenir":{p:["reviens","reviens","revient","revenons","revenez","reviennent"],pp:"revenu",f:"reviendr",i:"reven",aux:1},
+ "comprendre":{p:["comprends","comprends","comprend","comprenons","comprenez","comprennent"],pp:"compris",f:"comprendr",i:"comprend"},
+ "apprendre":{p:["apprends","apprends","apprend","apprenons","apprenez","apprennent"],pp:"appris",f:"apprendr",i:"apprend"},
+ "peindre":{p:["peins","peins","peint","peignons","peignez","peignent"],pp:"peint",f:"peindr",i:"peign"},
+ "éteindre":{p:["éteins","éteins","éteint","éteignons","éteignez","éteignent"],pp:"éteint",f:"éteindr",i:"éteign"},
+ "conduire":{p:["conduis","conduis","conduit","conduisons","conduisez","conduisent"],pp:"conduit",f:"conduir",i:"conduis"},
+ "construire":{p:["construis","construis","construit","construisons","construisez","construisent"],pp:"construit",f:"construir",i:"construis"},
+ "traduire":{p:["traduis","traduis","traduit","traduisons","traduisez","traduisent"],pp:"traduit",f:"traduir",i:"traduis"},
+ "découvrir":{p:["découvre","découvres","découvre","découvrons","découvrez","découvrent"],pp:"découvert",f:"découvrir",i:"découvr"},
+ "permettre":{p:["permets","permets","permet","permettons","permettez","permettent"],pp:"permis",f:"permettr",i:"permet"},
+ "promettre":{p:["promets","promets","promet","promettons","promettez","promettent"],pp:"promis",f:"promettr",i:"promet"},
+ "battre":{p:["bats","bats","bat","battons","battez","battent"],pp:"battu",f:"battr",i:"batt"},
+ "plaire":{p:["plais","plais","plaît","plaisons","plaisez","plaisent"],pp:"plu",f:"plair",i:"plais"},
+ "valoir":{p:["vaux","vaux","vaut","valons","valez","valent"],pp:"valu",f:"vaudr",i:"val"},
+ "obtenir":{p:["obtiens","obtiens","obtient","obtenons","obtenez","obtiennent"],pp:"obtenu",f:"obtiendr",i:"obten"},
+ "souvenir":{p:["souviens","souviens","souvient","souvenons","souvenez","souviennent"],pp:"souvenu",f:"souviendr",i:"souven"},
+ "asseoir":{p:["assieds","assieds","assied","asseyons","asseyez","asseyent"],pp:"assis",f:"assiér",i:"assey"}
+});
+[["partir","partir"],["sentir","sentir"],["servir","servir"],["devenir","devenir"],
+ ["revenir","revenir"],["comprendre","comprendre"],["apprendre","apprendre"]]
+ .forEach(([f,c])=>{const w=SEED.find(x=>x[0]===f);if(w)w[4]=c});
+delete IRREG.etre.aux;
 const CATS={art:"Artikel",pron:"Pronomen",det:"Begleiter",adv:"Adverb",prep:"Präposition",conj:"Konjunktion",phr:"Redemittel",num:"Zahl",n:"Nomen",v:"Verb",adj:"Adjektiv"};
 
 function showView(v){
@@ -661,7 +1051,19 @@ const IRREG={
  naitre:{p:["nais","nais","naît","naissons","naissez","naissent"],pp:"né",f:"naîtr",i:"naiss",aux:1},
  recevoir:{p:["reçois","reçois","reçoit","recevons","recevez","reçoivent"],pp:"reçu",f:"recevr",i:"recev"}
 };
-const ER_X={},FEM_X={gros:"grosse",bas:"basse",blanc:"blanche",frais:"fraîche",sec:"sèche"};
+const ER_X={
+appeler:["appelle","appelles","appelle","appelons","appelez","appellent"],
+rappeler:["rappelle","rappelles","rappelle","rappelons","rappelez","rappellent"],
+jeter:["jette","jettes","jette","jetons","jetez","jettent"],
+acheter:["achète","achètes","achète","achetons","achetez","achètent"],
+préférer:["préfère","préfères","préfère","préférons","préférez","préfèrent"],
+espérer:["espère","espères","espère","espérons","espérez","espèrent"],
+envoyer:["envoie","envoies","envoie","envoyons","envoyez","envoient"],
+nettoyer:["nettoie","nettoies","nettoie","nettoyons","nettoyez","nettoient"],
+promener:["promène","promènes","promène","promenons","promenez","promènent"],
+enlever:["enlève","enlèves","enlève","enlevons","enlevez","enlèvent"],
+inquiéter:["inquiète","inquiètes","inquiète","inquiétons","inquiétez","inquiètent"]
+},FEM_X={gros:"grosse",bas:"basse",blanc:"blanche",frais:"fraîche",sec:"sèche",épais:"épaisse",sûr:"sûre",prêt:"prête",surpris:"surprise",inquiet:"inquiète",fou:"folle",pareil:"pareille"};
 function splitRefl(inf){const m=inf.match(/^s(e\s+|')/);return m?{refl:true,base:inf.slice(m[0].length)}:{refl:false,base:inf}}
 function presForms(inf,cls){
   const {base}=splitRefl(inf);
