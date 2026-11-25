@@ -169,6 +169,7 @@ main{max-width:1280px;margin-inline:auto;padding:clamp(1.5rem,4vw,3rem) clamp(1r
     <button class="tab is-active" data-t="lite">Lautkarten</button>
     <button class="tab" data-t="pair">Minimalpaare</button>
     <button class="tab" data-t="quiz">Phonem-Quiz</button>
+    <button class="tab" data-t="graph">Buchstaben</button>
     <button class="tab" data-t="lib">Wörter</button>
   </div>
   <div id="p-stage"></div>
@@ -703,6 +704,29 @@ cards:[
 {ip:"dj",ex:["jeune","dîner","dijon"],tip:"Zungenspitze + ‚i' — ‚dschi' in ‚dschungel'"},
 {ip:"pj",ex:["pied","payer","pied"],tip:"Lippen + ‚i' — ‚pji' in ‚Pjotr'"},
 {ip:"bj",ex:["beaucoup","billet","bon"],tip:"Lippen + ‚i' — ‚bji' in ‚Björn'"}
+],
+  multi:[
+["ch","ʃ",["chat","chaise","choisir"]],
+["ph","f",["photo","pharmacie","téléphone"]],
+["gn","ɲ",["oignon","champignon","montagne"]],
+["qu","k",["quatre","question","qui"]],
+["ç","s",["garçon","décembre","reçois"]],
+["c vor e/i","s",["centre","cinéma","décembre"]],
+["g vor e/i","ʒ",["géographie","gentil","manger"]],
+["ou","u",["jour","tout","rouge"]],
+["oi","wa",["voiture","mois","soir"]],
+["eau","o",["bateau","château","morceau"]],
+["au","o",["automne","autour","beaucoup"]],
+["ai","ɛ",["mais","lait","faire"]],
+["eu","ø / œ",["peu","cheveu","sœur","peur"]],
+["ill","j / ij",["travail","fille","famille"]],
+["an / en","ɑ̃",["enfant","vent","an"]],
+["on / om","ɔ̃",["bon","nom","monde"]],
+["in / ain","ɛ̃",["pain","main","demain"]],
+["un","œ̃",["un","brun","aucun"]],
+["h","(stumm)",["homme","hôtel","heure"]],
+["s zwischen Vokalen","z",["maison","rose","musée"]],
+["ss","s",["poisson","classe"]]
 ],
 pairs:[
 /* Nasale vs. orale */
@@ -1293,6 +1317,16 @@ function pRender(){
       setTimeout(pRender,1800);
     });
   }
+else if(pMode==='graph'){
+  st.innerHTML='<p class="eyebrow">Buchstabenkombinationen — so liest man sie</p><div class="litiles">'+
+    PHON.multi.map(m=>
+      '<div class="litile"><span class="ip">'+esc(m[0])+'</span> <span class="mono" style="color:var(--ink-2)">['+esc(m[1])+']</span>'+
+      '<p class="ex">'+m[2].map(esc).join(' · ')+'</p>'+
+      '<div style="display:flex;gap:.4rem;margin-top:.5rem;flex-wrap:wrap">'+
+      m[2].map(e=>'<button class="btn btn--sm" data-e="'+esc(e)+'">🔊 '+esc(e)+'</button>').join('')+
+      '</div></div>').join('')+'</div>';
+  st.querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>speak(b.dataset.e,0.85));
+}
   else {
     st.innerHTML='<div class="formrow"><input type="text" id="p-word" placeholder="Wort…" style="flex:1;min-width:140px">'+
       '<select id="p-ph">'+PHON.cards.map(c=>'<option>'+esc(c.ip)+'</option>').join('')+'</select>'+
