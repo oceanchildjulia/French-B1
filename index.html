@@ -48,7 +48,7 @@ main{max-width:1280px;margin-inline:auto;padding:clamp(1.5rem,4vw,3rem) clamp(1r
 .opt:hover{border-color:var(--ink)}.opt.ok{border:2px solid var(--ink)}
 .opt.ko{opacity:.45;text-decoration:line-through}.opt.sel{border:2px solid var(--ink);background:var(--bg-panel)}
 .opt:disabled{cursor:default}
-@media(max-width:800px){.daycard{grid-template-columns:1fr}.topbar__in{flex-wrap:wrap;height:auto;padding-block:.5rem;row-gap:.4rem}.nav{width:100%;overflow-x:auto;gap:.8rem;padding-bottom:.2rem}.chip{display:none}}
+@media(max-width:520px){.opts{grid-template-columns:1fr}}
 .type-row{display:flex;gap:.6rem;margin-top:1rem}.type-row input{flex:1;border:1px solid var(--line);padding:.8rem;font-size:16px;background:#fff}
 .accents{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.6rem}
 .accents button{border:1px solid var(--line);background:#fff;padding:.3rem .55rem;font-size:14px}
@@ -71,7 +71,7 @@ main{max-width:1280px;margin-inline:auto;padding:clamp(1.5rem,4vw,3rem) clamp(1r
 .daybtn.is-done{background:var(--ink);color:#fff;border-color:var(--ink)}
 .daybtn.is-cur{border:2px solid var(--ink)}
 .daycard{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;max-width:900px}
-@media(max-width:800px){.daycard{grid-template-columns:1fr}.nav{display:none}}
+@media(max-width:800px){.daycard{grid-template-columns:1fr}.topbar__in{flex-wrap:wrap;height:auto;padding-block:.5rem;row-gap:.4rem}.nav{width:100%;overflow-x:auto;gap:.8rem;padding-bottom:.2rem}.chip{display:none}}
 .bcard{border:1px solid var(--line);padding:1rem;background:#fff;display:flex;flex-direction:column;gap:.5rem}
 .bcard h4{font-size:11px;letter-spacing:.14em;text-transform:uppercase}
 .bcard ul{list-style:none;display:flex;flex-direction:column;gap:.3rem;font-size:13px;color:var(--ink-2)}
